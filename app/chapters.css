@@ -1,0 +1,59 @@
+:root {
+  --paper: #e8e1d3;
+  --paper-light: #f6f1e7;
+  --ink: #282721;
+  --muted: #736f65;
+  --cinnabar: #7a3027;
+  --border: rgba(54,49,40,.18);
+  --panel: rgba(246,241,231,.94);
+  --sans: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+}
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { color: var(--ink); background: var(--paper); font-family: var(--sans); }
+button { font: inherit; color: inherit; cursor: default; }
+#map { position: absolute; inset: 0; }
+#map::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .4; mix-blend-mode: multiply; background-image: radial-gradient(rgba(71,61,45,.15) .6px, transparent .8px); background-size: 5px 5px; }
+#map-labels { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.map-label { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: var(--serif); color: #3f3a31; -webkit-text-stroke: 1.5px rgba(246,241,231,.96); paint-order: stroke fill; }
+.map-label--polity { font-size: 26px; font-weight: 700; letter-spacing: .12em; color: #7a3027; }
+.map-label--polity.is-selected { color: #3d241e; }
+.chapter-topbar { position: absolute; z-index: 10; top: 14px; left: 14px; right: 14px; height: 70px; display: flex; align-items: center; gap: 14px; padding: 0 18px; border: 1px solid var(--border); border-radius: 9px; background: rgba(246,241,231,.93); box-shadow: 0 8px 28px rgba(49,39,24,.1); backdrop-filter: blur(16px); }
+.chapter-seal { width: 44px; height: 44px; border: 0; border-radius: 2px; background: var(--cinnabar); color: #f5eee0; font-family: var(--serif); font-size: 25px; }
+.chapter-brand { min-width: 270px; }
+.chapter-brand h1 { margin: 0; font-family: var(--serif); font-size: 20px; letter-spacing: .06em; }
+.chapter-brand p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+.polity-switcher { display: flex; gap: 5px; flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+.polity-btn { display: inline-flex; align-items: center; gap: 5px; height: 30px; padding: 0 9px; border: 1px solid var(--border); border-radius: 3px; background: transparent; font-size: 11px; }
+.polity-btn i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
+.polity-btn.is-active { border-color: var(--cinnabar); background: var(--cinnabar); color: #f6f1e7; }
+.polity-btn.is-active i { background: #f6f1e7; }
+.back-link { margin-left: auto; color: var(--cinnabar); font-size: 11px; text-decoration: none; border-bottom: 1px solid rgba(122,48,39,.3); }
+.chapter-panel { position: absolute; z-index: 6; top: 100px; left: 14px; width: 290px; bottom: 28px; padding: 24px; overflow-y: auto; border: 1px solid var(--border); border-radius: 9px; background: var(--panel); box-shadow: 0 18px 50px rgba(49,39,24,.15); backdrop-filter: blur(16px); }
+.chapter-kicker { color: var(--cinnabar); font-size: 9px; font-weight: 700; letter-spacing: .18em; }
+.chapter-panel h2 { margin: 6px 0 0; font-family: var(--serif); font-size: 44px; color: var(--cinnabar); }
+.chapter-years { color: var(--muted); font-size: 12px; }
+.chapter-note { margin: 10px 0 0; color: var(--ink); font-size: 12px; }
+.chapter-rule { height: 1px; margin: 20px 0 16px; background: var(--border); }
+.chapter-description { color: #514b40; font-size: 11px; line-height: 1.85; }
+.chapter-panel h3 { margin: 22px 0 8px; color: var(--cinnabar); font-size: 10px; letter-spacing: .15em; }
+.polity-list { display: flex; flex-direction: column; gap: 5px; }
+.polity-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border: 1px solid var(--border); border-radius: 3px; background: rgba(255,255,255,.18); font-size: 11px; }
+.polity-item i { width: 10px; height: 10px; border-radius: 50%; background: var(--dot); }
+.chapter-footnote { margin-top: 24px; color: var(--muted); font-size: 9.5px; line-height: 1.7; }
+.chapter-dialog { width: min(620px, calc(100vw - 32px)); padding: 26px 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--paper-light); box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+.chapter-dialog::backdrop { background: rgba(40,35,25,.45); backdrop-filter: blur(2px); }
+.chapter-dialog h2 { margin: 0 0 16px; font-family: var(--serif); font-size: 24px; color: var(--cinnabar); }
+.chapter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+.chapter-card { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--border); border-radius: 4px; background: transparent; text-align: left; }
+.chapter-card:hover { border-color: var(--cinnabar); background: rgba(122,48,39,.06); }
+.chapter-card b { font-family: var(--serif); font-size: 20px; color: var(--cinnabar); width: 36px; }
+.chapter-card span { color: var(--muted); font-size: 10px; line-height: 1.5; }
+.dialog-close { position: absolute; right: 14px; top: 10px; border: 0; background: transparent; color: var(--muted); font-size: 24px; }
+@media (max-width: 760px) {
+  .chapter-brand h1 { font-size: 15px; }
+  .chapter-brand { min-width: 0; }
+  .chapter-panel { top: 100px; width: calc(100vw - 28px); bottom: 14px; }
+  .polity-switcher { display: none; }
+}

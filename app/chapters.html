@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>中国历代行政区划和政治制度变迁 · 朝代章节</title>
+  <link rel="stylesheet" href="vendor/maplibre-gl.css" />
+  <link rel="stylesheet" href="chapters.css" />
+</head>
+<body>
+  <main class="chapter-shell">
+    <div id="map"></div>
+    <div id="map-labels"></div>
+
+    <header class="chapter-topbar">
+      <button id="btn-chapter" class="chapter-seal" type="button" title="切换朝代">明</button>
+      <div class="chapter-brand">
+        <h1>中国历代行政区划和政治制度变迁</h1>
+        <p id="chapter-subtitle">明代 · 洪武元年—崇祯十七年</p>
+      </div>
+      <div id="polity-switcher" class="polity-switcher"></div>
+      <a class="back-link" href="index.html">返回明代详图</a>
+    </header>
+
+    <aside class="chapter-panel">
+      <div class="chapter-kicker">CHAPTER</div>
+      <h2 id="chapter-name">明</h2>
+      <div id="chapter-years" class="chapter-years">1368—1644</div>
+      <p id="chapter-note" class="chapter-note">大一统 · 布政使司</p>
+      <div class="chapter-rule"></div>
+      <p id="chapter-description" class="chapter-description"></p>
+      <h3>本时期政权</h3>
+      <div id="polity-list" class="polity-list"></div>
+      <p class="chapter-footnote">章节基础版：先接入历代政权疆域与政权切换；各朝郡/州/路/省等行政层级将逐章细化。</p>
+    </aside>
+
+    <dialog id="chapter-dialog" class="chapter-dialog">
+      <button id="btn-dialog-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <h2>选择朝代章节</h2>
+      <div id="chapter-grid" class="chapter-grid"></div>
+    </dialog>
+  </main>
+
+  <script src="data/reference-data.js"></script>
+  <script src="data/modern-china.js"></script>
+  <script src="data/heyyybingo-territories.js"></script>
+  <script src="data/chapters.js"></script>
+  <script src="vendor/maplibre-gl.js"></script>
+  <script src="chapters.js"></script>
+</body>
+</html>

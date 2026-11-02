@@ -1569,6 +1569,7 @@
         duration: 650,
       });
     });
+    $("#btn-chapters").addEventListener("click", () => { window.location.href = "chapters.html?chapter=ming"; });
     $("#btn-about").addEventListener("click", () => $("#about-dialog").showModal());
     $("#btn-about-close").addEventListener("click", () => $("#about-dialog").close());
     $("#about-dialog").addEventListener("click", (event) => {

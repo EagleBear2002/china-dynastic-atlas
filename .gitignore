@@ -1,5 +1,6 @@
 # 本地测试截图与中间产物
 app/preview*.png
+app/chapters-preview*.png
 assets/pdf_page-*.png
 assets/pdf_first*.png
 assets/report_preview*.png
