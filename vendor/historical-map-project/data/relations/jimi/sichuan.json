@@ -1,0 +1,328 @@
+[
+  {
+    "id": "pingyi-mahu-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "pingyi-mahu-military",
+    "objectId": "mahu-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "manyi-mahu-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "manyi-mahu-military",
+    "objectId": "mahu-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "muchuan-mahu-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "muchuan-mahu-military",
+    "objectId": "mahu-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "baishuijiang-zhenxiong-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "baishuijiang-zhenxiong-military",
+    "objectId": "zhenxiong-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "huaide-zhenxiong-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "huaide-zhenxiong-military",
+    "objectId": "zhenxiong-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "weixin-zhenxiong-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "weixin-zhenxiong-military",
+    "objectId": "zhenxiong-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "guihua-zhenxiong-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "guihua-zhenxiong-military",
+    "objectId": "zhenxiong-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "anjing-zhenxiong-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "anjing-zhenxiong-military",
+    "objectId": "zhenxiong-prefecture",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "yongning-xuanfu-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "yongning-xuanfu-military",
+    "objectId": "sichuan",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "jiuxing-yongning-military-jimi-parent",
+    "relationType": "jimi-subordination",
+    "subjectId": "jiuxing-yongning-military",
+    "objectId": "yongning-xuanfu-military",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "taiping-yongning-military-jimi-parent",
+    "relationType": "jimi-subordination",
+    "subjectId": "taiping-yongning-military",
+    "objectId": "yongning-xuanfu-military",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "tianquan-liufan-military-jimi-parent",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "tianquan-liufan-military",
+    "objectId": "sichuan",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from the former special-governance parent link to an explicit jimi relation."
+    }
+  },
+  {
+    "id": "changzhou-sichuan-xing-guangyuan-context",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "changzhou-sichuan-xing",
+    "objectId": "sichuan",
+    "validity": { "from": 1600, "to": 1600, "precision": "exact" },
+    "confidence": "high",
+    "sources": [{ "sourceId": "ming-shi-geography-four", "claim": "parent", "confidence": "high" }],
+    "audit": { "reviewedOn": "2026-08-04", "revisionNote": "Added the missing provincial context for a root native office; no administrative-unit line is drawn from this context relation." }
+  },
+  {
+    "id": "weilong-sichuan-xing-sichuan-context",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "weilong-sichuan-xing",
+    "objectId": "sichuan",
+    "validity": { "from": 1600, "to": 1600, "precision": "exact" },
+    "confidence": "high",
+    "sources": [{ "sourceId": "ming-shi-geography-four", "claim": "parent", "confidence": "high" }],
+    "audit": { "reviewedOn": "2026-08-04", "revisionNote": "Added the missing provincial context for a root native office; no administrative-unit line is drawn from this context relation." }
+  },
+  {
+    "id": "puji-sichuan-xing-sichuan-context",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "puji-sichuan-xing",
+    "objectId": "sichuan",
+    "validity": { "from": 1600, "to": 1600, "precision": "exact" },
+    "confidence": "high",
+    "sources": [{ "sourceId": "ming-shi-geography-four", "claim": "parent", "confidence": "high" }],
+    "audit": { "reviewedOn": "2026-08-04", "revisionNote": "Added the missing provincial context for a root native office; no administrative-unit line is drawn from this context relation." }
+  },
+  {
+    "id": "mala-sichuan-xing-sichuan-context",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "mala-sichuan-xing",
+    "objectId": "sichuan",
+    "validity": { "from": 1600, "to": 1600, "precision": "exact" },
+    "confidence": "high",
+    "sources": [{ "sourceId": "ming-shi-geography-four", "claim": "parent", "confidence": "high" }],
+    "audit": { "reviewedOn": "2026-08-04", "revisionNote": "Added the missing provincial context for a root native office; no administrative-unit line is drawn from this context relation." }
+  },
+  {
+    "id": "qiongbu-sichuan-xing-sichuan-context",
+    "relationType": "jimi-administrative-context",
+    "subjectId": "qiongbu-sichuan-xing",
+    "objectId": "sichuan",
+    "validity": { "from": 1600, "to": 1600, "precision": "exact" },
+    "confidence": "high",
+    "sources": [{ "sourceId": "ming-shi-geography-four", "claim": "parent", "confidence": "high" }],
+    "audit": { "reviewedOn": "2026-08-04", "revisionNote": "Added the missing provincial context for a root native office; no administrative-unit line is drawn from this context relation." }
+  }
+]

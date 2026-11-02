@@ -1,0 +1,161 @@
+:root{
+  --ink:#22201d;
+  --muted:#6f675c;
+  --paper:#f7f2e8;
+  --card:#fffdf8;
+  --line:#d8cdbb;
+  --accent:#8a2f28;
+  --green:#1f4a3d;
+  --gold:#b08a4a;
+}
+*{box-sizing:border-box}
+@page{size:A4;margin:16mm 14mm}
+html{scroll-behavior:smooth}
+body{
+  margin:0 auto;
+  max-width:1180px;
+  padding:42px 46px 80px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(176,138,74,.10), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(31,74,61,.06), transparent 28%),
+    var(--paper);
+  color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  font-size:17px;
+  line-height:1.9;
+}
+header#title-block-header{
+  border-top:6px solid var(--green);
+  border-bottom:1px solid var(--line);
+  padding:26px 0 22px;
+  margin-bottom:30px;
+}
+header#title-block-header{display:none}
+h1.title,
+body > h1:first-of-type{
+  font-size:2.45rem;
+  line-height:1.25;
+  margin:0 0 18px;
+  padding:28px 0 20px;
+  border-top:6px solid var(--green);
+  border-bottom:1px solid var(--line);
+  letter-spacing:.03em;
+  color:var(--green);
+}
+p.subtitle{font-size:1.05rem;color:var(--muted);margin:0}
+p.author,p.date{color:var(--muted);font-size:.92rem;margin:4px 0}
+h2{
+  font-size:1.6rem;
+  margin:52px 0 16px;
+  padding:10px 0 8px 16px;
+  border-left:5px solid var(--accent);
+  color:var(--green);
+  background:linear-gradient(90deg,rgba(138,47,40,.06),transparent 65%);
+}
+h3{
+  font-size:1.22rem;
+  margin:34px 0 10px;
+  color:var(--accent);
+}
+h4{font-size:1.05rem;margin:24px 0 8px;color:var(--green)}
+p{margin:0 0 14px}
+a{color:#0f5c8a;text-decoration:none;border-bottom:1px dotted rgba(15,92,138,.45)}
+a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+strong{color:#171512}
+blockquote{
+  margin:22px 0;
+  padding:16px 22px;
+  border-left:4px solid var(--gold);
+  background:rgba(255,253,248,.85);
+  color:#4f473d;
+  border-radius:0 8px 8px 0;
+}
+blockquote p:last-child{margin-bottom:0}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:22px 0 28px;
+  font-size:.82rem;
+  line-height:1.55;
+  background:var(--card);
+  box-shadow:0 1px 0 var(--line);
+  display:block;
+  overflow-x:auto;
+  white-space:normal;
+}
+thead{background:var(--green);color:#fff}
+th,td{
+  border:1px solid var(--line);
+  padding:9px 10px;
+  vertical-align:top;
+  text-align:left;
+}
+tbody tr:nth-child(even){background:#faf6ee}
+tbody tr:hover{background:#f3ead9}
+th{font-weight:600;letter-spacing:.02em}
+img{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin:20px auto 8px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  box-shadow:0 8px 24px rgba(60,45,25,.13);
+  background:#fff;
+}
+p:has(> img){text-align:center}
+p:has(> img) em{display:block;font-size:.85rem;color:var(--muted);font-style:normal;margin-top:8px}
+hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+code{
+  font-family:"Cascadia Code","Consolas",monospace;
+  font-size:.86em;
+  background:#eee6d8;
+  padding:2px 5px;
+  border-radius:3px;
+}
+pre{
+  background:#18211e;
+  color:#e8e1d3;
+  padding:18px 20px;
+  border-radius:8px;
+  overflow-x:auto;
+  line-height:1.55;
+  font-size:.82rem;
+}
+pre code{background:transparent;padding:0;color:inherit}
+ul,ol{padding-left:1.5em;margin:0 0 16px}
+li{margin:5px 0}
+#TOC{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:18px 24px;
+  margin:0 0 34px;
+  font-size:.92rem;
+}
+#TOC ul{margin:0;padding-left:1.2em}
+#TOC > ul{padding-left:0;list-style:none}
+#TOC > ul > li:first-child > a{display:none}
+#TOC a{border-bottom:none}
+nav#TOC::before{
+  content:"目录";
+  display:block;
+  font-weight:700;
+  color:var(--green);
+  margin-bottom:8px;
+  letter-spacing:.15em;
+}
+@media (max-width:760px){
+  body{padding:24px 18px 60px;font-size:16px}
+  h1.title{font-size:1.8rem}
+  h2{font-size:1.35rem}
+  table{font-size:.76rem}
+}
+@media print{
+  body{max-width:none;padding:0;background:#fff;font-size:11pt}
+  a{color:inherit;border-bottom:none}
+  h1.title,
+  body > h1:first-of-type{font-size:1.5rem;line-height:1.35;letter-spacing:0}
+  h2{break-after:avoid}
+  table,img{break-inside:avoid}
+}

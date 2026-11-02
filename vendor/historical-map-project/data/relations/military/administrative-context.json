@@ -1,0 +1,1382 @@
+[
+  {
+    "id": "guizhou-dusi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guizhou-dusi",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "longliwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "longliwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "xintianwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "xintianwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "annan-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "annan-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "weiqing-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "weiqing-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "pingba-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "pingba-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "bijie-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "bijie-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "chishui-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "chishui-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "moni-chishui-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "moni-chishui-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "baisa-chishui-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "baisa-chishui-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "aluomi-chishui-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "aluomi-chishui-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "qian-chishui-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "qian-chishui-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "pushi-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "pushi-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "wukai-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "wukai-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Preserved the existing Guizhou administrative context as a cross-system relation"
+    }
+  },
+  {
+    "id": "guizhou-wei-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guizhou-wei-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "guizhou-qianwei-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guizhou-qianwei-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "pingyuewei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "pingyuewei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "qingpingwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "qingpingwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "xinglongwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "xinglongwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "duyunwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "duyunwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "pudingwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "pudingwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "anzhuangwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "anzhuangwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "puanwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "puanwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "wusawei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "wusawei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "yongningwei-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "yongningwei-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "huangping-guizhou-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "huangping-guizhou-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "guansuoling-anzhuang-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guansuoling-anzhuang-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "qixingguan-bijie-military-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "qixingguan-bijie-military",
+    "objectId": "guizhou",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Recorded Guizhou as the administrative context without changing the military command chain"
+    }
+  },
+  {
+    "id": "tongguan-wei-beizhili-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "tongguan-wei-beizhili",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "tongguan-beizhili-study",
+        "claim": "parent",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the Northern Zhili jurisdiction separately from the Central Army military affiliation; the seat remains at the Tongguan proxy."
+    }
+  },
+  {
+    "id": "puzhou-qianhusuo-beizhili-shanxi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "puzhou-qianhusuo-beizhili",
+    "objectId": "shanxi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "national-museum-tongguan-puzhou-document",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the Puzhou seat in Shanxi separately from its Tongguan Guard military parent."
+    }
+  },
+  {
+    "id": "liushou-left-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "liushou-left-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "zhennan-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "zhennan-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "shuijun-left-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "shuijun-left-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "xiaoqi-right-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "xiaoqi-right-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "longhu-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "longhu-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "yingwu-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "yingwu-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "shenyang-left-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "shenyang-left-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "shenyang-right-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "shenyang-right-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "huben-right-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "huben-right-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "liushou-right-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "liushou-right-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "shuijun-right-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "shuijun-right-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "wude-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "wude-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "guangwu-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guangwu-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "liushou-middle-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "liushou-middle-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "shence-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "shence-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "guangyang-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "guangyang-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "yingtian-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "yingtian-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "heyang-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "heyang-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "muma-qianhusuo-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "muma-qianhusuo-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital battalion's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "tiance-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "tiance-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "longxiang-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "longxiang-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "baotao-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "baotao-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "longjiang-left-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "longjiang-left-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "feixiong-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "feixiong-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "henghai-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "henghai-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "yingyang-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "yingyang-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "xingwu-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "xingwu-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "jiangyin-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "jiangyin-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "menggu-left-wei-beijing-jingshi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "menggu-left-wei-beijing",
+    "objectId": "jingshi",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-28",
+      "revisionNote": "Recorded the in-capital guard's Beijing administrative context without treating Jingshi as its military parent."
+    }
+  },
+  {
+    "id": "sichuan-dusi-administrative-context",
+    "relationType": "administrative-context",
+    "subjectId": "sichuan-dusi",
+    "objectId": "sichuan",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-one",
+        "claim": "location",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-08-19",
+      "revisionNote": "Recorded the Sichuan Regional Military Commission administrative context, which was absent while its sibling Xing Dusi carried one."
+    }
+  }
+]

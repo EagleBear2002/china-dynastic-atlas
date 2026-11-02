@@ -1,0 +1,29 @@
+/target/
+/tools/target/
+/node_modules/
+/dist/
+/data/project.json
+/data/.generated/
+/playwright-report/
+/.playwright-mcp/
+/test-results/
+/public/terrain/
+/public/reference/province-baseline*.geojson
+/public/reference/national-outline-*.geojson
+
+# Boundary geometry metadata. The coordinates live in the Map-Boundary repository
+# and are referenced through geometryPath; neither they nor these records are published.
+/data/geometries/*.json
+/data/geometries/[0-9]*/
+/.terrain-work/
+/.terrain-venv/
+/.reference-work/
+.env
+.env.*
+!.env.example
+.private-docs/
+*.log
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

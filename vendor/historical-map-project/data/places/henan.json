@@ -1,0 +1,2647 @@
+[
+  {
+    "id": "xiangfu-seat",
+    "longitude": 114.345,
+    "latitude": 34.795,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q208471, guided by the Ming History geographic description; Modern Kaifeng City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q208471 P625; Modern Kaifeng City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Kaifeng City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "luoyang-seat",
+    "longitude": 112.42447,
+    "latitude": 34.65867,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q187136, guided by the Ming History geographic description; Modern Luoyang City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q187136 P625; Modern Luoyang City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Luoyang City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "shangqiu-seat",
+    "longitude": 115.64673,
+    "latitude": 34.42592,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q404817, guided by the Ming History geographic description; Modern Shangqiu City proxy; the Ming Guide prefectural seat and modern urban center are not identical.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q404817 P625; Modern Shangqiu City proxy; the Ming Guide prefectural seat and modern urban center are not identical."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shangqiu City proxy; the Ming Guide prefectural seat and modern urban center are not identical."
+    }
+  },
+  {
+    "id": "ruyang-seat",
+    "longitude": 114.35327,
+    "latitude": 33.00392,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q925681, guided by the Ming History geographic description; Modern Runan County proxy for historical Ruyang; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q925681 P625; Modern Runan County proxy for historical Ruyang; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Runan County proxy for historical Ruyang; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "nanyang-seat",
+    "longitude": 112.52921,
+    "latitude": 32.99871,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q404763, guided by the Ming History geographic description; Modern Nanyang City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q404763 P625; Modern Nanyang City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Nanyang City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "henei-seat",
+    "longitude": 112.93168,
+    "latitude": 35.09066,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1359226, guided by the Ming History geographic description; Modern Qinyang City proxy for historical Henei; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1359226 P625; Modern Qinyang City proxy for historical Henei; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Qinyang City proxy for historical Henei; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "ji-seat",
+    "longitude": 114.05927,
+    "latitude": 35.40426,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1344805, guided by the Ming History geographic description; Modern Weihui City proxy for historical Ji; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1344805 P625; Modern Weihui City proxy for historical Ji; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Weihui City proxy for historical Ji; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "anyang-seat",
+    "longitude": 114.34614,
+    "latitude": 36.09561,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q324293, guided by the Ming History geographic description; Modern Anyang City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q324293 P625; Modern Anyang City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Anyang City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "ruzhou-seat",
+    "longitude": 112.83903,
+    "latitude": 34.17362,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1207131, guided by the Ming History geographic description; Modern Ruzhou City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1207131 P625; Modern Ruzhou City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Ruzhou City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "chenliu-kaifeng-seat",
+    "longitude": 114.52907,
+    "latitude": 34.67102,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q2962659, guided by the Ming History geographic description; Modern Chenliu Town proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q2962659 P625; Modern Chenliu Town proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Chenliu Town proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "qi-kaifeng-seat",
+    "longitude": 114.76921,
+    "latitude": 34.55429,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198543, guided by the Ming History geographic description; Modern Qi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198543 P625; Modern Qi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Qi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "tongxu-seat",
+    "longitude": 114.46139,
+    "latitude": 34.47657,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198540, guided by the Ming History geographic description; Modern Tongxu County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198540 P625; Modern Tongxu County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Tongxu County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "taikang-seat",
+    "longitude": 114.85442,
+    "latitude": 34.06448,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q662019, guided by the Ming History geographic description; Modern Taikang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q662019 P625; Modern Taikang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Taikang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "weishi-seat",
+    "longitude": 114.19305,
+    "latitude": 34.41144,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy guided by the Ming History entry; no suitable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Reversible proxy pending an independent historical-location source"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Retained a low-confidence reversible proxy after alias searches returned no contemporaneous point"
+    }
+  },
+  {
+    "id": "weichuan-seat",
+    "longitude": 113.98231,
+    "latitude": 34.29084,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q11146520, guided by the Ming History geographic description; Modern Weichuan Town proxy for historical Weichuan County; the former county was reorganized and the exact seat remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q11146520 P625; Modern Weichuan Town proxy for historical Weichuan County; the former county was reorganized and the exact seat remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Weichuan Town proxy for historical Weichuan County; the former county was reorganized and the exact seat remains unresolved."
+    }
+  },
+  {
+    "id": "yanling-kaifeng-seat",
+    "longitude": 114.17633,
+    "latitude": 34.10083,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198943, guided by the Ming History geographic description; Modern Yanling County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198943 P625; Modern Yanling County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yanling County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "fugou-seat",
+    "longitude": 114.38614,
+    "latitude": 34.05335,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199052, guided by the Ming History geographic description; Modern Fugou County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199052 P625; Modern Fugou County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Fugou County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "zhongmou-seat",
+    "longitude": 114.01074,
+    "latitude": 34.72634,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q197874, guided by the Ming History geographic description; Modern Zhongmu County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q197874 P625; Modern Zhongmu County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Zhongmu County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yangwu-seat",
+    "longitude": 113.95998,
+    "latitude": 35.05408,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198775, guided by the Ming History geographic description; Modern Yuanyang County proxy for historical Yangwu; the historical county was renamed and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198775 P625; Modern Yuanyang County proxy for historical Yangwu; the historical county was renamed and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yuanyang County proxy for historical Yangwu; the historical county was renamed and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yuanwu-seat",
+    "longitude": 113.7795,
+    "latitude": 34.99853,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q10911308, guided by the Ming History geographic description; Modern Yuanwu Town proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q10911308 P625; Modern Yuanwu Town proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yuanwu Town proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "fengqiu-seat",
+    "longitude": 114.41894,
+    "latitude": 35.03674,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198669, guided by the Ming History geographic description; Modern Fengqiu County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198669 P625; Modern Fengqiu County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Fengqiu County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yanjin-seat",
+    "longitude": 114.19661,
+    "latitude": 35.14705,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198603, guided by the Ming History geographic description; Modern Yanjin County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198603 P625; Modern Yanjin County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yanjin County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "lanyang-seat",
+    "longitude": 114.81597,
+    "latitude": 34.83005,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198537, guided by the Ming History geographic description; Modern Lankao County proxy for historical Lanyang; the historical county was reorganized and the exact seat remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198537 P625; Modern Lankao County proxy for historical Lanyang; the historical county was reorganized and the exact seat remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lankao County proxy for historical Lanyang; the historical county was reorganized and the exact seat remains unresolved."
+    }
+  },
+  {
+    "id": "yifeng-seat",
+    "longitude": 114.81597,
+    "latitude": 34.83005,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198537, guided by the Ming History geographic description; Modern Lankao County proxy for historical Yifeng; the historical county was reorganized and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198537 P625; Modern Lankao County proxy for historical Yifeng; the historical county was reorganized and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lankao County proxy for historical Yifeng; the historical county was reorganized and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xinzheng-seat",
+    "longitude": 113.7249,
+    "latitude": 34.39621,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1024662, guided by the Ming History geographic description; Modern Xinzheng City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1024662 P625; Modern Xinzheng City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xinzheng City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "chen-kaifeng-seat",
+    "longitude": 114.886,
+    "latitude": 33.732,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy guided by the Ming History entry; no suitable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Reversible proxy pending an independent historical-location source"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Retained a low-confidence reversible proxy after alias searches returned no contemporaneous point"
+    }
+  },
+  {
+    "id": "shangshui-seat",
+    "longitude": 114.60729,
+    "latitude": 33.5445,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198746, guided by the Ming History geographic description; Modern Shangshui County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198746 P625; Modern Shangshui County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shangshui County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xihua-seat",
+    "longitude": 114.52508,
+    "latitude": 33.78921,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198783, guided by the Ming History geographic description; Modern Xihua County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198783 P625; Modern Xihua County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xihua County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xiangcheng-chen-seat",
+    "longitude": 114.89936,
+    "latitude": 33.44326,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1359958, guided by the Ming History geographic description; Modern Xiangcheng City proxy for historical Xiangcheng in Chenzhou; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1359958 P625; Modern Xiangcheng City proxy for historical Xiangcheng in Chenzhou; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xiangcheng City proxy for historical Xiangcheng in Chenzhou; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "shenqiu-seat",
+    "longitude": 115.08148,
+    "latitude": 33.38199,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198988, guided by the Ming History geographic description; Modern Shenqiu County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198988 P625; Modern Shenqiu County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shenqiu County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xu-kaifeng-seat",
+    "longitude": 113.82014,
+    "latitude": 34.02444,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q404529, guided by the Ming History geographic description; Modern Xuchang City proxy for historical Xu State; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q404529 P625; Modern Xuchang City proxy for historical Xu State; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xuchang City proxy for historical Xu State; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "linying-seat",
+    "longitude": 113.93584,
+    "latitude": 33.81278,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198801, guided by the Ming History geographic description; Modern Linying County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198801 P625; Modern Linying County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Linying County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xiangcheng-xu-seat",
+    "longitude": 113.48706,
+    "latitude": 33.85138,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198958, guided by the Ming History geographic description; Modern Xiangcheng County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198958 P625; Modern Xiangcheng County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xiangcheng County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yancheng-kaifeng-seat",
+    "longitude": 114.00075,
+    "latitude": 33.58856,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198720, guided by the Ming History geographic description; Modern Yancheng District proxy for historical Yancheng County; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198720 P625; Modern Yancheng District proxy for historical Yancheng County; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yancheng District proxy for historical Yancheng County; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "changge-seat",
+    "longitude": 113.76933,
+    "latitude": 34.21891,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1062018, guided by the Ming History geographic description; Modern Changge City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1062018 P625; Modern Changge City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Changge City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yu-kaifeng-seat",
+    "longitude": 113.47334,
+    "latitude": 34.15113,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1344848, guided by the Ming History geographic description; Modern Yuzhou City proxy for historical Yu State; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1344848 P625; Modern Yuzhou City proxy for historical Yu State; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yuzhou City proxy for historical Yu State; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "mi-yuzhou-seat",
+    "longitude": 113.37957,
+    "latitude": 34.53801,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1337399, guided by the Ming History geographic description; Modern Xinmi City proxy for historical Mi County; the historical county was renamed and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1337399 P625; Modern Xinmi City proxy for historical Mi County; the historical county was renamed and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xinmi City proxy for historical Mi County; the historical county was renamed and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "zheng-kaifeng-seat",
+    "longitude": 113.66051,
+    "latitude": 34.74919,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q30340, guided by the Ming History geographic description; Modern Zhengzhou City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q30340 P625; Modern Zhengzhou City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Zhengzhou City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xingyang-seat",
+    "longitude": 113.383888888,
+    "latitude": 34.7875,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1360089, guided by the Ming History geographic description; Modern Xingyang City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1360089 P625; Modern Xingyang City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xingyang City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xingze-seat",
+    "longitude": 113.383888888,
+    "latitude": 34.7875,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1360089, guided by the Ming History geographic description; Modern Xingyang City proxy for historical Xingze; the former county was reorganized and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1360089 P625; Modern Xingyang City proxy for historical Xingze; the former county was reorganized and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xingyang City proxy for historical Xingze; the former county was reorganized and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "heyin-seat",
+    "longitude": 113.383888888,
+    "latitude": 34.7875,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1360089, guided by the Ming History geographic description; Modern Xingyang City proxy for historical Heyin; the historical site is associated with the Guangwu area and remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1360089 P625; Modern Xingyang City proxy for historical Heyin; the historical site is associated with the Guangwu area and remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xingyang City proxy for historical Heyin; the historical site is associated with the Guangwu area and remains unresolved."
+    }
+  },
+  {
+    "id": "sishui-kaifeng-seat",
+    "longitude": 113.21211,
+    "latitude": 34.84519,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q11133559, guided by the Ming History geographic description; Modern Sishui Town proxy for historical Sishui County; the former county seat and modern town correspondence remain unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q11133559 P625; Modern Sishui Town proxy for historical Sishui County; the former county seat and modern town correspondence remain unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Sishui Town proxy for historical Sishui County; the former county seat and modern town correspondence remain unresolved."
+    }
+  },
+  {
+    "id": "yanshi-henan-seat",
+    "longitude": 112.77955,
+    "latitude": 34.72296,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1337479, guided by the Ming History geographic description; Modern Yanshi District proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1337479 P625; Modern Yanshi District proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yanshi District proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "gong-henan-seat",
+    "longitude": 112.98541,
+    "latitude": 34.75128,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1359997, guided by the Ming History geographic description; Modern Gongyi City proxy for historical Gong County; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1359997 P625; Modern Gongyi City proxy for historical Gong County; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Gongyi City proxy for historical Gong County; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "mengjin-henan-seat",
+    "longitude": 112.43908,
+    "latitude": 34.82615,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1335956, guided by the Ming History geographic description; Modern Mengjin District proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1335956 P625; Modern Mengjin District proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Mengjin District proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yiyang-henan-seat",
+    "longitude": 112.17793,
+    "latitude": 34.51725,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198654, guided by the Ming History geographic description; Modern Yiyang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198654 P625; Modern Yiyang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yiyang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yongning-henan-seat",
+    "longitude": 111.64675,
+    "latitude": 34.38969,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198623, guided by the Ming History geographic description; Modern Luoning County proxy for historical Yongning; the historical county was renamed and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198623 P625; Modern Luoning County proxy for historical Yongning; the historical county was renamed and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Luoning County proxy for historical Yongning; the historical county was renamed and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xinan-henan-seat",
+    "longitude": 112.13123,
+    "latitude": 34.73104,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198649, guided by the Ming History geographic description; Modern Xin'an County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198649 P625; Modern Xin'an County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xin'an County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "mianchi-henan-seat",
+    "longitude": 111.76328,
+    "latitude": 34.76119,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198833, guided by the Ming History geographic description; Modern Mianchi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198833 P625; Modern Mianchi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Mianchi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "dengfeng-henan-seat",
+    "longitude": 113.04242,
+    "latitude": 34.41609,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q877609, guided by the Ming History geographic description; Modern Dengfeng City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q877609 P625; Modern Dengfeng City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Dengfeng City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "song-henan-seat",
+    "longitude": 112.08389,
+    "latitude": 34.13519,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198635, guided by the Ming History geographic description; Modern Song County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198635 P625; Modern Song County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Song County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "lushi-henan-seat",
+    "longitude": 111.05226,
+    "latitude": 34.05505,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199003, guided by the Ming History geographic description; Modern Lushi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199003 P625; Modern Lushi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lushi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "shanzhou-henan-seat",
+    "longitude": 111.09404,
+    "latitude": 34.71921,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198709, guided by the Ming History geographic description; Modern Shanzhou District proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198709 P625; Modern Shanzhou District proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shanzhou District proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "lingbao-henan-seat",
+    "longitude": 110.87856,
+    "latitude": 34.52212,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198819, guided by the Ming History geographic description; Modern Lingbao City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198819 P625; Modern Lingbao City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lingbao City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "wenxiang-henan-seat",
+    "longitude": 110.87856,
+    "latitude": 34.52212,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198819, guided by the Ming History geographic description; Modern Lingbao City proxy for historical Wenxiang; the historical county was reorganized and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198819 P625; Modern Lingbao City proxy for historical Wenxiang; the historical county was reorganized and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lingbao City proxy for historical Wenxiang; the historical county was reorganized and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "ningling-guide-seat",
+    "longitude": 115.3165,
+    "latitude": 34.44767,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199078, guided by the Ming History geographic description; Modern Ningling County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199078 P625; Modern Ningling County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Ningling County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "luyi-guide-seat",
+    "longitude": 115.48092,
+    "latitude": 33.86042,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198911, guided by the Ming History geographic description; Modern Luyi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198911 P625; Modern Luyi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Luyi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xiayi-guide-seat",
+    "longitude": 116.13449,
+    "latitude": 34.23995,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198629, guided by the Ming History geographic description; Modern Xiayi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198629 P625; Modern Xiayi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xiayi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yongcheng-guide-seat",
+    "longitude": 116.3661523,
+    "latitude": 33.9387544,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Yongcheng old-town (Chengguan) proxy; the municipal seat moved east in 1996",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Old-town continuity proxy; no suitable 1600 historical coordinate was available"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Moved from the modern municipal center to the old county-town location pending CHGIS or gazetteer confirmation"
+    }
+  },
+  {
+    "id": "yucheng-guide-seat",
+    "longitude": 115.85744,
+    "latitude": 34.40009,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q668520, guided by the Ming History geographic description; Modern Yucheng County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q668520 P625; Modern Yucheng County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Yucheng County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "suizhou-guide-seat",
+    "longitude": 115.06101,
+    "latitude": 34.42862,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198848, guided by the Ming History geographic description; Modern Sui County proxy for historical Suizhou; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198848 P625; Modern Sui County proxy for historical Suizhou; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Sui County proxy for historical Suizhou; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "kaocheng-guide-seat",
+    "longitude": 115.14449,
+    "latitude": 34.65077,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198655, guided by the Ming History geographic description; Modern Minquan County proxy for historical Kaocheng; the historical county was later reorganized and the exact seat remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1198655 P625; Modern Minquan County proxy for historical Kaocheng; the historical county was later reorganized and the exact seat remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Minquan County proxy for historical Kaocheng; the historical county was later reorganized and the exact seat remains unresolved."
+    }
+  },
+  {
+    "id": "zhecheng-guide-seat",
+    "longitude": 115.30146,
+    "latitude": 34.07565,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q197538, guided by the Ming History geographic description; Modern Zhecheng County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q197538 P625; Modern Zhecheng County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Zhecheng County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xiuwu-huaiqing-seat",
+    "longitude": 113.4435,
+    "latitude": 35.2269,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198620, guided by the Ming History geographic description; Modern Xiuwu County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198620 P625; Modern Xiuwu County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xiuwu County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "meng-huaiqing-seat",
+    "longitude": 112.7852,
+    "latitude": 34.91355,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198787, guided by the Ming History geographic description; Modern Mengzhou City proxy for historical Meng County; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198787 P625; Modern Mengzhou City proxy for historical Meng County; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Mengzhou City proxy for historical Meng County; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "wen-huaiqing-seat",
+    "longitude": 113.07422,
+    "latitude": 34.94083,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198768, guided by the Ming History geographic description; Modern Wen County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198768 P625; Modern Wen County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Wen County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "zuocheng-weihui-seat",
+    "longitude": 114.05927,
+    "latitude": 35.40426,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1344805, guided by the Ming History geographic description; Modern Weihui City proxy for historical Zuocheng; the former county was reorganized and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1344805 P625; Modern Weihui City proxy for historical Zuocheng; the former county was reorganized and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Weihui City proxy for historical Zuocheng; the former county was reorganized and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "huojia-weihui-seat",
+    "longitude": 113.65284,
+    "latitude": 35.26061,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198968, guided by the Ming History geographic description; Modern Huojia County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198968 P625; Modern Huojia County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Huojia County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "hui-weihui-seat",
+    "longitude": 113.69764,
+    "latitude": 35.52564,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1207058, guided by the Ming History geographic description; Modern Huixian City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1207058 P625; Modern Huixian City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Huixian City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "linzhang-zhangde-seat",
+    "longitude": 114.60843,
+    "latitude": 36.33518,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1196702, guided by the Ming History geographic description; Modern Linzhang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1196702 P625; Modern Linzhang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Linzhang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "tangyin-zhangde-seat",
+    "longitude": 114.35794,
+    "latitude": 35.91992,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q176664, guided by the Ming History geographic description; Modern Tangyin County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q176664 P625; Modern Tangyin County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Tangyin County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "lin-zhangde-seat",
+    "longitude": 113.81528,
+    "latitude": 36.06561,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198639, guided by the Ming History geographic description; Modern Linzhou City proxy for historical Lin County; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198639 P625; Modern Linzhou City proxy for historical Lin County; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Linzhou City proxy for historical Lin County; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "cizhou-zhangde-seat",
+    "longitude": 114.37748,
+    "latitude": 36.36347,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1091343, guided by the Ming History geographic description; Modern Ci County proxy for historical Cizhou; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1091343 P625; Modern Ci County proxy for historical Cizhou; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Ci County proxy for historical Cizhou; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "wuan-cizhou-seat",
+    "longitude": 114.18471,
+    "latitude": 36.69412,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1375613, guided by the Ming History geographic description; Modern Wu'an City proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1375613 P625; Modern Wu'an City proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Wu'an City proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "lushan-ruzhou-seat",
+    "longitude": 112.90117,
+    "latitude": 33.7456,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1337585, guided by the Ming History geographic description; Modern Lushan County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1337585 P625; Modern Lushan County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Lushan County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "jia-ruzhou-seat",
+    "longitude": 113.21986,
+    "latitude": 33.9729,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198660, guided by the Ming History geographic description; Modern Jia County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198660 P625; Modern Jia County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Jia County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "baofeng-ruzhou-seat",
+    "longitude": 113.0627,
+    "latitude": 33.86834,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q807063, guided by the Ming History geographic description; Modern Baofeng County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q807063 P625; Modern Baofeng County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Baofeng County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "jiyuan-huaiqing-seat",
+    "longitude": 112.5810521,
+    "latitude": 35.0945453,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 济源; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "wuzhi-huaiqing-seat",
+    "longitude": 113.4011621,
+    "latitude": 35.0984028,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 武陟; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "xinxiang-weihui-seat",
+    "longitude": 114.051111,
+    "latitude": 35.308611,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 新乡; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "qi-weihui-seat",
+    "longitude": 114.2027583,
+    "latitude": 35.6217454,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 淇; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "she-cizhou-seat",
+    "longitude": 113.669601,
+    "latitude": 36.5694846,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern She County seat proxy; historical hvd_82243 conflicts with hvd_82232 and labels the current place as Wuan",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Rejected the conflicting historical point and retained the modern She County location pending source reconciliation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "yiyang-ruzhou-seat",
+    "longitude": 112.4373717,
+    "latitude": 34.0799315,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Ruyang County seat proxy for historical Yiyang; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical Yiyang was renamed Ruyang; exact 1600 seat correspondence requires a gazetteer source"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "zhenyang-runing-seat",
+    "longitude": 114.38303,
+    "latitude": 32.60518,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q197700, guided by the Ming History geographic description; Modern Zhengyang County proxy for historical Zhenyang; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q197700 P625; Modern Zhengyang County proxy for historical Zhenyang; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Zhengyang County proxy for historical Zhenyang; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "shangcai-runing-seat",
+    "longitude": 114.26218,
+    "latitude": 33.26559,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199103, guided by the Ming History geographic description; Modern Shangcai County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199103 P625; Modern Shangcai County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shangcai County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xincai-runing-seat",
+    "longitude": 114.97063,
+    "latitude": 32.75282,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199071, guided by the Ming History geographic description; Modern Xincai County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199071 P625; Modern Xincai County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xincai County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xiping-runing-seat",
+    "longitude": 114.0194,
+    "latitude": 33.38258,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199097, guided by the Ming History geographic description; Modern Xiping County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199097 P625; Modern Xiping County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xiping County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "queshan-runing-seat",
+    "longitude": 114.02349,
+    "latitude": 32.80444,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q137578, guided by the Ming History geographic description; Modern Queshan County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q137578 P625; Modern Queshan County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Queshan County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "suiping-runing-seat",
+    "longitude": 113.9989,
+    "latitude": 33.14806,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199069, guided by the Ming History geographic description; Modern Suiping County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199069 P625; Modern Suiping County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Suiping County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xinyang-runing-seat",
+    "longitude": 114.06722,
+    "latitude": 32.12641,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q404873, guided by the Ming History geographic description; Modern Xinyang City proxy for historical Xinyang State; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q404873 P625; Modern Xinyang City proxy for historical Xinyang State; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xinyang City proxy for historical Xinyang State; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "luoshan-runing-seat",
+    "longitude": 114.52461,
+    "latitude": 32.20256,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198730, guided by the Ming History geographic description; Modern Luoshan County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198730 P625; Modern Luoshan County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Luoshan County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "guangzhou-runing-seat",
+    "longitude": 115.138055555,
+    "latitude": 32.146111111,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198737, guided by the Ming History geographic description; Modern Huangchuan County proxy for historical Guangzhou; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198737 P625; Modern Huangchuan County proxy for historical Guangzhou; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Huangchuan County proxy for historical Guangzhou; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "guangshan-runing-seat",
+    "longitude": 114.90123,
+    "latitude": 32.01253,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198930, guided by the Ming History geographic description; Modern Guangshan County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198930 P625; Modern Guangshan County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Guangshan County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "gushi-runing-seat",
+    "longitude": 115.65743,
+    "latitude": 32.18611,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1016715, guided by the Ming History geographic description; Modern Gushi County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1016715 P625; Modern Gushi County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan first replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Gushi County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xixian-runing-seat",
+    "longitude": 114.73616,
+    "latitude": 32.34887,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198890, guided by the Ming History geographic description; Modern Xi County proxy for historical Xixian; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198890 P625; Modern Xi County proxy for historical Xixian; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xi County proxy for historical Xixian; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "shangcheng-runing-seat",
+    "longitude": 115.40337,
+    "latitude": 31.79939,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198675, guided by the Ming History geographic description; Modern Shangcheng County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198675 P625; Modern Shangcheng County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Shangcheng County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "tang-nanyang-seat",
+    "longitude": 112.83402,
+    "latitude": 32.68937,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199064, guided by the Ming History geographic description; Modern Tanghe County proxy for historical Tang County; the historical county was renamed and the exact old administrative compound remains unresolved.",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q1199064 P625; Modern Tanghe County proxy for historical Tang County; the historical county was renamed and the exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Tanghe County proxy for historical Tang County; the historical county was renamed and the exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "biyang-nanyang-seat",
+    "longitude": 113.31905,
+    "latitude": 32.72705,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q879235, guided by the Ming History geographic description; Modern Biyang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q879235 P625; Modern Biyang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Biyang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "tongbai-nanyang-seat",
+    "longitude": 113.40268,
+    "latitude": 32.37252,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q966411, guided by the Ming History geographic description; Modern Tongbai County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q966411 P625; Modern Tongbai County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Tongbai County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "nanzhao-nanyang-seat",
+    "longitude": 112.42793,
+    "latitude": 33.49233,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198984, guided by the Ming History geographic description; Modern Nanzhao County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198984 P625; Modern Nanzhao County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Nanzhao County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "neixiang-nanyang-seat",
+    "longitude": 111.8437,
+    "latitude": 33.04896,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1198978, guided by the Ming History geographic description; Modern Neixiang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1198978 P625; Modern Neixiang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Neixiang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xinye-nanyang-seat",
+    "longitude": 112.36096,
+    "latitude": 32.52375,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q520582, guided by the Ming History geographic description; Modern Xinye County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q520582 P625; Modern Xinye County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xinye County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "xichuan-nanyang-seat",
+    "longitude": 111.48216,
+    "latitude": 33.13754,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1237536, guided by the Ming History geographic description; Modern Xichuan County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1237536 P625; Modern Xichuan County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Xichuan County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "yuzhou-nanyang-seat",
+    "longitude": 113.00245,
+    "latitude": 33.25629,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q340150, guided by the Ming History geographic description; Modern Fangcheng County proxy for historical Yuzhou in Nanyang; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q340150 P625; Modern Fangcheng County proxy for historical Yuzhou in Nanyang; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Fangcheng County proxy for historical Yuzhou in Nanyang; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "wuyang-nanyang-seat",
+    "longitude": 113.60149,
+    "latitude": 33.43808,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1199018, guided by the Ming History geographic description; Modern Wuyang County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199018 P625; Modern Wuyang County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan second replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Wuyang County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "ye-yuzhou-seat",
+    "longitude": 113.35516,
+    "latitude": 33.62268,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1337567, guided by the Ming History geographic description; Modern Ye County proxy; exact old administrative compound remains unresolved.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1337567 P625; Modern Ye County proxy; exact old administrative compound remains unresolved."
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-18",
+      "revisionNote": "Henan third replacement batch: replaced the restricted CHGIS location claim with an independently sourced modern proxy; Modern Ye County proxy; exact old administrative compound remains unresolved."
+    }
+  },
+  {
+    "id": "zhenping-nanyang-seat",
+    "longitude": 112.2298021,
+    "latitude": 33.0368537,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 镇平; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  },
+  {
+    "id": "dengzhou-nanyang-seat",
+    "longitude": 112.0818901,
+    "latitude": 32.6880537,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Public Photon modern seat proxy for 邓州; no stable 1600 historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-three",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Modern place-center proxy; requires historical gazetteer confirmation"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-14",
+      "revisionNote": "Reversible proxy pending CHGIS or gazetteer verification"
+    }
+  }
+]

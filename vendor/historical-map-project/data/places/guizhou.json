@@ -1,0 +1,2648 @@
+[
+  {
+    "id": "dingfan-guiyang-department-seat",
+    "longitude": 106.55,
+    "latitude": 26.3,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "zhenning-guizhou-department-seat",
+    "longitude": 105.77,
+    "latitude": 26.06,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "yongning-guizhou-department-seat",
+    "longitude": 105.8,
+    "latitude": 25.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "puan-guizhou-department-seat",
+    "longitude": 104.95,
+    "latitude": 25.8,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "maha-duyun-department-seat",
+    "longitude": 107.7,
+    "latitude": 26.2,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "dushan-duyun-department-seat",
+    "longitude": 107.55,
+    "latitude": 25.83,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xingui-guiyang-county-seat",
+    "longitude": 106.63,
+    "latitude": 26.65,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "qingping-maha-county-seat",
+    "longitude": 107.7,
+    "latitude": 26.55,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "yongcong-liping-county-seat",
+    "longitude": 109.1,
+    "latitude": 26.05,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "wuchuan-sinan-county-seat",
+    "longitude": 108.5,
+    "latitude": 28.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "yinjiang-sinan-county-seat",
+    "longitude": 108.42,
+    "latitude": 28,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "zhenyuan-guizhou-county-seat",
+    "longitude": 108.43,
+    "latitude": 27.05,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shibing-zhenyuan-county-seat",
+    "longitude": 108.13,
+    "latitude": 27.04,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "tongren-guizhou-county-seat",
+    "longitude": 109.19,
+    "latitude": 27.72,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-place proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Modern historical-place proxy; independent historical-location review remains pending"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible approximate proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "guizhou-xuanwei-military-seat",
+    "longitude": 106.63,
+    "latitude": 26.65,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shuidong-guizhou-military-seat",
+    "longitude": 106.8,
+    "latitude": 26.9,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "zhongcao-guizhou-military-seat",
+    "longitude": 106.8,
+    "latitude": 26.4,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "longli-guizhou-military-seat",
+    "longitude": 106.98,
+    "latitude": 26.45,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "baina-guizhou-military-seat",
+    "longitude": 106.9,
+    "latitude": 26.5,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "dizhai-guizhou-military-seat",
+    "longitude": 106.6,
+    "latitude": 26.9,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "guaixi-guizhou-military-seat",
+    "longitude": 106.75,
+    "latitude": 26.85,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "yanglongkeng-guizhou-military-seat",
+    "longitude": 106.75,
+    "latitude": 26.75,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "bozhou-xuanwei-military-seat",
+    "longitude": 106.93361,
+    "latitude": 27.705,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Zunyi city proxy independently located from Wikidata Q28994, guided by the Ming History description of the Bozhou native-office seat at Mu Jiachuan; the exact historical office compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      { "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The late Bozhou native-office seat is associated with Mu Jiachuan in the present Zunyi old-city area." },
+      { "sourceId": "wikidata-modern-place-coordinates", "claim": "location", "confidence": "medium", "note": "Wikidata Q28994 P625 coordinates for the modern Zunyi city proxy; the historical office compound remains unresolved." }
+    ],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible approximate proxy for the 1600 Bozhou Xuanwei seat; Hailongtun is retained as a separate fortress reference rather than used as the administrative seat." }
+  },
+  {
+    "id": "caotang-bozhou-military-seat",
+    "longitude": 107.50511,
+    "latitude": 27.155276,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Caotang locality proxy for the Caotang Anfu Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The 1600 roster identifies Caotang Anfu Office; the point uses the modern Caotang locality as a reversible seat proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern locality proxy for the 1600 Caotang Anfu Office." }
+  },
+  {
+    "id": "huangping-bozhou-military-seat",
+    "longitude": 107.775556,
+    "latitude": 26.991667,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jiuzhou locality proxy for the Huangping Anfu Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The historical Huangping Anfu Office is associated with the former Huangping seat at modern Jiuzhou; the point is a reversible locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Jiuzhou proxy for the 1600 Huangping Anfu Office." }
+  },
+  {
+    "id": "zhenzhou-bozhou-military-seat",
+    "longitude": 107.67694,
+    "latitude": 28.74083,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jiucheng locality proxy for the Zhenzhou Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The Zhenzhou Zhangguan Office is identified with the former Zhenzhou site at modern Jiucheng; the point is a reversible locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Jiucheng proxy for the 1600 Zhenzhou Zhangguan Office." }
+  },
+  {
+    "id": "bozhou-zhangguan-bozhou-military-seat",
+    "longitude": 106.93361,
+    "latitude": 27.705,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Co-located modern Zunyi proxy for the attached Bozhou Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "Bozhou Zhangguan Office was the attached office at the Bozhou seat; the point shares the modern Zunyi proxy with the Bozhou Xuanwei seat." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added the attached-office point using the same reversible Zunyi proxy as the Bozhou Xuanwei seat." }
+  },
+  {
+    "id": "yuqing-bozhou-military-seat",
+    "longitude": 107.617633,
+    "latitude": 27.525524,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Aoxi locality proxy for the Yuqing Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The Yuqing Zhangguan Office is identified with modern Aoxi; the point is a reversible locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Aoxi proxy for the 1600 Yuqing Zhangguan Office." }
+  },
+  {
+    "id": "baini-bozhou-military-seat",
+    "longitude": 107.88677,
+    "latitude": 27.226397,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Baini locality proxy for the Baini Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The Baini Zhangguan Office is identified with modern Baini in Yuqing; the point is a reversible locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Baini proxy for the 1600 Baini Zhangguan Office." }
+  },
+  {
+    "id": "rongshan-bozhou-military-seat",
+    "longitude": 107.429375,
+    "latitude": 27.74838,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guanyan locality proxy in Huangjiaba for the Rongshan Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The Rongshan Zhangguan Office is identified with modern Huangjiaba Guanyan in Meitan; the point is a reversible locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Huangjiaba proxy for the 1600 Rongshan Zhangguan Office." }
+  },
+  {
+    "id": "chongan-bozhou-military-seat",
+    "longitude": 107.896668,
+    "latitude": 26.766769,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Chongan locality proxy for the Chongan Zhangguan Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "medium", "note": "The Ming record places Chongan Zhangguan Office in the Huangping-area Chongan region; the point is a reversible modern locality proxy." }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a modern Chongan proxy for the 1600 Chongan Zhangguan Office." }
+  },
+  {
+    "id": "qingshan-guizhou-military-seat",
+    "longitude": 106.65,
+    "latitude": 27.0433,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern Qingshan area proxy guided by the historical office description; exact Ming seat unresolved",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-guizhou-tusi",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate modern area proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-08-03",
+      "revisionNote": "Reversible low-confidence proxy for the 1600 Qing Shan native office"
+    }
+  },
+  {
+    "id": "zhazuo-guizhou-military-seat",
+    "longitude": 106.71819,
+    "latitude": 26.85946,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Zhazuo settlement proxy guided by the historical office description; exact Ming seat unresolved",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-guizhou-tusi",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate modern settlement proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-08-03",
+      "revisionNote": "Reversible low-confidence proxy for the 1600 Zha Zuo native office"
+    }
+  },
+  {
+    "id": "jinzhu-guizhou-military-seat",
+    "longitude": 106.5,
+    "latitude": 26.3,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "ningguzhai-anshun-military-seat",
+    "longitude": 105.85,
+    "latitude": 26.1,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xibao-anshun-military-seat",
+    "longitude": 105.8,
+    "latitude": 26.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shiying-zhenning-military-seat",
+    "longitude": 105.8,
+    "latitude": 26.15,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "kangzuo-zhenning-military-seat",
+    "longitude": 105.9,
+    "latitude": 26.05,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "muyi-yongning-guizhou-military-seat",
+    "longitude": 105.6,
+    "latitude": 25.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "dingying-yongning-guizhou-military-seat",
+    "longitude": 105.75,
+    "latitude": 25.45,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "duyun-duyun-military-seat",
+    "longitude": 107.52,
+    "latitude": 26.2,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "bangshui-duyun-military-seat",
+    "longitude": 107.4,
+    "latitude": 26.25,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pinglang-duyun-military-seat",
+    "longitude": 107.35,
+    "latitude": 26.15,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pingzhou-duyun-military-seat",
+    "longitude": 107.4,
+    "latitude": 26.05,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "leping-maha-military-seat",
+    "longitude": 107.65,
+    "latitude": 26.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pingding-maha-military-seat",
+    "longitude": 107.6,
+    "latitude": 26.45,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "hejiuzhou-dushan-military-seat",
+    "longitude": 107.7,
+    "latitude": 25.9,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "fengning-dushan-military-seat",
+    "longitude": 107.45,
+    "latitude": 25.95,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "tanxi-liping-military-seat",
+    "longitude": 109.2,
+    "latitude": 26.1,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "bazhou-liping-military-seat",
+    "longitude": 109.1,
+    "latitude": 26.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "hongzhou-liping-military-seat",
+    "longitude": 109.25,
+    "latitude": 26.2,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "caodidong-liping-military-seat",
+    "longitude": 109,
+    "latitude": 26.4,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "guzhou-liping-military-seat",
+    "longitude": 109,
+    "latitude": 26.5,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xishanyang-liping-military-seat",
+    "longitude": 109,
+    "latitude": 26,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xinhua-liping-military-seat",
+    "longitude": 109.3,
+    "latitude": 26.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "huer-liping-military-seat",
+    "longitude": 109.35,
+    "latitude": 26.45,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "liangzhai-liping-military-seat",
+    "longitude": 109.4,
+    "latitude": 26.4,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "ouyang-liping-military-seat",
+    "longitude": 109.45,
+    "latitude": 26.3,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "zhonglin-liping-military-seat",
+    "longitude": 109.25,
+    "latitude": 26.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "chixi-liping-military-seat",
+    "longitude": 109.35,
+    "latitude": 26.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "longli-liping-military-seat",
+    "longitude": 109.2,
+    "latitude": 26.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shuidejiang-sinan-military-seat",
+    "longitude": 108.25,
+    "latitude": 28.1,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "manyi-sinan-military-seat",
+    "longitude": 108.3,
+    "latitude": 27.95,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "yanhe-sinan-military-seat",
+    "longitude": 108.5,
+    "latitude": 28.25,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "langxi-sinan-military-seat",
+    "longitude": 108.65,
+    "latitude": 28.05,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "duping-sizhou-military-seat",
+    "longitude": 108.75,
+    "latitude": 27.2,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "dusu-sizhou-military-seat",
+    "longitude": 108.6,
+    "latitude": 27.2,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shixi-sizhou-military-seat",
+    "longitude": 108.85,
+    "latitude": 27.35,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "huangdaoxi-sizhou-military-seat",
+    "longitude": 108.9,
+    "latitude": 27.3,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pianqiao-zhenyuan-military-seat",
+    "longitude": 108.25,
+    "latitude": 27.05,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "qiongshui-zhenyuan-military-seat",
+    "longitude": 108.65,
+    "latitude": 27.1,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "zhenpou-zhenyuan-military-seat",
+    "longitude": 108.25,
+    "latitude": 27.15,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shengxi-tongren-military-seat",
+    "longitude": 108.95,
+    "latitude": 27.75,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "tixi-tongren-military-seat",
+    "longitude": 108.85,
+    "latitude": 27.7,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "dawanshan-tongren-military-seat",
+    "longitude": 109,
+    "latitude": 27.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "wuluo-tongren-military-seat",
+    "longitude": 108.8,
+    "latitude": 27.65,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pingtouzhuoke-tongren-military-seat",
+    "longitude": 108.95,
+    "latitude": 27.85,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "shiqian-shiqian-military-seat",
+    "longitude": 108.23,
+    "latitude": 27.52,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "longquanping-shiqian-military-seat",
+    "longitude": 108.1,
+    "latitude": 27.6,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "miaomin-shiqian-military-seat",
+    "longitude": 108.1,
+    "latitude": 27.45,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "gezhanggeshang-shiqian-military-seat",
+    "longitude": 108.3,
+    "latitude": 27.4,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "longliwei-guizhou-military-seat",
+    "longitude": 106.975,
+    "latitude": 26.4530556,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Longli County proxy independently located from Wikidata Q374121; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Longli Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q374121 P625; Longli County modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "dapingfa-longliwei-military-seat",
+    "longitude": 107,
+    "latitude": 26.3,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xintianwei-guizhou-military-seat",
+    "longitude": 107.2311111,
+    "latitude": 26.5833333,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guiding County proxy independently located from Wikidata Q1200567; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Xintian Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200567 P625; Guiding County modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "xintian-xintianwei-military-seat",
+    "longitude": 107.1,
+    "latitude": 26.7,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "xiaopingfa-xintianwei-military-seat",
+    "longitude": 107.05,
+    "latitude": 26.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "bapingzhai-xintianwei-military-seat",
+    "longitude": 107.15,
+    "latitude": 26.55,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "danping-xintianwei-military-seat",
+    "longitude": 107,
+    "latitude": 26.6,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "danxing-xintianwei-military-seat",
+    "longitude": 107.05,
+    "latitude": 26.65,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "annan-guizhou-military-seat",
+    "longitude": 105.2208333,
+    "latitude": 25.8383333,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Qinglong County proxy independently located from Wikidata Q1200485; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Anan Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200485 P625; Qinglong County modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "weiqing-guizhou-military-seat",
+    "longitude": 106.4647222,
+    "latitude": 26.5555556,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Qingzhen City proxy independently located from Wikidata Q1339926; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Weiqing Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1339926 P625; Qingzhen City modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "pingba-guizhou-military-seat",
+    "longitude": 106.2583333,
+    "latitude": 26.4113889,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Pingba District proxy independently located from Wikidata Q1200562; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Pingba Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200562 P625; Pingba District modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "bijie-guizhou-military-seat",
+    "longitude": 105.2333333,
+    "latitude": 27.3,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Bijie city proxy independently located from Wikidata Q486319; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography identifies the Bijie Wei but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q486319 P625; Bijie city modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat remains unresolved"
+    }
+  },
+  {
+    "id": "chishui-guizhou-military-seat",
+    "longitude": 105.7,
+    "latitude": 27.8,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "moni-chishui-military-seat",
+    "longitude": 105.7,
+    "latitude": 27.9,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "baisa-chishui-military-seat",
+    "longitude": 105.8,
+    "latitude": 27.7,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "aluomi-chishui-military-seat",
+    "longitude": 105.6,
+    "latitude": 27.7,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "qian-chishui-military-seat",
+    "longitude": 105.65,
+    "latitude": 27.8,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "pushi-guizhou-military-seat",
+    "longitude": 106,
+    "latitude": 27,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern historical-place or native-governance area proxy guided by the Ming History geographic description; no suitable historical coordinate was available",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Approximate regional proxy; exact historical seat requires independent review"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Reversible low-confidence proxy pending independent historical-location review"
+    }
+  },
+  {
+    "id": "wukai-guizhou-military-seat",
+    "longitude": 109.1327778,
+    "latitude": 26.2355556,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Liping County proxy independently located from Wikidata Q1152707; exact historical Wei seat remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Historical geography places Five Kai in the wider Huguang/Guizhou transition but does not provide a modern coordinate"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1152707 P625; Liping County modern proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Independent modern candidate added for the first-level Wei point; exact historical seat and military parent remain unresolved"
+    }
+  },
+  {
+    "id": "xingui-seat",
+    "longitude": 106.63,
+    "latitude": 26.65,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guiyang historical-city proxy guided by the Ming History geographic description",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Approximate correspondence with 新贵 and the Guiyang prefectural city"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q192271 P625; modern Guiyang city corroboration for the shared city proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-23",
+      "revisionNote": "Shared approximate Guiyang city proxy for the provincial, prefectural, and Guizhou Dusi seats"
+    }
+  },
+  {
+    "id": "duyun-prefectural-seat",
+    "longitude": 107.5143,
+    "latitude": 26.26717,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1207027, guided by the Ming History geographic description; exact old administrative compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1207027 P625; 都匀市 modern city proxy for 都匀府治"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-16",
+      "revisionNote": "云贵首轮试点：以独立现代城市代理替换受限坐标；旧行政复合体未解析"
+    }
+  },
+  {
+    "id": "liping-prefectural-seat",
+    "longitude": 109.13133,
+    "latitude": 26.23598,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q11071516, guided by the Ming History geographic description; exact old administrative compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11071516 P625; 德凤街道 modern settlement proxy for 黎平府治"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-16",
+      "revisionNote": "云贵首轮试点：以独立现代聚落代理替换受限坐标；旧行政复合体未解析"
+    }
+  },
+  {
+    "id": "sinan-prefectural-seat",
+    "longitude": 108.25094,
+    "latitude": 27.94254,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q11072564, guided by the Ming History geographic description; exact old administrative compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11072564 P625; 思唐街道 modern settlement proxy for 思南府治"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-16",
+      "revisionNote": "云贵首轮试点：以独立现代聚落代理替换受限坐标；旧行政复合体未解析"
+    }
+  },
+  {
+    "id": "sizhou-prefectural-seat",
+    "longitude": 108.74626,
+    "latitude": 27.21158,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q11072583, guided by the Ming History geographic description; exact old administrative compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11072583 P625; 思旸镇 modern settlement proxy for 思州府治"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-16",
+      "revisionNote": "云贵首轮试点：以独立现代聚落代理替换受限坐标；旧行政复合体未解析"
+    }
+  },
+  {
+    "id": "zhenyuan-guizhou-seat",
+    "longitude": 108.43,
+    "latitude": 27.05,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Zhenyuan historical-city proxy guided by the Ming History geographic description",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Approximate correspondence with the Zhenyuan prefectural city"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-13",
+      "revisionNote": "Reversible approximate point; ID distinguishes Yunnan homonyms"
+    }
+  },
+  {
+    "id": "tongren-prefectural-seat",
+    "longitude": 109.18333333333,
+    "latitude": 27.716666666667,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern historical-city proxy independently located from Wikidata Q1130793, guided by the Ming History geographic description; exact old administrative compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "existence",
+        "confidence": "high"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1130793 P625; 碧江区 modern city proxy for 铜仁府治; former multi-record historical point is not retained in published sources"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-16",
+      "revisionNote": "云贵首轮试点：以独立现代城市代理替换共享受限坐标；旧行政复合体未解析"
+    }
+  },
+  {
+    "id": "shiqian-prefectural-seat",
+    "longitude": 108.23,
+    "latitude": 27.52,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern Shiqian-area proxy guided by the Ming History geographic description",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Prefectural seat requires independent gazetteer verification"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-13",
+      "revisionNote": "Low-confidence proxy retained for second-source review"
+    }
+  },
+  {
+    "id": "anshun-seat",
+    "longitude": 105.95,
+    "latitude": 26.25,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Anshun historical-city proxy for the Puting guard city described by the Ming History",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Approximate correspondence with the Anshun state seat at Puting guard city"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-13",
+      "revisionNote": "Reversible approximate point for the 1600 map skeleton"
+    }
+  },
+  {
+    "id": "guizhou-wei-military-seat",
+    "longitude": 106.63,
+    "latitude": 26.65,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guiyang historical-city proxy; the exact Ming Wei compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-227",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The military roster places Guizhou Wei in the provincial military system"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q192271 P625; modern Guiyang proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added as a reversible shared Guiyang-area proxy for the Guizhou Wei seat"
+    }
+  },
+  {
+    "id": "guizhou-qianwei-military-seat",
+    "longitude": 106.63,
+    "latitude": 26.65,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guiyang historical-city proxy; the exact Ming Wei compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The office roster places Guizhou Front Wei in the Guizhou Dusi system"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q192271 P625; modern Guiyang proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added as a reversible shared Guiyang-area proxy for the Guizhou Front Wei seat"
+    }
+  },
+  {
+    "id": "pingyuewei-guizhou-military-seat",
+    "longitude": 107.5086111,
+    "latitude": 26.7038889,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Fuquan historical-city proxy for the Pingyue Wei seat; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The Pingyue military prefecture was established at the Wei city in 1601"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1339246 P625; modern Fuquan proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Fuquan-area proxy; the 1600 slice precedes the 1601 prefectural overlay"
+    }
+  },
+  {
+    "id": "qingpingwei-guizhou-military-seat",
+    "longitude": 107.7,
+    "latitude": 26.55,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Lushan historical-place proxy for Qingping Wei; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The Qingping Wei was a Guizhou Dusi Wei before 1601"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added as a reversible Lushan-area proxy pending independent historical-seat review"
+    }
+  },
+  {
+    "id": "xinglongwei-guizhou-military-seat",
+    "longitude": 107.8975,
+    "latitude": 26.9016667,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Huangping historical-place proxy for Xinglong Wei; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The Xinglong Wei is listed in the Pingyue military prefecture section"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200556 P625; modern Huangping proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Huangping-area proxy for the Xinglong Wei seat"
+    }
+  },
+  {
+    "id": "duyunwei-guizhou-military-seat",
+    "longitude": 107.5143,
+    "latitude": 26.26717,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Duyun historical-city proxy for the Duyun Wei seat; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The Duyun prefecture was placed at the Wei city"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1207027 P625; modern Duyun proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added as a reversible Duyun-area proxy for the Duyun Wei seat"
+    }
+  },
+  {
+    "id": "puanwei-guizhou-military-seat",
+    "longitude": 104.4672222,
+    "latitude": 25.7108333,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Panzhou historical-place proxy for the Puan Wei seat; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The office roster identifies Puan Wei in the Guizhou military system"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200299 P625; modern Panzhou proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Panzhou-area proxy for the Puan Wei seat"
+    }
+  },
+  {
+    "id": "wusawei-guizhou-military-seat",
+    "longitude": 104.2822222,
+    "latitude": 26.8655556,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Weining historical-place proxy for the Wusa Wei seat; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The office roster identifies Wusa Wei in the Guizhou military system"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200354 P625; modern Weining proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Weining-area proxy for the Wusa Wei seat"
+    }
+  },
+  {
+    "id": "yongningwei-guizhou-military-seat",
+    "longitude": 105.4327778,
+    "latitude": 28.1708333,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Xuyong historical-place proxy for the Yongning Wei seat; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The office roster identifies Yongning Wei as attached to Guizhou Dusi"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1199580 P625; modern Xuyong proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Xuyong-area proxy; the historical seat lies outside present Guizhou"
+    }
+  },
+  {
+    "id": "huangping-guizhou-military-seat",
+    "longitude": 107.8975,
+    "latitude": 26.9016667,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Huangping historical-place proxy for the Huangping Guard Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "jia-jing-guizhou-tongzhi",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The office roster identifies Huangping Guard Office"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200556 P625; modern Huangping proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Huangping-area proxy for the Huangping Guard Office"
+    }
+  },
+  {
+    "id": "guansuoling-anzhuang-military-seat",
+    "longitude": 105.6158333,
+    "latitude": 25.9458333,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guansuo historical-place proxy for the Guansuo Ridge Guard Office; exact Ming compound remains unresolved",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Yongning State later moved its seat to the Guansuo Ridge Guard Office city"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200595 P625; modern Guanling proxy"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible Guansuo-area proxy for the Guansuo Ridge Guard Office"
+    }
+  },
+  {
+    "id": "qixingguan-bijie-military-seat",
+    "longitude": 105.4,
+    "latitude": 27.3,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern Qixingguan District area proxy for the Qixing Pass Guard Office; exact Ming pass seat remains unresolved",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-seven",
+        "claim": "location",
+        "confidence": "low",
+        "note": "The historical text names the Qixing Pass Guard Office but does not provide a modern coordinate"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Added a reversible area proxy pending independent pass-site verification"
+    }
+  },
+  {
+    "id": "chengfan-jinzhu-military-seat",
+    "longitude": 106.66,
+    "latitude": 26.13,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "xiaochengfan-jinzhu-military-seat",
+    "longitude": 106.64,
+    "latitude": 26.17,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "shangmaqiao-jinzhu-military-seat",
+    "longitude": 106.54,
+    "latitude": 26.26,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "lufan-jinzhu-military-seat",
+    "longitude": 106.73,
+    "latitude": 26.15,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "weifan-jinzhu-military-seat",
+    "longitude": 106.70,
+    "latitude": 26.10,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "fangfan-jinzhu-military-seat",
+    "longitude": 106.60,
+    "latitude": 26.06,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "hongfan-jinzhu-military-seat",
+    "longitude": 106.56,
+    "latitude": 26.08,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "wolongfan-jinzhu-military-seat",
+    "longitude": 106.50,
+    "latitude": 26.12,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "xiaolongfan-jinzhu-military-seat",
+    "longitude": 106.55,
+    "latitude": 26.14,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "dalongfan-jinzhu-military-seat",
+    "longitude": 106.53,
+    "latitude": 26.17,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "jinshifan-jinzhu-military-seat",
+    "longitude": 106.62,
+    "latitude": 26.12,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "luofan-jinzhu-military-seat",
+    "longitude": 106.69,
+    "latitude": 26.19,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "lushan-jinzhu-military-seat",
+    "longitude": 106.77,
+    "latitude": 26.14,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "mugua-jinzhu-military-seat",
+    "longitude": 106.80,
+    "latitude": 26.20,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Guiyang-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "maxiang-jinzhu-military-seat",
+    "longitude": 106.73,
+    "latitude": 26.24,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Guiyang-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "dahua-jinzhu-military-seat",
+    "longitude": 106.58,
+    "latitude": 26.20,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Huishui-area proxy for the historical Jinzhu longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-geography-seven", "claim": "location", "confidence": "low", "note": "Regional proxy inferred from the Chengfan/Dingfan geographic context" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible regional proxy pending independent historical-location review" }
+  },
+  {
+    "id": "guizhu-jinzhu-military-seat",
+    "longitude": 106.72,
+    "latitude": 26.46,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Guiyang-area proxy for the disputed 贵竹 longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "low", "note": "Regional proxy only; the native-office biography and geographic record disagree on roster membership" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible low-confidence proxy for a roster-disputed office" }
+  },
+  {
+    "id": "pingfa-jinzhu-military-seat",
+    "longitude": 106.85,
+    "latitude": 26.32,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Approximate Guiyang-area proxy for the disputed 平伐 longguan office; exact seat remains unresolved",
+    "confidence": "low",
+    "sources": [{ "sourceId": "ming-shi-guizhou-tusi", "claim": "location", "confidence": "low", "note": "Regional proxy only; the native-office biography and geographic record disagree on roster membership" }],
+    "audit": { "reviewedOn": "2026-08-03", "revisionNote": "Added a reversible low-confidence proxy for a roster-disputed office" }
+  }
+]

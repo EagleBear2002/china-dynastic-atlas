@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/project-data.schema.json",
+  "title": "Historical map project data",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sources",
+    "scopeStatistics",
+    "statistics",
+    "militaryStatistics",
+    "polities",
+    "administrativeUnits",
+    "militaryUnits",
+    "jimiUnits",
+    "relations",
+    "places",
+    "placeNames",
+    "geometries"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "scopeStatistics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/scopeStatistic" }
+    },
+    "statistics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/statistic" }
+    },
+    "militaryStatistics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/militaryStatistic" }
+    },
+    "polities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/polity" }
+    },
+    "administrativeUnits": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/administrativeUnit" }
+    },
+    "militaryUnits": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/militaryUnit" }
+    },
+    "jimiUnits": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/jimiUnit" }
+    },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relation" }
+    },
+    "places": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/place" }
+    },
+    "placeNames": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/placeName" }
+    },
+    "geometries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/geometry" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "yearRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "precision"],
+      "properties": {
+        "from": { "type": ["integer", "null"] },
+        "to": { "type": ["integer", "null"] },
+        "precision": {
+          "enum": ["exact", "circa", "range", "unknown"]
+        }
+      }
+    },
+    "sourceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "claim", "confidence"],
+      "properties": {
+        "sourceId": { "$ref": "#/$defs/id" },
+        "claim": {
+          "enum": ["existence", "name", "time", "location", "parent", "boundary"]
+        },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "note": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low"]
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewedOn", "revisionNote"],
+      "properties": {
+        "reviewedOn": {
+          "type": "string",
+          "format": "date"
+        },
+        "revisionNote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "kind", "license", "redistribution", "citation"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "creator": { "type": "string" },
+        "edition": { "type": "string" },
+        "locator": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "accessedOn": { "type": "string", "format": "date" },
+        "kind": {
+          "enum": ["primary", "scholarly", "gazetteer", "dataset", "reference"]
+        },
+        "license": { "type": "string", "minLength": 1 },
+        "redistribution": {
+          "enum": ["allowed", "restricted", "unknown"]
+        },
+        "coordinateProvider": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this source directly supplies coordinates used by place location claims."
+        },
+        "citation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "statistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "administrativeUnitId", "category", "metric", "value", "unit", "recordedYear", "valueType", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "administrativeUnitId": { "$ref": "#/$defs/id" },
+        "category": { "enum": ["population", "tax"] },
+        "metric": { "enum": ["households", "registered-population", "registered-land", "summer-tax", "autumn-grain", "silver"] },
+        "value": { "type": "number", "minimum": 0 },
+        "unit": { "enum": ["households", "people", "qing", "shi", "liang"] },
+        "originalText": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "recordedYear": { "type": ["integer", "null"] },
+        "valueType": { "enum": ["recorded", "estimated"] },
+        "method": { "type": "string", "maxLength": 500 },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sourceLink" } },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "scopeStatistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "metric", "value", "unit", "recordedYear", "valueType", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "category": { "enum": ["population", "tax"] },
+        "metric": { "enum": ["households", "registered-population", "registered-land", "summer-tax", "autumn-grain", "silver"] },
+        "value": { "type": "number", "minimum": 0 },
+        "unit": { "enum": ["households", "people", "qing", "shi", "liang"] },
+        "originalText": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "recordedYear": { "type": ["integer", "null"] },
+        "valueType": { "enum": ["recorded", "estimated"] },
+        "method": { "type": "string", "maxLength": 500 },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sourceLink" } },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "polity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "validity", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "administrativeUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "level", "polityId", "validity", "confidence", "sources", "audit"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "level": {
+          "enum": ["capital-region", "province", "prefecture", "department", "county", "military"]
+        },
+        "domain": {
+          "enum": ["administrative", "military", "special-governance"]
+        },
+        "militaryKind": {
+          "enum": ["dusi", "xing-dusi", "liushou-si", "wei", "qianhu-suo", "suo"]
+        },
+        "fiveArmyId": {
+          "enum": ["central", "left", "right", "front", "rear"]
+        },
+        "polityId": { "$ref": "#/$defs/id" },
+        "parentId": { "$ref": "#/$defs/id" },
+        "seatPlaceId": { "$ref": "#/$defs/id" },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "militaryStatistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "militaryUnitId", "metric", "measureType", "value", "unit", "recordedYear", "valueType", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "militaryUnitId": { "$ref": "#/$defs/id" },
+        "metric": { "enum": ["soldier-count", "tuntian-area", "tuntian-grain"] },
+        "measureType": { "enum": ["field-army", "tuntian-army", "establishment", "registered", "actual", "original-area", "registered-area", "current-area", "cultivated-area", "summer-tax", "autumn-grain", "annual-yield", "allocated", "stored"] },
+        "value": { "type": "number", "minimum": 0 },
+        "unit": { "enum": ["people", "qing", "mu", "shi", "dou"] },
+        "originalText": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "recordedYear": { "type": ["integer", "null"] },
+        "valueType": { "enum": ["recorded", "estimated"] },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sourceLink" } },
+        "audit": { "$ref": "#/$defs/audit" },
+        "note": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "militaryUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "level", "domain", "militaryKind", "polityId", "validity", "confidence", "sources", "audit"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "formalName": { "type": "string", "minLength": 1 },
+        "level": { "const": "military" },
+        "domain": { "const": "military" },
+        "militaryKind": {
+          "enum": ["dusi", "xing-dusi", "liushou-si", "wei", "qianhu-suo", "suo"]
+        },
+        "polityId": { "$ref": "#/$defs/id" },
+        "seatPlaceId": { "$ref": "#/$defs/id" },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "jimiUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "jimiKind", "officeKind", "polityId", "validity", "confidence", "sources", "audit"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "formalName": { "type": "string", "minLength": 1 },
+        "jimiKind": { "enum": ["military-institution", "native-office"] },
+        "officeKind": {
+          "enum": [
+            "dusi", "xing-dusi", "liushou-si", "wei", "suo", "yuanshuai-fu", "wanhu-fu", "xuanwei-si", "xuanfu-si",
+            "zhaotao-si", "anfu-si", "zhangguan-si", "tusi-xunjian-si"
+          ]
+        },
+        "polityId": { "$ref": "#/$defs/id" },
+        "seatPlaceId": { "$ref": "#/$defs/id" },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "note": { "type": "string", "maxLength": 500 },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "relationType", "subjectId", "objectId", "validity", "confidence", "sources", "audit"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "relationType": {
+          "enum": [
+            "military-subordination",
+            "military-affiliation",
+            "five-army-affiliation",
+            "administrative-context",
+            "co-location",
+            "jimi-subordination",
+            "jimi-administrative-context"
+          ]
+        },
+        "subjectId": { "$ref": "#/$defs/id" },
+        "objectId": { "$ref": "#/$defs/id" },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "note": { "type": "string", "maxLength": 500 },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "unitId", "system", "topology", "targetYear", "boundaryAccuracy",
+        "validity", "confidence", "sources", "audit"
+      ],
+      "oneOf": [
+        { "required": ["geometryPath"], "not": { "required": ["coextensiveWith"] } },
+        { "required": ["coextensiveWith"], "not": { "required": ["geometryPath"] } }
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "unitId": { "$ref": "#/$defs/id" },
+        "system": { "enum": ["civil", "military", "jimi"] },
+        "topology": { "enum": ["exclusive", "overlapping"] },
+        "targetYear": { "type": "integer" },
+        "crs": { "const": "EPSG:4326" },
+        "boundaryAccuracy": {
+          "enum": ["documented", "reconstructed", "schematic", "disputed"]
+        },
+        "reconstructionMethod": { "type": "string", "maxLength": 500 },
+        "geometryPath": { "type": "string", "minLength": 1 },
+        "coextensiveWith": { "$ref": "#/$defs/id" },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "note": { "type": "string", "maxLength": 500 },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "locationAccuracy", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+        "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+        "locationAccuracy": {
+          "enum": ["exact", "approximate", "area_only", "disputed", "unknown"]
+        },
+        "locationMethod": { "type": "string", "maxLength": 500 },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    },
+    "placeName": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "placeId", "name", "validity", "confidence", "sources", "audit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "placeId": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "script": { "enum": ["hans", "hant", "historical"] },
+        "validity": { "$ref": "#/$defs/yearRange" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "audit": { "$ref": "#/$defs/audit" }
+      }
+    }
+  }
+}

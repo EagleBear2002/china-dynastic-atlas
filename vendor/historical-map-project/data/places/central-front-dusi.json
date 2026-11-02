@@ -1,0 +1,1146 @@
+[
+  {
+    "id": "huangling-zhongdu-military-seat",
+    "longitude": 117.51833344,
+    "latitude": 32.81083298,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Ming Imperial Mausoleum proxy independently located from Wikidata Q11088150 P625, guided by the Ming History description of the Huangling fort southwest of Fengyang",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-one",
+        "claim": "location",
+        "confidence": "high",
+        "note": "The source places the Huangling fort southwest of Fengyang with a guard since 1369"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11088150 P625 used as the modern mausoleum proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent mausoleum proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "changhuaiwei-zhongdu-military-seat",
+    "longitude": 117.47834,
+    "latitude": 32.963,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Changhuaiwei town proxy independently located from Wikidata Q14321911 P625; the town retains the guard's name at the Changhuai Pass site on the Huai River",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-one",
+        "claim": "location",
+        "confidence": "high",
+        "note": "The source places the Changhuai Pass northeast of Fengyang with the guard since 1373"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q14321911 P625 used as the modern town proxy; no precision recorded; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Name-continuous town proxy; the exact Ming guard city is unresolved"
+    }
+  },
+  {
+    "id": "hongtanghu-zhongdu-area",
+    "longitude": 117.61597,
+    "latitude": 32.90403,
+    "locationAccuracy": "area_only",
+    "locationMethod": "Modern Linhuaiguan town area proxy for the Hongtang Lake garrison farmland northeast of Fengyang; the exact battalion fort is unresolved",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-one",
+        "claim": "location",
+        "confidence": "low",
+        "note": "The source only states the battalion northeast of Fengyang at Hongtang Lake"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q10877183 P625 (first statement) used only as a broad modern area proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Area-only proxy; no exact seat is asserted"
+    }
+  },
+  {
+    "id": "xianling-xingdu-military-seat",
+    "longitude": 112.62976,
+    "latitude": 31.205675,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Ming Xianling mausoleum proxy independently located from Wikidata Q11087935 P625, guided by the Ming History description of the Chunde hill north of Zhongxiang",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-five",
+        "claim": "location",
+        "confidence": "high",
+        "note": "The source places the Xianling tomb at the Songlin (Chunde) hill north of Zhongxiang"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11087935 P625 used as the modern mausoleum proxy; precision 1e-06; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent mausoleum proxy; the exact guard compound is unresolved"
+    }
+  },
+  {
+    "id": "zhendongwei-fujian-military-seat",
+    "longitude": 119.46066,
+    "latitude": 25.69974,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Haikou Town, Fuqing proxy independently located from Wikidata Q5639130 P625; the Zhendong guard city stood at the Haikou anchorage of Fuqing",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q5639130 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "pinghaiwei-fujian-military-seat",
+    "longitude": 119.26687,
+    "latitude": 25.18805,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Pinghai Town, Putian proxy independently located from Wikidata Q11061127 P625; the town retains the guard's name on the Putian coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11061127 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "yongningwei-fujian-military-seat",
+    "longitude": 118.68533,
+    "latitude": 24.68247,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Yongning Town, Shishi proxy independently located from Wikidata Q8055035 P625; the town retains the guard's name on the Jinjiang coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q8055035 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "zhenhaiwei-fujian-military-seat",
+    "longitude": 118.05844,
+    "latitude": 24.25914,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Longjiao She Township proxy independently located from Wikidata Q14428294 P625; the guard city lies in the modern Longjiao township whose center serves as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q14428294 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "dinghai-fujian-military-seat",
+    "longitude": 119.78959,
+    "latitude": 26.29514,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Xiaocheng Town, Lianjiang proxy independently located from Wikidata Q14379245 P625; the Dinghai fort lies in modern Xiaocheng Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q14379245 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "meihua-fujian-military-seat",
+    "longitude": 119.67402,
+    "latitude": 26.0144,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Meihua Town, Changle proxy independently located from Wikidata Q11115304 P625; the town retains the battalion's name at the Min River mouth",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11115304 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "wanan-fujian-military-seat",
+    "longitude": 119.60929,
+    "latitude": 25.42984,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Donghan Town, Fuqing proxy independently located from Wikidata Q10870764 P625; the Wan'an fort lies in modern Donghan Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q10870764 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "puxi-fujian-military-seat",
+    "longitude": 119.14,
+    "latitude": 25.14,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Puxi ancient city proxy independently located from Wikidata Q15937158 P625; the walled battalion city survives as the Puxi ancient city site",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q15937158 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "fuquan-fujian-military-seat",
+    "longitude": 118.59806,
+    "latitude": 24.57803,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jinjing Town, Jinjiang proxy independently located from Wikidata Q14421508 P625; the Fuquan fort lies in modern Jinjing Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q14421508 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jinmen-fujian-military-seat",
+    "longitude": 118.316667,
+    "latitude": 24.416667,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jincheng Township, Kinmen proxy independently located from Wikidata Q706539 P625; the battalion city site lies in modern Jincheng Township of Kinmen",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q706539 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "gaopu-fujian-military-seat",
+    "longitude": 118.068417,
+    "latitude": 24.693417,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Gaopu community, Jimei proxy independently located from Wikidata Q14384030 P625; the community retains the battalion's name on Xiamen bay",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q14384030 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "liuao-fujian-military-seat",
+    "longitude": 117.74592,
+    "latitude": 23.93706,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Liu'ao Town, Zhangpu proxy independently located from Wikidata Q10893516 P625; the town retains the battalion's name on its peninsula",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q10893516 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "tongshan-fujian-military-seat",
+    "longitude": 117.510114,
+    "latitude": 23.739222,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Tongling Town, Dongshan proxy independently located from Wikidata Q14424137 P625; the Tongshan fort survives in modern Tongling Town",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q14424137 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "xuanzhong-fujian-military-seat",
+    "longitude": 117.25731,
+    "latitude": 23.66316,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Meiling Town, Zhao'an proxy independently located from Wikidata Q31849938 P625; the Xuanzhong fort lies in modern Meiling Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q31849938 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "chongwu-fujian-military-seat",
+    "longitude": 118.91332,
+    "latitude": 24.89643,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Chongwu Town, Hui'an proxy independently located from Wikidata Q1076159 P625; the walled battalion city survives in modern Chongwu Town",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1076159 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "guanghaiwei-guangdong-military-seat",
+    "longitude": 112.79562,
+    "latitude": 21.96264,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Guanghai Town, Taishan proxy independently located from Wikidata Q5613663 P625; the town retains the guard's name on the Taishan coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q5613663 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jieshiwei-guangdong-military-seat",
+    "longitude": 115.8259,
+    "latitude": 22.8199,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jieshi Town, Lufeng proxy independently located from Wikidata Q6192219 P625; the town retains the guard's name on the Lufeng coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q6192219 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "shendianwei-guangdong-military-seat",
+    "longitude": 111.29256,
+    "latitude": 21.5175,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Diancheng Town, Dianbai proxy independently located from Wikidata Q7218051 P625; the Shendian guard city survives as modern Diancheng Town",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q7218051 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "dapeng-guangdong-military-seat",
+    "longitude": 114.50886,
+    "latitude": 22.596967,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Dapeng Fortress, Shenzhen proxy independently located from Wikidata Q1022212 P625; the walled battalion city itself survives as the Dapeng Fortress site",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1022212 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "pinghai-guangdong-military-seat",
+    "longitude": 114.86811,
+    "latitude": 22.62015,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Pinghai Town, Huidong proxy independently located from Wikidata Q11061126 P625; the town retains the battalion's name on the Huidong coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11061126 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jiesheng-guangdong-military-seat",
+    "longitude": 115.44605,
+    "latitude": 22.71926,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jiesheng Town, Haifeng proxy independently located from Wikidata Q11077895 P625; the town retains the battalion's name on the Haifeng coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11077895 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jiazimen-guangdong-military-seat",
+    "longitude": 116.0566,
+    "latitude": 22.88192,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jiazi Town, Lufeng proxy independently located from Wikidata Q6191985 P625; the town retains the battalion's name at the Jiazi inlet",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q6191985 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "dacheng-guangdong-military-seat",
+    "longitude": 117.1079,
+    "latitude": 23.61347,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Suocheng Town, Raoping proxy independently located from Wikidata Q11075517 P625; the Dacheng battalion city survives in modern Suocheng Town",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11075517 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jinghai-guangdong-military-seat",
+    "longitude": 116.52334,
+    "latitude": 23.01814,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jinghai Town, Huilai proxy independently located from Wikidata Q14451026 P625; the town retains the battalion's name on the Huilai coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q14451026 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "haimen-guangdong-military-seat",
+    "longitude": 116.61219,
+    "latitude": 23.19346,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Haimen Town, Chaoyang proxy independently located from Wikidata Q5639331 P625; the town retains the battalion's name at the Lianjiang mouth",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q5639331 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "shuangyu-guangdong-military-seat",
+    "longitude": 111.59073,
+    "latitude": 21.59894,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Shangyang Town, Yangxi proxy independently located from Wikidata Q10867574 P625; the Shuangyu fort lies in modern Shangyang Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q10867574 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "lemin-guangdong-military-seat",
+    "longitude": 109.75326,
+    "latitude": 21.13804,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Lemin Town, Suixi proxy independently located from Wikidata Q10878428 P625; the town retains the battalion's name on the Leizhou coast",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q10878428 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "haian-guangdong-military-seat",
+    "longitude": 110.22131,
+    "latitude": 20.2731,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Hai'an Town, Xuwen proxy independently located from Wikidata Q5638913 P625; the town retains the battalion's name at the strait crossing",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q5638913 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jinnang-guangdong-military-seat",
+    "longitude": 110.41902,
+    "latitude": 20.57614,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jinhe Town, Xuwen proxy independently located from Wikidata Q14379119 P625; the Jinnang fort lies in modern Jinhe Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the coastal fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q14379119 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent coastal proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "shizhouwei-huguang-military-seat",
+    "longitude": 109.47499,
+    "latitude": 30.29106,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Enshi city proxy independently located from Wikidata Q1028110 P625; the Shizhou military-civilian guard city survives as modern Enshi",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1028110 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "pingxiwei-huguang-military-seat",
+    "longitude": 108.91464,
+    "latitude": 27.24074,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Yuping county proxy independently located from Wikidata Q1200618 P625; the Pingxi guard city survives as the modern Yuping county seat",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1200618 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "jiuxiwei-huguang-military-seat",
+    "longitude": 110.7654,
+    "latitude": 29.50504,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jiangya Town, Cili proxy independently located from Wikidata Q11134083 P625; the Jiuxi guard city lies in modern Jiangya Town used as a broad proxy",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q11134083 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "yongdingwei-huguang-military-seat",
+    "longitude": 110.48442,
+    "latitude": 29.12548,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Zhangjiajie city proxy independently located from Wikidata Q197379 P625; the Yongding guard city survives as the modern Zhangjiajie urban seat",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q197379 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "anfu-huguang-military-seat",
+    "longitude": 111.64244,
+    "latitude": 29.44453,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Linli county proxy independently located from Wikidata Q1338719 P625; the Anfu battalion city survives as the modern Linli county seat",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1338719 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "tianping-huguang-military-seat",
+    "longitude": 110.89674,
+    "latitude": 29.88078,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Suojie township, Shimen proxy independently located from Wikidata Q11075532 P625; the Tianping fort lies in modern Suojie township named after the battalion",
+    "confidence": "low",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "low",
+        "note": "Wikidata Q11075532 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "zhenxi-huguang-military-seat",
+    "longitude": 109.73176,
+    "latitude": 28.31847,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Jishou city proxy independently located from Wikidata Q1344702 P625; the Zhenxi military-civilian battalion city survives as modern Jishou",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q1344702 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "taochuan-huguang-military-seat",
+    "longitude": 111.10205,
+    "latitude": 25.11234,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Taochuan Town, Jiangyong proxy independently located from Wikidata Q11112273 P625; the town retains the battalion's name",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q11112273 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "datian-huguang-military-seat",
+    "longitude": 109.14653,
+    "latitude": 29.68208,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Xianfeng county proxy independently located from Wikidata Q741584 P625; the Datian military-civilian battalion city survives as the modern Xianfeng county seat",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q741584 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "zhongchao-huguang-military-seat",
+    "longitude": 109.22,
+    "latitude": 26.1375,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Zhongchao Town, Liping proxy independently located from Wikidata Q10875844 P625; the town retains the battalion's name",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q10875844 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  },
+  {
+    "id": "longli-huguang-military-seat",
+    "longitude": 109.09886,
+    "latitude": 26.42073,
+    "locationAccuracy": "approximate",
+    "locationMethod": "Modern Longli township, Jinping proxy independently located from Wikidata Q14173606 P625; the walled battalion city survives as the Longli ancient city",
+    "confidence": "medium",
+    "sources": [
+      {
+        "sourceId": "ming-huidian-military-124",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "The roster names the unit; the fort identification follows the name-continuous modern settlement"
+      },
+      {
+        "sourceId": "wikidata-modern-place-coordinates",
+        "claim": "location",
+        "confidence": "medium",
+        "note": "Wikidata Q14173606 P625 used as the modern proxy; accessed 2026-07-24"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-24",
+      "revisionNote": "Independent interior proxy; the exact Ming fort wall trace is unresolved"
+    }
+  }
+]

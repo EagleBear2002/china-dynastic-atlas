@@ -1,0 +1,258 @@
+export type Confidence = "high" | "medium" | "low";
+export type UnitDomain = "administrative" | "military" | "special-governance";
+export type MapDisplayMode = "administrative" | "jurisdiction" | "control";
+export type MilitaryColorMode = "administrative" | "military";
+export type SelectionDomain = "administrative" | "military" | "jimi";
+export type MilitaryUnitKind = "dusi" | "xing-dusi" | "liushou-si" | "wei" | "qianhu-suo" | "suo";
+export type JimiKind = "military-institution" | "native-office";
+export type JimiOfficeKind =
+  | "dusi"
+  | "xing-dusi"
+  | "liushou-si"
+  | "wei"
+  | "suo"
+  | "yuanshuai-fu"
+  | "wanhu-fu"
+  | "xuanwei-si"
+  | "xuanfu-si"
+  | "zhaotao-si"
+  | "anfu-si"
+  | "zhangguan-si"
+  | "tusi-xunjian-si";
+
+export interface SourceLink {
+  sourceId: string;
+  claim: string;
+  confidence: Confidence;
+  note?: string;
+}
+
+export interface Source {
+  id: string;
+  title: string;
+  creator?: string;
+  citation: string;
+  license: string;
+  url?: string;
+}
+
+export interface AdministrativeUnit {
+  id: string;
+  name: string;
+  formalName?: string;
+  level: "capital-region" | "province" | "prefecture" | "department" | "county" | "military";
+  domain?: UnitDomain;
+  militaryKind?: MilitaryUnitKind;
+  fiveArmyId?: "central" | "left" | "right" | "front" | "rear";
+  polityId?: string;
+  parentId?: string;
+  seatPlaceId?: string;
+  confidence?: Confidence;
+  sources?: SourceLink[];
+  sourceIds?: string[];
+}
+
+export interface MilitaryUnit {
+  id: string;
+  name: string;
+  formalName?: string;
+  level: "military";
+  domain?: "military";
+  militaryKind: MilitaryUnitKind;
+  polityId?: string;
+  seatPlaceId?: string;
+  confidence?: Confidence;
+  sources?: SourceLink[];
+  sourceIds?: string[];
+}
+
+export interface JimiUnit {
+  id: string;
+  name: string;
+  formalName?: string;
+  jimiKind: JimiKind;
+  officeKind: JimiOfficeKind;
+  polityId?: string;
+  seatPlaceId?: string;
+  validity: {
+    from: number | null;
+    to: number | null;
+    precision: "exact" | "circa" | "range" | "unknown";
+  };
+  confidence?: Confidence;
+  note?: string;
+  sources?: SourceLink[];
+  sourceIds?: string[];
+}
+
+export type HistoricalRelationType =
+  | "military-subordination"
+  | "military-affiliation"
+  | "five-army-affiliation"
+  | "administrative-context"
+  | "co-location"
+  | "jimi-subordination"
+  | "jimi-administrative-context";
+
+export interface HistoricalRelation {
+  id: string;
+  relationType: HistoricalRelationType;
+  subjectId: string;
+  objectId: string;
+  confidence: Confidence;
+  note?: string;
+  sources: SourceLink[];
+}
+
+export interface Place {
+  id: string;
+  longitude?: number;
+  latitude?: number;
+  locationAccuracy: "exact" | "approximate" | "area_only" | "disputed" | "unknown";
+  locationMethod?: string;
+  confidence: Confidence;
+  sources?: SourceLink[];
+  sourceIds?: string[];
+}
+
+export interface PlaceName {
+  id: string;
+  placeId: string;
+  name: string;
+}
+
+export interface ProjectData {
+  sources: Source[];
+  scopeStatistics: ScopeStatisticRecord[];
+  statistics: StatisticRecord[];
+  militaryStatistics: MilitaryStatistic[];
+  administrativeUnits: AdministrativeUnit[];
+  militaryUnits: MilitaryUnit[];
+  jimiUnits: JimiUnit[];
+  relations: HistoricalRelation[];
+  places: Place[];
+  placeNames: PlaceName[];
+}
+
+export type RuntimeRelation = Pick<
+  HistoricalRelation,
+  "id" | "relationType" | "subjectId" | "objectId"
+>;
+
+export interface RuntimeIndex {
+  schemaVersion: 1;
+  sourceCount: number;
+  administrativeUnits: AdministrativeUnit[];
+  militaryUnits: MilitaryUnit[];
+  jimiUnits: JimiUnit[];
+  relations: RuntimeRelation[];
+  places: Place[];
+  placeNames: PlaceName[];
+}
+
+export interface StatisticFields {
+  id: string;
+  category: "population" | "tax";
+  metric: "households" | "registered-population" | "registered-land" | "summer-tax" | "autumn-grain" | "silver";
+  value: number;
+  unit: "households" | "people" | "qing" | "shi" | "liang";
+  originalText?: string;
+  recordedYear: number | null;
+  valueType: "recorded" | "estimated";
+  confidence: Confidence;
+  sources: SourceLink[];
+}
+
+export interface StatisticRecord extends StatisticFields {
+  administrativeUnitId: string;
+}
+
+export type ScopeStatisticRecord = StatisticFields;
+
+export type MilitaryStatisticMetric = "soldier-count" | "tuntian-area" | "tuntian-grain";
+export type MilitaryMeasureType =
+  | "field-army"
+  | "tuntian-army"
+  | "establishment"
+  | "registered"
+  | "actual"
+  | "original-area"
+  | "registered-area"
+  | "current-area"
+  | "cultivated-area"
+  | "summer-tax"
+  | "autumn-grain"
+  | "annual-yield"
+  | "allocated"
+  | "stored";
+export type MilitaryStatisticUnit = "people" | "qing" | "mu" | "shi" | "dou";
+
+export interface MilitaryStatistic {
+  id: string;
+  militaryUnitId: string;
+  metric: MilitaryStatisticMetric;
+  measureType: MilitaryMeasureType;
+  value: number;
+  unit: MilitaryStatisticUnit;
+  originalText?: string;
+  recordedYear: number | null;
+  valueType: "recorded" | "estimated";
+  confidence: Confidence;
+  sources: SourceLink[];
+  audit: {
+    reviewedOn: string;
+    revisionNote: string;
+  };
+  note?: string;
+}
+
+export interface SeatRecord {
+  unit: AdministrativeUnit;
+  place: Place;
+  name: string;
+  region: AdministrativeUnit;
+}
+
+export interface CountyRecord {
+  unit: AdministrativeUnit;
+  place: Place;
+  name: string;
+  parent: AdministrativeUnit;
+  region: AdministrativeUnit;
+}
+
+export interface MilitaryRecord {
+  unit: MilitaryUnit;
+  place: Place;
+  name: string;
+  administrativeRegionId: string | null;
+  administrativeUnitId: string | null;
+  /// Which clickable extent draws this unit. Separate from `administrativeRegionId`, which
+  /// is a sourced historical claim about where the unit was administratively placed: a
+  /// Hexi guard belongs to Shaanxi's historical geography and to the 陝西行都司 extent at
+  /// the same time, and the map needs the latter without overwriting the former.
+  mapRegionId: string | null;
+  militaryParentId: string | null;
+  fiveArmyId?: "central" | "left" | "right" | "front" | "rear";
+}
+
+export interface JimiRecord {
+  unit: JimiUnit;
+  place: Place;
+  name: string;
+  administrativeUnitId: string | null;
+  administrativeRegionId: string | null;
+  jimiParentId: string | null;
+  jimiRootId: string;
+  jimiDepth: number;
+  jimiDisplayLevel: number;
+}
+
+export interface MilitaryDisplayGroup {
+  id: string;
+  name: string;
+  description: string;
+  fiveArmyId?: "central" | "left" | "right" | "front" | "rear";
+  administrativePath?: string;
+  memberIds: readonly string[];
+}

@@ -1,0 +1,16 @@
+# 本地测试截图与中间产物
+app/preview*.png
+assets/pdf_page-*.png
+assets/pdf_first*.png
+assets/report_preview*.png
+assets/test.png
+tools/cdp_console.py
+
+# 原始外部数据（运行时不需要，可由脚本重新生成）
+app/data/natural-earth-mountains.geojson
+app/data/china-provinces.geojson
+app/data/figure-summaries.json
+
+# 源码目录内可能残留的 git 元数据
+vendor/historical-map-project/.git/
+vendor/historical-map-project/.git.disabled/

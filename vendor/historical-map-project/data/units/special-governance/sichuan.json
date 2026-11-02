@@ -1,0 +1,427 @@
+[
+  {
+    "id": "pingyi-mahu-military",
+    "name": "平夷长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "pingyi-mahu-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "manyi-mahu-military",
+    "name": "蛮夷长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "manyi-mahu-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "muchuan-mahu-military",
+    "name": "沐川长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "muchuan-mahu-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "baishuijiang-zhenxiong-military",
+    "name": "白水江肸酬长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "baishuijiang-zhenxiong-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "huaide-zhenxiong-military",
+    "name": "怀德长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "huaide-zhenxiong-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "weixin-zhenxiong-military",
+    "name": "威信长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "weixin-zhenxiong-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "guihua-zhenxiong-military",
+    "name": "归化长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "guihua-zhenxiong-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "anjing-zhenxiong-military",
+    "name": "安静长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "anjing-zhenxiong-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "yongning-xuanfu-military",
+    "name": "永宁宣抚司",
+    "jimiKind": "native-office",
+    "officeKind": "xuanfu-si",
+    "polityId": "ming",
+    "seatPlaceId": "yongning-xuanfu-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "jiuxing-yongning-military",
+    "name": "九姓长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "jiuxing-yongning-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "taiping-yongning-military",
+    "name": "太平长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "taiping-yongning-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "tianquan-liufan-military",
+    "name": "天全六番招讨司",
+    "jimiKind": "native-office",
+    "officeKind": "zhaotao-si",
+    "polityId": "ming",
+    "seatPlaceId": "tianquan-liufan-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-geography-four",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-15",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "changzhou-sichuan-xing",
+    "name": "昌州长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "changzhou-sichuan-xing-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-military-two",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-27",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "weilong-sichuan-xing",
+    "name": "威龙长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "weilong-sichuan-xing-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-military-two",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-27",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "puji-sichuan-xing",
+    "name": "普济长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "puji-sichuan-xing-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-military-two",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-27",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "mala-sichuan-xing",
+    "name": "马剌长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "mala-sichuan-xing-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-military-two",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-27",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  },
+  {
+    "id": "qiongbu-sichuan-xing",
+    "name": "邛部长官司",
+    "jimiKind": "native-office",
+    "officeKind": "zhangguan-si",
+    "polityId": "ming",
+    "seatPlaceId": "qiongbu-sichuan-xing-seat",
+    "validity": {
+      "from": 1600,
+      "to": 1600,
+      "precision": "exact"
+    },
+    "confidence": "high",
+    "sources": [
+      {
+        "sourceId": "ming-shi-military-two",
+        "claim": "existence",
+        "confidence": "high"
+      }
+    ],
+    "audit": {
+      "reviewedOn": "2026-07-27",
+      "revisionNote": "Migrated from special-governance fragments to the explicit jimi unit model."
+    }
+  }
+]
