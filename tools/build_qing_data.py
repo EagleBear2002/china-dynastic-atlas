@@ -16,7 +16,7 @@ OUT = ROOT / "app" / "data"
 
 COLORS = [
     "#B5655D", "#A87935", "#3E5E54", "#58577F", "#356671", "#705A70",
-    "#8C6E5D", "#71805E", "#8A7A95", "#4C7A78", "#9A6A55", "#6E7391",
+    "#8C6E5D", "#71805E", "#8A7A95", "#4C7A78", "#9A6A55", "#59A659",
     "#A36B7A", "#668A6B", "#8A7655", "#5C7B92", "#826A72", "#9B8765",
     "#60766E", "#7F6C8B", "#A27B5C", "#5C6C86",
 ]
@@ -58,6 +58,21 @@ def main():
     pref_transformer = make_transformer(next((SRC / "pref").glob("*.prj")))
     prov_transformer = make_transformer(next((SRC / "prov").glob("*.prj")))
 
+    # CHGIS 1820 pref records all carry 1911/1911 as a snapshot artifact.
+    # Use the V6 time-series prefecture polygons for actual lifecycle ranges
+    # (by name) so units do not all appear to live 1644—1912.
+    pref_lifecycle = {}
+    ts_path = ROOT / "vendor" / "historical-map-project" / "data" / "external" / "chgis_v6" / "v6_time_pref_pgn_utf_wgs84.shp"
+    if ts_path.exists():
+        ts_reader = shapefile.Reader(str(ts_path))
+        for record in ts_reader.records():
+            if not record.NAME_CH or record.BEG_YR is None or record.END_YR is None:
+                continue
+            current = pref_lifecycle.get(record.NAME_CH, [9999, -9999])
+            current[0] = min(current[0], record.BEG_YR)
+            current[1] = max(current[1], record.END_YR)
+            pref_lifecycle[record.NAME_CH] = current
+
     provinces = []
     province_by_name = {}
     for index, (record, shp) in enumerate(zip(prov_reader.records(), prov_reader.shapes())):
@@ -82,9 +97,8 @@ def main():
         name = record.NAME_CH or f"府{index}"
         province_name = record.LEV1_CH or ""
         province = province_by_name.get(province_name)
-        province_id = province["id"] if province else f"prov-unknown"
+        province_id = province["id"] if province else "prov-unknown"
         if not province:
-            # Some 1820 layers include broad frontier regions as pref polygons.
             province = {
                 "id": province_id, "name": province_name or name, "level": "province", "levelLabel": "地区",
                 "formalName": province_name or name, "seatName": name, "lon": float(record.X_COORD or 0), "lat": float(record.Y_COORD or 0),
@@ -92,7 +106,8 @@ def main():
                 "validity": {"from": 1644, "to": 1912, "precision": "reconstructed"},
                 "confidence": "reconstructed", "ancestry": [],
             }
-            provinces.append(province); province_by_name[province["name"]] = province
+            provinces.append(province)
+            province_by_name[province["name"]] = province
         unit_type = record.TYPE_CH or "府"
         level = "department" if ("州" in unit_type or "厅" in unit_type) else "prefecture"
         label = "州" if level == "department" else "府"
@@ -117,13 +132,22 @@ def main():
         pref_polygons.append(geom)
         pref_features.append({
             "type": "Feature", "id": str(record.SYS_ID or index),
-            "geometry": rnd(mapping(geom.simplify(0.01, preserve_topology=True)),4),
+            "geometry": rnd(mapping(geom.simplify(0.01, preserve_topology=True)), 4),
             "properties": {
                 "id": str(record.SYS_ID or index), "name": name, "type": unit_type,
                 "unitId": uid, "provinceId": province_id, "beg": 1820, "end": 1820,
                 "labelAt": [x, y], "colorSlot": index % 8,
             },
         })
+
+    for unit in pref_units:
+        span = pref_lifecycle.get(unit["name"])
+        if span:
+            unit["validity"] = {
+                "from": max(1644, int(span[0])),
+                "to": min(1912, int(span[1])),
+                "precision": "reconstructed",
+            }
 
     county_units = []
     for index, record in enumerate(cnty_reader.records()):
@@ -136,13 +160,25 @@ def main():
         parent = candidates[0] if candidates else None
         x, y = point_from_record(record)
         uid = f"cnty-{record.SYS_ID or index}"
+        begin_year = record.BEG_YR
+        end_year = record.END_YR
+        if begin_year is not None and end_year is not None and not (begin_year == 1820 and end_year == 1820):
+            county_validity = {
+                "from": max(1644, int(begin_year)),
+                "to": min(1912, int(end_year)),
+                "precision": "reconstructed",
+            }
+        elif parent:
+            county_validity = dict(parent["validity"])
+        else:
+            county_validity = {"from": 1644, "to": 1912, "precision": "reconstructed"}
         unit = {
             "id": uid, "name": name, "level": "county", "levelLabel": "县",
             "formalName": name, "seatName": name, "lon": x, "lat": y,
             "provinceId": province_id, "provinceName": province["name"] if province else province_name,
             "parentId": parent["id"] if parent else province_id,
             "children": [], "stats": [], "sources": [],
-            "validity": {"from": 1644, "to": 1912, "precision": "reconstructed"},
+            "validity": county_validity,
             "confidence": "reconstructed",
             "ancestry": [province, parent] if parent else ([province] if province else []),
         }
