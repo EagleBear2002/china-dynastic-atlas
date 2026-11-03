@@ -2464,6 +2464,27 @@
     syncDisplayControls();
   }
 
+  function openChapterSwitch() {
+    const chapters = window.__CHAPTERS__ || [];
+    const grid = $("#chapter-switch-grid");
+    grid.innerHTML = chapters.map((chapter) => `<button class="chapter-switch-card" type="button" data-switch-chapter="${esc(chapter.id)}"><b>${esc(chapter.name)}</b><span>${esc(chapter.full)}<small>${esc(chapter.years)}</small></span></button>`).join("");
+    $("#chapter-switch-dialog").showModal();
+  }
+
+  function initChapterSwitch() {
+    $("#btn-chapter-switch-close").addEventListener("click", () => $("#chapter-switch-dialog").close());
+    $("#chapter-switch-dialog").addEventListener("click", (event) => { if (event.target === $("#chapter-switch-dialog")) $("#chapter-switch-dialog").close(); });
+    $("#chapter-switch-grid").addEventListener("click", (event) => {
+      const card = event.target.closest("[data-switch-chapter]");
+      if (!card) return;
+      const id = card.dataset.switchChapter;
+      const destinations = { ming: "index.html?year=1600", qing: "qing.html?year=1820" };
+      $("#chapter-switch-dialog").close();
+      if (destinations[id]) window.location.href = destinations[id];
+      else toast(`${card.textContent.trim()}章节建设中`);
+    });
+  }
+
   function initControls() {
     $("#btn-zoom-in").addEventListener("click", () => map.zoomIn({ duration: 250 }));
     $("#btn-zoom-out").addEventListener("click", () => map.zoomOut({ duration: 250 }));
@@ -2474,7 +2495,7 @@
         duration: 650,
       });
     });
-    $("#btn-chapters").addEventListener("click", () => { window.location.href = `chapters.html?chapter=${window.__DYNASTY__ || "ming"}`; });
+    $("#btn-chapters").addEventListener("click", openChapterSwitch);
     $("#btn-about").addEventListener("click", () => $("#about-dialog").showModal());
     $("#btn-about-close").addEventListener("click", () => $("#about-dialog").close());
     $("#about-dialog").addEventListener("click", (event) => {
@@ -2537,6 +2558,7 @@
     renderTabIcons();
     initResizers();
     initDisplayMenu();
+    initChapterSwitch();
     initControls();
     renderStatsCard();
     renderMapLegend();

@@ -177,15 +177,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--cinnabar-li
   z-index: 20;
   top: 44px;
   right: 0;
-  width: 170px;
+  width: 208px;
+  max-height: min(74vh, 600px);
+  overflow-y: auto;
   padding: 8px 12px 10px;
   border: 1px solid var(--border);
   border-radius: 5px;
   background: var(--panel-solid);
   box-shadow: var(--shadow);
 }
-.display-menu label { display: flex; align-items: center; gap: 8px; padding: 5px 0; color: var(--ink); font-size: 11px; cursor: pointer; }
+.display-menu label { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: var(--ink); font-size: 11px; cursor: pointer; }
 .display-menu input { accent-color: var(--cinnabar); }
+.display-group__title { margin: 7px 0 3px; color: var(--cinnabar); font-size: 9.5px; font-weight: 700; letter-spacing: .12em; }
+.display-group__title:first-child { margin-top: 0; }
 .display-sep { display: block; height: 1px; margin: 5px 0; background: var(--border); }
 .year-chip {
   display: flex;
@@ -386,50 +390,11 @@ body.resizing { user-select: none; cursor: col-resize; }
 .legend-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 10px; }
 .legend-item { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 10px; }
 .legend-symbol { position: relative; display: inline-block; width: 14px; height: 14px; flex: 0 0 14px; }
-.legend-symbol--capital { background: var(--cinnabar); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 94%, 50% 72%, 21% 94%, 32% 57%, 2% 35%, 39% 35%); }
-.legend-symbol--province {
-  width: 20px; height: 20px;
-  border: 2px solid #7a4a3a;
-  border-radius: 50%;
-  background: transparent;
-}
-.legend-symbol--province::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1.5px solid #7a4a3a;
-  border-radius: 50%;
-  background: repeating-linear-gradient(45deg, #7a4a3a 0 1px, transparent 1px 3px);
-}
-.legend-symbol--prefecture {
-  width: 20px; height: 20px;
-  border: 2px solid #7a4a3a;
-  border-radius: 50%;
-  background: transparent;
-}
-.legend-symbol--prefecture::after {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border: 2px solid #7a4a3a;
-  border-radius: 50%;
-}
-.legend-symbol--department {
-  width: 19px; height: 19px;
-  border: 2px solid #7a4a3a;
-  border-radius: 50%;
-  background: radial-gradient(circle, #7a4a3a 0 2.5px, transparent 3px);
-}
-.legend-symbol--secondary {
-  width: 19px; height: 19px;
-  border: 2px solid #7a4a3a;
-  border-radius: 50%;
-  background: radial-gradient(circle, #7a4a3a 0 2.5px, transparent 3px);
-}
-.legend-symbol--county { width: 11px; height: 11px; margin: 4px; border-radius: 50%; background: transparent; border: 2px solid #7a4a3a; }
-.legend-symbol--military { background: #3e5e54; clip-path: polygon(35% 0, 65% 0, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0 65%, 0 35%, 35% 35%); }
-.legend-symbol--jimi { width: 12px; height: 12px; margin: 1px; border: 2px solid #7b5a3c; border-radius: 50%; background: transparent; }
-.legend-symbol--river { width: 14px; height: 0; border-top: 2px solid #84999d; margin-top: 6px; }
+/* 治所、都司卫所、羁縻符号与地图共用同一个 canvas 生成器，这里直接贴位图，
+   不再用 CSS 拼形状——旧写法改了 width/height 却没改 flex 基准，会被压成椭圆。 */
+.legend-symbol--img { width: 20px; height: 20px; flex: 0 0 20px; }
+.legend-symbol--img img { display: block; width: 100%; height: 100%; }
+.legend-symbol--river { width: 20px; flex: 0 0 20px; height: 0; margin-top: 0; border-top: 2px solid #84999d; }
 .legend-symbol--mountain-icon { width: 18px; height: 18px; color: #56604f; }
 .legend-symbol--mountain-icon svg { display: block; width: 100%; height: 100%; }
 .event-legend-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px 8px; }
@@ -767,3 +732,15 @@ body.resizing { user-select: none; cursor: col-resize; }
   .timeline { left: 8px; right: 8px; bottom: 8px; }
   .brand p { display: none; }
 }
+
+
+.chapter-switch-dialog { width: min(620px, calc(100vw - 32px)); padding: 26px 30px; border: 1px solid var(--border, rgba(54,49,40,.18)); border-radius: 8px; background: var(--paper-light, #f6f1e7); box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+.chapter-switch-dialog::backdrop { background: rgba(40,35,25,.45); }
+.chapter-switch-dialog h2 { margin: 0 0 16px; color: var(--cinnabar, #7a3027); font-family: var(--serif, serif); font-size: 24px; }
+.chapter-switch-dialog .dialog-close { position: absolute; right: 16px; top: 12px; border: 0; background: transparent; font-size: 24px; }
+.chapter-switch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.chapter-switch-card { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid rgba(54,49,40,.18); border-radius: 4px; background: transparent; text-align: left; }
+.chapter-switch-card:hover { border-color: var(--cinnabar, #7a3027); background: rgba(122,48,39,.06); }
+.chapter-switch-card b { width: 42px; color: var(--cinnabar, #7a3027); font-family: var(--serif, serif); font-size: 20px; }
+.chapter-switch-card span { color: #6f675b; font-size: 10px; line-height: 1.5; }
+.chapter-switch-card small { display: block; color: #8a8174; font-size: 9px; }

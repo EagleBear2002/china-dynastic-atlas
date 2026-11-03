@@ -164,6 +164,12 @@
       <p class="friendly-links"><a href="https://chronotabula.inkore.ink/" target="_blank" rel="noopener">历史地图计划 / 大明舆图</a><a href="https://deanchen.me/jiangshan-map/" target="_blank" rel="noopener">江山时序 · 中国历史地图时间轴</a></p>
       <p class="muted">历史示意图，非现代行政地图；不作为导航、测绘或主权表达依据。</p>
     </dialog>
+
+    <dialog id="chapter-switch-dialog" class="chapter-switch-dialog">
+      <button id="btn-chapter-switch-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <h2>选择朝代章节</h2>
+      <div id="chapter-switch-grid" class="chapter-switch-grid"></div>
+    </dialog>
   </main>
 
   <script>
@@ -182,6 +188,7 @@
   <script src="data/qing-figures.js"></script>
   <script src="data/modern-china.js"></script>
   <script src="data/icons.js"></script>
+  <script src="data/chapters.js"></script>
   <script src="vendor/maplibre-gl.js"></script>
   <script src="data/qing-config.js"></script>
   <script>

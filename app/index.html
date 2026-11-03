@@ -33,10 +33,20 @@
         <div class="display-wrap">
           <button id="btn-display" class="icon-text-btn" type="button" aria-expanded="false">显示 <span>▾</span></button>
           <div id="display-menu" class="display-menu" hidden>
-            <label><input type="checkbox" data-display="mountains" checked /> 山脉</label>
-            <label><input type="checkbox" data-display="modern" checked /> 今省界</label>
-            <label><input type="checkbox" data-display="events" checked /> 历史事件图标</label>
+            <div class="display-group__title">地图图层</div>
+            <label title="1600 年重建轮廓"><input type="checkbox" data-display="national" checked /> 全国疆域示意</label>
+            <label title="布政使司 / 留都"><input type="checkbox" data-display="provinces" checked /> 省级区划</label>
+            <label title="府州界用 CHGIS；县名与治所保留"><input type="checkbox" data-display="admin" checked /> 府州县治所</label>
+            <label title="行都司、卫所、宣慰司等特殊辖区"><input type="checkbox" data-display="special" checked /> 军事/羁縻辖区</label>
+            <label title="蒙古、后金、乌思藏等"><input type="checkbox" data-display="neighbors" checked /> 周边少数民族政权</label>
+            <label title="769 个军事单元"><input type="checkbox" data-display="military" /> 都司卫所</label>
+            <label title="701 个特殊治理单元"><input type="checkbox" data-display="jimi" /> 土司/羁縻</label>
             <span class="display-sep"></span>
+            <label title="虚线叠加，便于定位"><input type="checkbox" data-display="modern" checked /> 今省界</label>
+            <label title="小山峰排列与历史山名"><input type="checkbox" data-display="mountains" checked /> 山脉</label>
+            <label title="有坐标的重大事件"><input type="checkbox" data-display="events" checked /> 事件标记</label>
+            <div class="display-group__title">地名标签</div>
+            <label title="随缩放逐级显示（总开关）"><input type="checkbox" data-display="labels" checked /> 地名标签</label>
             <label><input type="checkbox" data-display="province" checked /> 省名</label>
             <label><input type="checkbox" data-display="prefecture" checked /> 府名</label>
             <label><input type="checkbox" data-display="department" checked /> 州名</label>
@@ -53,7 +63,7 @@
       <div class="panel-head">
         <div class="tabs" role="tablist">
           <button id="tab-events" class="tab is-active" type="button" data-tab="events" role="tab">大事</button>
-          <button id="tab-layers" class="tab" type="button" data-tab="layers" role="tab">图层</button>
+          <button id="tab-legend" class="tab" type="button" data-tab="legend" role="tab">图例</button>
         </div>
         <span id="event-count" class="panel-count">—</span>
       </div>
@@ -74,24 +84,7 @@
         <div id="event-list" class="event-list"></div>
       </section>
 
-      <section id="layers-view" class="panel-view" hidden>
-        <div class="layer-group">
-          <div class="layer-group__title">行政与地理</div>
-          <label class="layer-row"><span><b>全国疆域示意</b><small>1600 年重建轮廓</small></span><input type="checkbox" id="layer-national" checked /></label>
-          <label class="layer-row"><span><b>现代省界参考</b><small>虚线叠加，便于定位</small></span><input type="checkbox" id="layer-modern" checked /></label>
-          <label class="layer-row"><span><b>省级区划</b><small>布政使司/留都</small></span><input type="checkbox" id="layer-provinces" checked /></label>
-          <label class="layer-row"><span><b>府州县治所</b><small>府州界用 CHGIS；县名与治所保留</small></span><input type="checkbox" id="layer-admin" checked /></label>
-          <label class="layer-row"><span><b>军事/羁縻辖区</b><small>行都司、卫所、宣慰司等特殊辖区</small></span><input type="checkbox" id="layer-special" checked /></label>
-          <label class="layer-row"><span><b>周边少数民族政权</b><small>蒙古、后金、乌思藏等</small></span><input type="checkbox" id="layer-neighbors" checked /></label>
-          <label class="layer-row"><span><b>地名标签</b><small>随缩放逐级显示</small></span><input type="checkbox" id="layer-labels" checked /></label>
-          <label class="layer-row"><span><b>山脉</b><small>小山峰排列与历史山名</small></span><input type="checkbox" id="layer-mountains" checked /></label>
-        </div>
-        <div class="layer-group">
-          <div class="layer-group__title">军事与羁縻</div>
-          <label class="layer-row"><span><b>都司卫所</b><small>769 个军事单元</small></span><input type="checkbox" id="layer-military" /></label>
-          <label class="layer-row"><span><b>土司/羁縻</b><small>701 个特殊治理单元</small></span><input type="checkbox" id="layer-jimi" /></label>
-          <label class="layer-row"><span><b>事件标记</b><small>有坐标的重大事件</small></span><input type="checkbox" id="layer-events" checked /></label>
-        </div>
+      <section id="legend-view" class="panel-view" hidden>
         <div class="map-legend" id="map-legend"></div>
         <div class="stats-card" id="stats-card"></div>
       </section>
@@ -164,6 +157,12 @@
       <p class="friendly-links"><a href="https://chronotabula.inkore.ink/" target="_blank" rel="noopener">历史地图计划 / 大明舆图</a><a href="https://deanchen.me/jiangshan-map/" target="_blank" rel="noopener">江山时序 · 中国历史地图时间轴</a></p>
       <p class="muted">历史示意图，非现代行政地图；不作为导航、测绘或主权表达依据。</p>
     </dialog>
+
+    <dialog id="chapter-switch-dialog" class="chapter-switch-dialog">
+      <button id="btn-chapter-switch-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <h2>选择朝代章节</h2>
+      <div id="chapter-switch-grid" class="chapter-switch-grid"></div>
+    </dialog>
   </main>
 
   <script>
@@ -185,6 +184,7 @@
   <script src="data/figures.js"></script>
   <script src="data/modern-china.js"></script>
   <script src="data/icons.js"></script>
+  <script src="data/chapters.js"></script>
   <script src="vendor/maplibre-gl.js"></script>
   <script src="app.js"></script>
 </body>
