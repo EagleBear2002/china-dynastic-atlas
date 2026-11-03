@@ -478,15 +478,18 @@
       const name = properties.name || feature.id;
       const bounds = geometryBounds(feature.geometry);
       const area = (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]);
+      const labelAt = Array.isArray(properties.labelAt) ? properties.labelAt : null;
       const current = groups.get(name);
-      if (!current || area > current.area) groups.set(name, { name, type: properties.type, area, bounds });
+      if (!current || area > current.area) groups.set(name, { name, type: properties.type, area, labelAt });
     }
-    return [...groups.values()].map((item) => ({
-      name: item.name,
-      type: item.type,
-      lon: (item.bounds[0] + item.bounds[2]) / 2,
-      lat: (item.bounds[1] + item.bounds[3]) / 2,
-    }));
+    return [...groups.values()]
+      .filter((item) => Array.isArray(item.labelAt))
+      .map((item) => ({
+        name: item.name,
+        type: item.type,
+        lon: item.labelAt[0],
+        lat: item.labelAt[1],
+      }));
   }
 
   function chgisFeatureCollection() {
@@ -1084,8 +1087,10 @@
         element.style.display = "none";
       }
     }
-    renderMountainLabels(occupied, width, height, zoom);
+    // Special (military/jimi) names take their space before mountain names, so the
+    // mountain pass — which yields to every place name — can see them and stand aside.
     renderSpecialLabels(occupied, width, height, zoom);
+    renderMountainLabels(occupied, width, height, zoom);
   }
 
   function renderMountainLabels(occupied, width, height, zoom) {

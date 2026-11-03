@@ -231,6 +231,8 @@ def main():
         if geom.is_empty:
             continue
         feature["geometry"] = rnd(mapping(geom))
+        representative = geom.representative_point()
+        feature["properties"]["labelAt"] = [round(representative.x, 5), round(representative.y, 5)]
 
     assign_color_slots(features)
 
