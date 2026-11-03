@@ -256,6 +256,8 @@
     { from: 1621, to: 1627, era: "天启", emperor: "明熹宗 · 朱由校" },
     { from: 1628, to: 1644, era: "崇祯", emperor: "明思宗 · 朱由检" },
   ];
+  const YEAR_MIN = Number(window.__YEAR_MIN__ ?? 1368);
+  const YEAR_MAX = Number(window.__YEAR_MAX__ ?? 1644);
 
   const METRIC_LABELS = {
     households: "户",
@@ -798,7 +800,9 @@
     const provinceColorByProvinceId = ["match", ["get", "provinceId"], ...provinceColorEntries, "#81796e"];
     const provinceBorderEntries = MING.provinces.flatMap((province) => [province.id, darkenHex(province.color, 0.66)]);
     const provinceBorderColor = ["match", ["get", "unitId"], ...provinceBorderEntries, "#4b3a2a"];
-    const prefColorEntries = Object.entries(PREF_COLORS).flatMap(([id, color]) => [id, color]);
+    const prefColorEntries = Object.entries(PREF_COLORS).length
+      ? Object.entries(PREF_COLORS).flatMap(([id, color]) => [id, color])
+      : ["__none__", "#81796e"];
     const eventColor = ["match", ["get", "type"],
       "区划", "#7a3027",
       "政治", "#b08a4a",

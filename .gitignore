@@ -21,3 +21,5 @@ vendor/historical-map-project/data/external/chgis_v6_time_pref_pgn_utf_wgs84.zip
 deploy/
 
 vendor/historical-map-project/data/external/world_1600.geojson
+
+app/qing-preview*.png
