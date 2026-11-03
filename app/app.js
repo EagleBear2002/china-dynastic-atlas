@@ -1169,7 +1169,8 @@
       return;
     }
     for (const item of specialLabelPoints()) {
-      if (zoom < 3.8) continue;
+      // Match the prefecture-label lifecycle: hidden at the same low zoom levels.
+      if (zoom < 4.2 || !state.labelLevels.prefecture) continue;
       const point = map.project([item.lon, item.lat]);
       if (point.x < 12 || point.y < 12 || point.x > width - 12 || point.y > height - 12) continue;
       let element = specialLabelPool.get(item.name);
