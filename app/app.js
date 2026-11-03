@@ -174,6 +174,31 @@
       : { from: 1368, to: 1644, precision: "reconstructed" };
   }
   const unitById = new Map(units.map((unit) => [unit.id, unit]));
+  // Canonical crosswalk: one unit record owns its seat, validity and all CHGIS
+  // feature fragments. Rendering and selection read this index instead of
+  // re-matching by display name everywhere.
+  const featureById = new Map();
+  const unitByFeatureId = new Map();
+  const unitByNameProvince = new Map();
+  for (const unit of units) {
+    unit.featureIds = [];
+    unit.seat = {
+      name: unit.seatName || "",
+      lon: unit.lon,
+      lat: unit.lat,
+    };
+    unit.period = unit.validity || { from: 1368, to: 1644 };
+    unitByNameProvince.set(`${unit.name}|${unit.provinceId}`, unit);
+  }
+  for (const feature of CHGIS_MING.features || []) {
+    const properties = feature.properties || {};
+    const unit = unitByNameProvince.get(`${properties.name}|${properties.provinceId}`);
+    if (!unit) continue;
+    feature.properties.unitId = unit.id;
+    unit.featureIds.push(feature.id);
+    unitByFeatureId.set(feature.id, unit.id);
+    featureById.set(feature.id, feature);
+  }
   const provinceById = new Map(MING.provinces.map((province) => [province.id, province]));
   const sourceById = new Map(MING.sources.map((source) => [source.id, source]));
   const eventById = new Map(EVENTS.map((event) => [event.id, event]));
@@ -1637,17 +1662,25 @@
       "zunyi-replacement": "播州宣慰司",
       "pingyue-replacement": "平越卫",
     };
-    for (const feature of CHGIS_MING.features || []) {
-      const properties = feature.properties || {};
-      if (!featureActiveInYear(properties, state.year)) continue;
-      const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
-      const replacementMatch = state.year >= 1600 && replacementSourceNames[unitId] === properties.name;
-      const matchesUnit = replacementMatch
-        || (properties.unitId === unitId && sameProvince)
-        || (unit.level === "county" && properties.unitId === unit.parentId && sameProvince)
-        || (unit.level !== "county" && sameProvince && normalizeUnitName(properties.name) === wantedName)
-        || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
-      if (matchesUnit) chgisSelected.push(feature.id);
+    if (unit.featureIds?.length) {
+      // Preferred path: the canonical crosswalk already owns the feature IDs.
+      for (const featureId of unit.featureIds) {
+        const feature = featureById.get(featureId);
+        if (feature && featureActiveInYear(feature.properties, state.year)) chgisSelected.push(featureId);
+      }
+    } else {
+      for (const feature of CHGIS_MING.features || []) {
+        const properties = feature.properties || {};
+        if (!featureActiveInYear(properties, state.year)) continue;
+        const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
+        const replacementMatch = state.year >= 1600 && replacementSourceNames[unitId] === properties.name;
+        const matchesUnit = replacementMatch
+          || (properties.unitId === unitId && sameProvince)
+          || (unit.level === "county" && properties.unitId === unit.parentId && sameProvince)
+          || (unit.level !== "county" && sameProvince && normalizeUnitName(properties.name) === wantedName)
+          || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
+        if (matchesUnit) chgisSelected.push(feature.id);
+      }
     }
     // Last-resort spatial fallback: if a 军民府/土司 name has no CHGIS name match,
     // query the visible CHGIS face under the unit's seat point.
