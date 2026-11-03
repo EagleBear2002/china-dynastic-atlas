@@ -234,6 +234,21 @@ def main():
         representative = geom.representative_point()
         feature["properties"]["labelAt"] = [round(representative.x, 5), round(representative.y, 5)]
 
+    # Re-resolve CHGIS names to Ming units using (name, province), not name alone.
+    # This prevents duplicate names such as 登州府/永宁州 from inheriting a unitId
+    # from the wrong province.
+    ming_text = (ROOT / "app" / "data" / "ming-data.js").read_text(encoding="utf-8")
+    ming = json.loads(ming_text[ming_text.index("{"): ming_text.rindex("}") + 1])
+    unit_by_name_province = {
+        (unit["name"], unit.get("provinceId")): unit["id"]
+        for unit in ming["units"]
+        if unit.get("level") in ("prefecture", "department")
+    }
+    for feature in features:
+        name = feature["properties"].get("name")
+        province_id = feature["properties"].get("provinceId")
+        feature["properties"]["unitId"] = unit_by_name_province.get((name, province_id))
+
     assign_color_slots(features)
 
     boundary_parts = []

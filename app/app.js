@@ -936,6 +936,12 @@
         if (layer === "chgis-fill") {
           const properties = feature.properties || {};
           let targetId = properties.unitId;
+          if (targetId) {
+            const target = unitById.get(String(targetId));
+            if (!target || (properties.provinceId && target.provinceId !== properties.provinceId)) {
+              targetId = null;
+            }
+          }
           if (!targetId || !unitById.has(String(targetId))) {
             const wantedName = normalizeUnitName(properties.name);
             let candidates = [...unitById.values()].filter((unit) =>
@@ -1291,8 +1297,8 @@
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
       const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
-      const matchesUnit = properties.unitId === unitId
-        || (unit.level === "county" && properties.unitId === unit.parentId)
+      const matchesUnit = (properties.unitId === unitId && sameProvince)
+        || (unit.level === "county" && properties.unitId === unit.parentId && sameProvince)
         || (unit.level !== "county" && sameProvince && normalizeUnitName(properties.name) === wantedName)
         || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
       if (matchesUnit) chgisSelected.push(feature.id);
