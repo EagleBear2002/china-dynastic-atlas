@@ -135,7 +135,7 @@
   MING.units.push(
     {
       id: "zunyi-replacement", name: "遵义府", level: "prefecture", levelLabel: "府",
-      provinceId: "sichuan", provinceName: "四川", parentId: "sichuan",
+      provinceId: "guizhou", provinceName: "贵州", parentId: "guizhou",
       seatName: "遵义", lon: 106.9, lat: 27.7, formalName: "遵义军民府",
       children: [], ancestry: [], stats: [], sources: [],
       validity: { from: 1600, to: 1644, precision: "exact" }, confidence: "reconstructed",
@@ -446,12 +446,14 @@
     toast._timer = setTimeout(() => { el.hidden = true; }, 2800);
   }
 
-  function unitIcon(level, provinceId) {
+  function unitIcon(level) {
+    // Seat symbols are all black (no per-province colour); a county is a small
+    // hollow circle rather than a dot.
     if (level === "capital-region") return "capital-star";
-    if (level === "province") return `prov-${provinceId}-province`;
-    if (level === "prefecture") return `prov-${provinceId}-prefecture`;
-    if (level === "department") return `prov-${provinceId}-secondary`;
-    return `prov-${provinceId}-circle`;
+    if (level === "province") return "seat-province";
+    if (level === "prefecture") return "seat-prefecture";
+    if (level === "department") return "seat-department";
+    return "seat-county";
   }
 
   function isProvinceActive(provinceId, year) {
@@ -740,7 +742,7 @@
       let replacement = null;
       if (year >= 1600 && properties.name === "播州宣慰司") {
         replacement = {
-          name: "遵义府", type: "府", provinceId: "sichuan",
+          name: "遵义府", type: "府", provinceId: "guizhou",
           unitId: "zunyi-replacement", prefId: "zunyi-replacement",
           beg: 1600, end: 1644,
         };
@@ -988,10 +990,10 @@
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
         { id: "jimi-points", type: "symbol", source: "jimi", minzoom: 4.2, layout: { "icon-image": ["get", "icon"], "icon-size": 0.24, "icon-allow-overlap": true, "icon-ignore-placement": true } },
-        { id: "admin-province", type: "symbol", source: "markers", filter: ["in", ["get", "level"], ["literal", ["capital-region", "province"]]], layout: { "icon-image": ["get", "icon"], "icon-size": 0.50, "icon-allow-overlap": true, "icon-ignore-placement": true } },
-        { id: "admin-prefecture", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "prefecture"], minzoom: 4.6, layout: { "icon-image": ["get", "icon"], "icon-size": 0.38, "icon-allow-overlap": true, "icon-ignore-placement": true } },
-        { id: "admin-department", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "department"], minzoom: 5.8, layout: { "icon-image": ["get", "icon"], "icon-size": 0.30, "icon-allow-overlap": true, "icon-ignore-placement": true } },
-        { id: "admin-county", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "county"], minzoom: 6.8, layout: { "icon-image": ["get", "icon"], "icon-size": 0.20, "icon-allow-overlap": true, "icon-ignore-placement": true } },
+        { id: "admin-province", type: "symbol", source: "markers", filter: ["in", ["get", "level"], ["literal", ["capital-region", "province"]]], layout: { "icon-image": ["get", "icon"], "icon-size": 0.50, "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": ["case", ["boolean", ["feature-state", "hidden"], false], 0, 1] } },
+        { id: "admin-prefecture", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "prefecture"], layout: { "icon-image": ["get", "icon"], "icon-size": 0.38, "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": ["case", ["boolean", ["feature-state", "hidden"], false], 0, 1] } },
+        { id: "admin-department", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "department"], layout: { "icon-image": ["get", "icon"], "icon-size": 0.30, "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": ["case", ["boolean", ["feature-state", "hidden"], false], 0, 1] } },
+        { id: "admin-county", type: "symbol", source: "markers", filter: ["==", ["get", "level"], "county"], layout: { "icon-image": ["get", "icon"], "icon-size": 0.30, "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": ["case", ["boolean", ["feature-state", "hidden"], false], 0, 1] } },
         { id: "event-halo", type: "circle", source: "events", paint: { "circle-radius": ["case", ["get", "active"], 16, 11], "circle-color": eventColor, "circle-opacity": 0.10 } },
         { id: "event-points", type: "symbol", source: "events", layout: { "icon-image": ["get", "typeKey"], "icon-size": 0.40, "icon-allow-overlap": true, "icon-ignore-placement": true } },
       ],
@@ -1066,6 +1068,16 @@
     if (shape === "circle") {
       ctx.beginPath();
       ctx.arc(center, center, 13, 0, Math.PI * 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3.2;
+      ctx.stroke();
+      return ctx.getImageData(0, 0, size, size);
+    }
+    if (shape === "county-ring") {
+      // Small hollow circle for county seats — a circle, not a dot. Radius 18 vs
+      // the 州 outer ring's 20, so it reads only a little smaller than 州.
+      ctx.beginPath();
+      ctx.arc(center, center, 18, 0, Math.PI * 2);
       ctx.strokeStyle = color;
       ctx.lineWidth = 3.2;
       ctx.stroke();
@@ -1228,11 +1240,9 @@
   }
 
   function registerMarkerIcons() {
-    for (const [provinceId, color] of Object.entries(PROVINCE_COLORS)) {
-      for (const shape of ["province", "prefecture", "secondary", "dot"]) {
-        const id = `prov-${provinceId}-${shape}`;
-        if (!map.hasImage(id)) map.addImage(id, markerImage(shape, color), { pixelRatio: 2 });
-      }
+    const SEAT_BLACK = "#1a1a1a";
+    for (const [id, shape] of Object.entries({ "seat-province": "province", "seat-prefecture": "prefecture", "seat-department": "secondary", "seat-county": "county-ring" })) {
+      if (!map.hasImage(id)) map.addImage(id, markerImage(shape, SEAT_BLACK), { pixelRatio: 2 });
     }
     if (!map.hasImage("capital-star")) map.addImage("capital-star", markerImage("star", "#7a3027"), { pixelRatio: 2 });
     if (!map.hasImage("military-cross")) map.addImage("military-cross", markerImage("cross", "#3e5e54"), { pixelRatio: 2 });
@@ -1282,6 +1292,12 @@
         map.addImage(id, eventIconImage(eventEntry[0]), { pixelRatio: 2 });
         return;
       }
+      const seatMatch = id.match(/^seat-(province|prefecture|department|county)$/);
+      if (seatMatch) {
+        const shape = seatMatch[1] === "department" ? "secondary" : seatMatch[1] === "county" ? "county-ring" : seatMatch[1];
+        map.addImage(id, markerImage(shape, "#1a1a1a"), { pixelRatio: 2 });
+        return;
+      }
       const match = id.match(/^prov-(.+)-(province|prefecture|secondary|dot|circle|diamond|square|triangle)$/);
       if (match && PROVINCE_COLORS[match[1]]) {
         map.addImage(id, markerImage(match[2], PROVINCE_COLORS[match[1]]), { pixelRatio: 2 });
@@ -1313,6 +1329,9 @@
       map.on("click", layer, (event) => {
         const feature = event.features?.[0];
         if (!feature) return;
+        // A seat symbol whose name is currently hidden must not be clickable.
+        if (layer.startsWith("admin-") && feature.id != null
+          && map.getFeatureState({ source: "markers", id: feature.id }).hidden) return;
         if (layer === "event-points") {
           const selected = eventById.get(String(feature.properties.id));
           if (!selected) return;
@@ -1416,6 +1435,27 @@
     return offset;
   }
 
+  // Seat symbols must appear and disappear together with their place names.
+  // MapLibre cannot filter a symbol by DOM state, so each marker feature is
+  // flagged 'hidden' while its name is not drawn and cleared when it is drawn.
+  let markerHiddenState = new Set();
+  let markerIdCache = { year: null, ids: null };
+  function markerIdsForYear() {
+    if (markerIdCache.year !== state.year) {
+      markerIdCache = { year: state.year, ids: new Set(markerFeatureCollection(state.year).features.map((feature) => feature.id)) };
+      markerHiddenState = new Set();
+    }
+    return markerIdCache.ids;
+  }
+  function syncMarkerVisibility(visibleIds) {
+    if (!map || !map.getSource("markers")) return;
+    const next = new Set();
+    for (const id of markerIdsForYear()) if (!visibleIds.has(id)) next.add(id);
+    for (const id of next) if (!markerHiddenState.has(id)) map.setFeatureState({ source: "markers", id }, { hidden: true });
+    for (const id of markerHiddenState) if (!next.has(id)) map.setFeatureState({ source: "markers", id }, { hidden: false });
+    markerHiddenState = next;
+  }
+
   function renderLabels() {
     if (!map) {
       clearLabels();
@@ -1431,6 +1471,7 @@
       for (const element of labelPool.values()) element.style.display = "none";
       for (const element of specialLabelPool.values()) element.style.display = "none";
       renderMountainLabels(width, height, zoom);
+      syncMarkerVisibility(new Set());
       return;
     }
     const show = {
@@ -1504,6 +1545,7 @@
     renderSpecialLabels(occupied, width, height, zoom);
     renderMountainLabels(width, height, zoom);
     renderNeighborLabels(occupied, width, height, zoom);
+    syncMarkerVisibility(used);
   }
 
   function renderMountainLabels(width, height, zoom) {
@@ -2066,20 +2108,20 @@
   }
 
   function renderMapLegend() {
-    const seatColor = "#7a4a3a";
+    const seatColor = "#1a1a1a";
     const marks = [
       ["star", "#7a3027", "首都（五角星）"],
       ["province", seatColor, "省级行政中心（外环＋阴影线）"],
       ["prefecture", seatColor, "府（大小双圈）"],
       ["secondary", seatColor, "州（圆内一点）"],
-      ["dot", seatColor, "县级行政中心"],
+      ["county-ring", seatColor, "县级（小圆圈）"],
       ["cross", "#3e5e54", "都司卫所"],
       ["ring", "#7b5a3c", "羁縻/土司"],
     ];
     const mark = ([shape, color, label]) =>
       `<div class="legend-item"><span class="legend-symbol legend-symbol--img"><img src="${markerImageUrl(shape, color)}" alt="" /></span><span>${label}</span></div>`;
     const eventTypes = ["区划", "政治", "军事", "官制", "经济", "文化", "外交"];
-    $("#map-legend").innerHTML = `<h3>图例 · 治所层级</h3><div class="legend-grid">${marks.map(mark).join("")}<div class="legend-item"><span class="legend-symbol legend-symbol--river"></span><span>河流/海岸</span></div><div class="legend-item"><span class="legend-symbol legend-symbol--mountain-icon">${ICONS.mountain || ""}</span><span>山脉</span></div></div><p class="tree-note" style="margin:8px 0 0">同址多级治所，图上只显示最高一级；文字逐级显示。符号形状固定，实际颜色随省域变化。</p>
+    $("#map-legend").innerHTML = `<h3>图例 · 治所层级</h3><div class="legend-grid">${marks.map(mark).join("")}<div class="legend-item"><span class="legend-symbol legend-symbol--river"></span><span>河流/海岸</span></div><div class="legend-item"><span class="legend-symbol legend-symbol--mountain-icon">${ICONS.mountain || ""}</span><span>山脉</span></div></div><p class="tree-note" style="margin:8px 0 0">同址多级治所，图上只显示最高一级；文字与符号同步显隐（地名不显示时治所符号也隐藏）。省府州县治所符号一律黑色，县级为小圆圈。</p>
       <h3 style="margin-top:14px">图例 · 事件类型</h3><div class="event-legend-grid">${eventTypes.map((type) => `<div class="event-legend-item"><span class="event-icon event-legend-badge" style="--badge:${eventTypeColor(type)}">${eventIconSvg(type)}</span><span>${type}</span></div>`).join("")}</div>`;
   }
 
@@ -2114,6 +2156,22 @@
       </div>`;
   }
 
+  // Special county notes: 附郭县/倚郭县 — a county whose seat sits at its parent
+  // 府/州 seat (includes 双附郭 same-city counties). Shown in the detail panel.
+  function specialCountyNote(unit) {
+    if (!unit || unit.level !== "county") return "";
+    const sameCity = (a, b) => Math.abs((a.lon ?? 999) - (b.lon ?? -999)) < 0.002
+      && Math.abs((a.lat ?? 999) - (b.lat ?? -999)) < 0.002;
+    let current = unitById.get(unit.parentId);
+    for (let guard = 0; current && guard < 12; guard += 1) {
+      if ((current.level === "prefecture" || current.level === "department") && sameCity(current, unit)) {
+        return `附郭县（倚郭：治所与所属${current.level === "department" ? "州" : "府"}「${current.name}」同城）`;
+      }
+      current = unitById.get(current.parentId);
+    }
+    return "";
+  }
+
   function renderDetail() {
     const container = $("#detail-content");
     if (state.selectedSpecial) {
@@ -2132,6 +2190,7 @@
     const children = unit.children.map((id) => unitById.get(id)).filter(Boolean);
     const sourceTitles = [...new Set((unit.sources || []).map((link) => sourceById.get(link.sourceId)?.title).filter(Boolean))];
     const crumbs = unit.ancestry.filter((item) => item.id !== unit.id);
+    const specialNote = specialCountyNote(unit);
 
     container.className = "detail-content";
     container.innerHTML = `
@@ -2147,6 +2206,7 @@
           <dt>层级</dt><dd>${esc(unit.levelLabel)}</dd>
           <dt>上级</dt><dd>${crumbs.length ? crumbs.map((item) => `<button class="unit-chip" type="button" data-unit-id="${esc(item.id)}">${esc(item.name)}</button>`).join(" / ") : "—"}</dd>
           <dt>治所</dt><dd>${esc(unit.seatName || "—")}</dd>
+          ${specialNote ? `<dt>备注</dt><dd>${esc(specialNote)}</dd>` : ""}
           <dt>有效年份</dt><dd>${unit.validity ? `${unit.validity.from ?? "—"}—${unit.validity.to ?? "—"} 年（${esc(unit.validity.precision)}）` : "—"}</dd>
           <dt>置信度</dt><dd>${esc(unit.confidence || "—")}</dd>
         </dl>
@@ -2264,7 +2324,6 @@
     state.leftTab = tab;
     $$(".left-panel .tab").forEach((button) => button.classList.toggle("is-active", button.dataset.tab === tab));
     $("#events-view").hidden = tab !== "events";
-    $("#legend-view").hidden = tab !== "legend";
   }
 
   function setRightTab(tab) {
@@ -2401,7 +2460,6 @@
   function renderTabIcons() {
     const tabs = [
       ["tab-events", "events"],
-      ["tab-legend", "layers"],
       ["tab-officialdom", "officialdom"],
       ["tab-detail", "details"],
     ];
@@ -2529,7 +2587,6 @@
     });
 
     $("#tab-events").addEventListener("click", () => switchLeftTab("events"));
-    $("#tab-legend").addEventListener("click", () => switchLeftTab("legend"));
     $("#tab-officialdom").addEventListener("click", () => setRightTab("officialdom"));
     $("#tab-detail").addEventListener("click", () => setRightTab("detail"));
 
@@ -2586,8 +2643,6 @@
     initDisplayMenu();
     initChapterSwitch();
     initControls();
-    renderStatsCard();
-    renderMapLegend();
     renderEventFilters();
     renderFigures();
     renderYearSummary();
