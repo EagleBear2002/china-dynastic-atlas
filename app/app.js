@@ -1362,7 +1362,6 @@
       return;
     }
     for (const polity of neighborPolities()) {
-      if (zoom < 3.2) continue;
       const point = map.project(polity.labelAt);
       if (point.x < 10 || point.y < 10 || point.x > width - 10 || point.y > height - 10) continue;
       let element = neighborLabelPool.get(polity.name);
