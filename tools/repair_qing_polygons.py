@@ -105,6 +105,12 @@ def main():
     mask = unary_union([g.buffer(0) if not g.is_valid else g for g in prov_geoms])
     clean = planarize(features, mask)
     color_slots(clean)
+    # CHGIS 1820 is a single-year snapshot; for this interactive Qing chapter
+    # keep the same prefecture faces available across the Qing timeline so changing
+    # the year does not blank out all prefecture fills.
+    for feature in clean:
+        feature["properties"]["beg"] = 1644
+        feature["properties"]["end"] = 1912
     boundaries = unary_union([shape(f["geometry"]).boundary for f in clean])
 
     grouped = defaultdict(list)
