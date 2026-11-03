@@ -935,6 +935,12 @@
         }
         if (layer === "chgis-fill") {
           const properties = feature.properties || {};
+          // Topology-repair slivers are not real civil units; never resolve them by
+          // inherited name. They fall through to the generic "待考辖区" highlighter.
+          if (properties.type === "补域") {
+            selectFallbackChgis(properties, feature.id);
+            return;
+          }
           let targetId = properties.unitId;
           if (targetId) {
             const target = unitById.get(String(targetId));
@@ -952,6 +958,7 @@
             // candidate in the same province, then the nearest seat coordinate.
             const sameProvince = candidates.filter((unit) => unit.provinceId === properties.provinceId);
             if (sameProvince.length) candidates = sameProvince;
+            else if (properties.provinceId) candidates = [];
             if (candidates.length > 1 && Number.isFinite(properties.labelAt?.[0])) {
               const [cx, cy] = properties.labelAt;
               candidates.sort((a, b) => Math.hypot(a.lon - cx, a.lat - cy) - Math.hypot(b.lon - cx, b.lat - cy));
@@ -1016,13 +1023,22 @@
   }
 
   function renderLabels() {
-    if (!map || !state.layers.labels) {
+    if (!map) {
       clearLabels();
       return;
     }
     const zoom = map.getZoom();
     const width = map.getCanvas().clientWidth;
     const height = map.getCanvas().clientHeight;
+    const occupied = [];
+    if (!state.layers.labels) {
+      // Mountain names hang off the mountain layer, not this one: place names go,
+      // and the mountain pass below still runs.
+      for (const element of labelPool.values()) element.style.display = "none";
+      for (const element of specialLabelPool.values()) element.style.display = "none";
+      renderMountainLabels(occupied, width, height, zoom);
+      return;
+    }
     const show = {
       "capital-region": true,
       province: true,
@@ -1031,7 +1047,6 @@
       county: zoom >= 6.2,
     };
     const used = new Set();
-    const occupied = [];
     const stacks = new Map();
     let count = 0;
 
