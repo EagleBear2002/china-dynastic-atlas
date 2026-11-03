@@ -815,24 +815,37 @@
         area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
       });
     }
-    const skipRough = new Set(["鞑靼瓦剌", "乌思藏"]);
-    for (const periodId of ["ming_mid", "ming_late_wl", "ming_early"]) {
+    const skipRough = new Set(["鞑靼瓦剌", "乌思藏"]);    const toLabelPoint = (labelAt) => (Array.isArray(labelAt) ? labelAt
+      : (labelAt && Number.isFinite(labelAt.lng) && Number.isFinite(labelAt.lat) ? [labelAt.lng, labelAt.lat] : null));
+    const pushPolity = (name, color, polygon, labelAt) => {
+      const bounds = geometryBounds({ type: "Polygon", coordinates: [polygon] });
+      result.push({
+        name,
+        color: color || "#6b7b8c",
+        geometry: { type: "Polygon", coordinates: [polygon] },
+        labelAt: toLabelPoint(labelAt) || [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
+        capital: null,
+        area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
+      });
+      seen.add(name);
+    };
+    for (const periodId of ["ming_early", "ming_mid", "ming_late_wl", "ming_late_ls"]) {
       const period = TERRITORIES.periods.find((item) => item.id === periodId);
-      if (period && (year < period.startYear || year > period.endYear)) continue;
-      for (const polity of period?.polities || []) {
-        if (!polity.polygon || /^明|交趾/.test(polity.name) || seen.has(polity.name) || skipRough.has(polity.name)) continue;
-        if (polity.name === "后金" && year < 1616) continue;
-        seen.add(polity.name);
-        const bounds = geometryBounds({ type: "Polygon", coordinates: [polity.polygon] });
-        result.push({
-          name: polity.name,
-          color: polity.color || "#6b7b8c",
-          geometry: { type: "Polygon", coordinates: [polity.polygon] },
-          labelAt: polity.labelAt || [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
-          capital: polity.capital || null,
-          area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
-        });
+      if (!period || year < period.startYear || year > period.endYear) continue;
+      for (const polity of period.polities || []) {
+        if (!polity.polygon || /^明|交趾/.test(polity.name) || skipRough.has(polity.name)) continue;
+        // 后金 took the name 清 in 1636; show whichever fits the current year.
+        const name = polity.name === "后金 / 清" ? (year >= 1636 ? "清" : "后金") : polity.name;
+        if (name === "后金" && year < 1616) continue;
+        if (seen.has(name)) continue;
+        pushPolity(name, polity.color, polity.polygon, polity.labelAt);
       }
+    }
+    // 清 carries on after the last period that names it: reuse the 后金/清 polygon.
+    if (year >= 1637 && !seen.has("清")) {
+      const lateJin = TERRITORIES.periods.find((item) => item.id === "ming_late_ls");
+      const qing = lateJin?.polities.find((polity) => polity.name === "后金 / 清" && polity.polygon);
+      if (qing) pushPolity("清", qing.color, qing.polygon, qing.labelAt);
     }
     return result;
   }
@@ -983,9 +996,8 @@
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": mountainIconSizeExpression(), "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
         { id: "chgis-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], false], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
-        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", "#8f8170"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.86, 0.36], 0.28] } },
+        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#5f5040", "fill-opacity": 0.22 } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
-        { id: "chgis-special-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(88, 76, 62, .42)", "line-width": 0.65, "line-dasharray": [2, 2], "line-opacity": 0.7 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
@@ -1325,7 +1337,7 @@
       }
     });
 
-    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "chgis-fill", "chgis-special-fill", "event-points"].forEach((layer) => {
+    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "chgis-fill", "event-points"].forEach((layer) => {
       map.on("click", layer, (event) => {
         const feature = event.features?.[0];
         if (!feature) return;
@@ -1339,10 +1351,6 @@
           state.selectedEventId = selected.id;
           renderEvents();
           toast(`${selected.year} 年 · ${selected.title}`);
-          return;
-        }
-        if (layer === "chgis-special-fill") {
-          selectSpecialUnit(feature.properties || {}, feature.id);
           return;
         }
         if (layer === "chgis-fill") {
@@ -1382,10 +1390,10 @@
             selectFallbackChgis(properties, feature.id);
             return;
           }
-          selectUnit(String(targetId));
+          selectOrToggleUnit(String(targetId));
           return;
         }
-        selectUnit(String(feature.properties.targetUnitId || feature.properties.id));
+        selectOrToggleUnit(String(feature.properties.targetUnitId || feature.properties.id));
       });
       map.on("mouseenter", layer, () => { map.getCanvas().style.cursor = ""; });
       map.on("mouseleave", layer, () => { map.getCanvas().style.cursor = ""; });
@@ -1757,7 +1765,7 @@
     setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
     setLayerVisibility(["county-fill", "county-boundaries", "prefecture-line"], state.layers.admin && !state.layers.chgis);
     setLayerVisibility(["chgis-fill", "chgis-line"], state.layers.admin && state.layers.chgis);
-    setLayerVisibility(["chgis-special-fill", "chgis-special-line"], state.layers.admin && state.layers.chgis && state.layers.special);
+    setLayerVisibility(["chgis-special-fill"], state.layers.admin && state.layers.chgis && state.layers.special);
     setLayerVisibility(["military-points"], state.layers.military);
     setLayerVisibility(["jimi-points"], state.layers.jimi);
     setLayerVisibility(["event-halo", "event-points"], state.layers.events);
@@ -1856,7 +1864,7 @@
     // query the visible CHGIS face under the unit's seat point.
     if (!chgisSelected.length && Number.isFinite(unit.lon) && Number.isFinite(unit.lat)) {
       const point = map.project([unit.lon, unit.lat]);
-      for (const feature of map.queryRenderedFeatures(point, { layers: ["chgis-fill", "chgis-special-fill"] })) {
+      for (const feature of map.queryRenderedFeatures(point, { layers: ["chgis-fill"] })) {
         if (feature.id != null) chgisSelected.push(feature.id);
       }
     }
@@ -1959,6 +1967,29 @@
     setRightTab("detail");
     selectUnit(unitId, { tab: "detail", toast: true });
     hideSearch();
+  }
+
+  // Clear any unit/special selection and reset the dependent panels.
+  function clearSelection() {
+    if (state.selectedUnitId) map.removeFeatureState({ source: "markers", id: state.selectedUnitId });
+    state.selectedUnitId = null;
+    state.selectedSpecial = null;
+    clearPolygonSelection();
+    renderChief();
+    renderDetail();
+    renderOfficialdom();
+    renderFigures();
+    scheduleLabels();
+    $("#selection-count").textContent = "未选中";
+  }
+
+  // Re-clicking the already-selected place deselects it instead of re-selecting.
+  function selectOrToggleUnit(unitId, options = {}) {
+    if (state.selectedUnitId === unitId) {
+      clearSelection();
+      return;
+    }
+    selectUnit(unitId, options);
   }
 
   function renderChief() {
@@ -2629,7 +2660,7 @@
     $("#map-labels").addEventListener("click", (event) => {
       const label = event.target.closest("[data-unit-id]");
       if (!label) return;
-      selectUnit(label.dataset.unitId, { fly: false });
+      selectOrToggleUnit(label.dataset.unitId, { fly: false, tab: "detail" });
     });
   }
 
