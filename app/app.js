@@ -456,9 +456,9 @@
   function rankRobeStyle(rank, year = state.year) {
     const dynasty = window.__DYNASTY__ === "qing" ? "qing" : "ming";
     const windows = RANK_ROBE_SCHEMES[dynasty] || RANK_ROBE_SCHEMES.default;
-    const window = windows.find((item) => (item.from == null || year >= item.from) && (item.to == null || year <= item.to)) || windows[0];
+    const bandWindow = windows.find((item) => (item.from == null || year >= item.from) && (item.to == null || year <= item.to)) || windows[0];
     const number = rankNumber(rank);
-    for (const [min, max, bg, ink] of window.bands) {
+    for (const [min, max, bg, ink] of bandWindow.bands) {
       if (number >= min && number <= max) return `background:${bg};color:${ink}`;
     }
     return `background:${RANK_NEUTRAL.bg};color:${RANK_NEUTRAL.ink}`;
@@ -976,10 +976,11 @@
   }
 
   function mapStyle() {
-    const provinceColorEntries = MING.provinces.flatMap((province) => [province.id, province.color]);
+    const uniqueProvinces = [...new Map(MING.provinces.map((province) => [province.id, province])).values()];
+    const provinceColorEntries = uniqueProvinces.flatMap((province) => [province.id, province.color]);
     const provinceColor = ["match", ["get", "unitId"], ...provinceColorEntries, "#81796e"];
     const provinceColorByProvinceId = ["match", ["get", "provinceId"], ...provinceColorEntries, "#81796e"];
-    const provinceBorderEntries = MING.provinces.flatMap((province) => [province.id, darkenHex(province.color, 0.66)]);
+    const provinceBorderEntries = uniqueProvinces.flatMap((province) => [province.id, darkenHex(province.color, 0.66)]);
     const provinceBorderColor = ["match", ["get", "unitId"], ...provinceBorderEntries, "#4b3a2a"];
     const prefColorEntries = Object.entries(PREF_COLORS).length
       ? Object.entries(PREF_COLORS).flatMap(([id, color]) => [id, color])
@@ -2277,7 +2278,11 @@
 
   function renderRankLegend() {
     const ranks = ["正一品", "从一品", "正二品", "从二品", "正三品", "从三品", "正四品", "正七品", "未入流"];
-    $("#rank-legend").innerHTML = ranks.map((rank) => rankBadge(rank)).join("");
+    const qing = window.__DYNASTY__ === "qing";
+    const note = qing
+      ? "底色为官服颜色：一至四品蓝、五至七品青、八至九品绿。"
+      : "底色为官服颜色：一至四品绯（红）、五至七品青、八至九品绿（洪武二十六年定制）。";
+    $("#rank-legend").innerHTML = `<div class="rank-legend-row">${ranks.map((rank) => rankBadge(rank)).join("")}</div><p class="tree-note" style="margin:6px 0 0">${note}</p>`;
   }
 
   /// 图例与地图共用同一个符号生成器，图例画出的形状因此与地图上完全一致。
@@ -2363,17 +2368,30 @@
     }
     if (!state.selectedUnitId) {
       container.className = "detail-content empty-state";
-      container.innerHTML = `<div class="empty-mark">舆</div><p>点击地图上的府、州、县，或搜索地名，查看它的层级、户口服赋与上下级关系。</p>`;
+      container.innerHTML = `<div class="empty-mark">舆</div><p>点击地图上的府、州、县，或搜索地名，查看它的层级、建置统计、下级单位与史料来源。</p>`;
       return;
     }
     const unit = unitById.get(state.selectedUnitId);
     const provinceUnit = unitById.get(unit.provinceId);
+    const isQing = window.__DYNASTY__ === "qing";
     const showStats = unit.level === "province" || unit.level === "capital-region";
-    const stats = showStats ? (unit.stats.length ? unit.stats : (provinceUnit?.stats || [])) : [];
+    const stats = showStats ? ((unit.stats || []).length ? unit.stats : (provinceUnit?.stats || [])) : [];
     const children = unit.children.map((id) => unitById.get(id)).filter(Boolean);
+    // 清代数据暂未逐条附史料，统一给出真实出处（CHGIS 1820 断面）。
+    const QING_PROVENANCE = "清代政区：CHGIS 1820 断面（历史地图计划 / Historical Map Project；非商业学术研究与教育使用许可）";
     const sourceTitles = [...new Set((unit.sources || []).map((link) => sourceById.get(link.sourceId)?.title).filter(Boolean))];
+    const sourceList = sourceTitles.length ? sourceTitles : (isQing ? [QING_PROVENANCE] : []);
     const crumbs = unit.ancestry.filter((item) => item.id !== unit.id);
     const specialNote = specialCountyNote(unit);
+    const CONFIDENCE_LABELS = { high: "高", medium: "中", low: "低", reconstructed: "重建（推定）" };
+    const PRECISION_LABELS = { exact: "确切", reconstructed: "重建（推定）", approximate: "约略", estimated: "估计" };
+    const confidence = CONFIDENCE_LABELS[unit.confidence] || unit.confidence || "—";
+    // 治所与政区同名时不再重复显示（如“成都府 · 治所 成都府”）。
+    const seat = unit.seatName && unit.seatName !== unit.name ? unit.seatName : "—";
+    const counts = unit.counts || {};
+    const COUNT_LABELS = [["prefecture", "府"], ["department", "州"], ["county", "县"], ["military", "卫所"], ["jimi", "羁縻"]];
+    const countItems = COUNT_LABELS.filter(([key]) => Number(counts[key]) > 0)
+      .map(([key, label]) => `<div class="stat-item"><strong>${fmt(counts[key])}</strong><span>${label}</span></div>`);
 
     container.className = "detail-content";
     container.innerHTML = `
@@ -2388,15 +2406,19 @@
         <dl class="detail-kv">
           <dt>层级</dt><dd>${esc(unit.levelLabel)}</dd>
           <dt>上级</dt><dd>${crumbs.length ? crumbs.map((item) => `<button class="unit-chip" type="button" data-unit-id="${esc(item.id)}">${esc(item.name)}</button>`).join(" / ") : "—"}</dd>
-          <dt>治所</dt><dd>${esc(unit.seatName || "—")}</dd>
+          <dt>治所</dt><dd>${esc(seat)}</dd>
           ${specialNote ? `<dt>备注</dt><dd>${esc(specialNote)}</dd>` : ""}
-          <dt>有效年份</dt><dd>${unit.validity ? `${unit.validity.from ?? "—"}—${unit.validity.to ?? "—"} 年（${esc(unit.validity.precision)}）` : "—"}</dd>
-          <dt>置信度</dt><dd>${esc(unit.confidence || "—")}</dd>
+          <dt>有效年份</dt><dd>${unit.validity ? `${unit.validity.from ?? "—"}—${unit.validity.to ?? "—"} 年（${esc(PRECISION_LABELS[unit.validity.precision] || unit.validity.precision)}）` : "—"}</dd>
+          <dt>置信度</dt><dd>${esc(confidence)}</dd>
         </dl>
       </div>
+      ${countItems.length ? `<div class="detail-section">
+        <h3>建置统计</h3>
+        <div class="stat-list">${countItems.join("")}</div>
+      </div>` : ""}
       ${showStats ? `<div class="detail-section">
         <h3>户口与赋税（省级数据）</h3>
-        ${stats.length ? `<div class="stat-list">${stats.map((stat) => `<div class="stat-item"><strong>${fmt(stat.value)}</strong><span>${esc(METRIC_LABELS[stat.metric] || stat.metric)} · ${stat.recordedYear || "—"}</span></div>`).join("")}</div>` : `<p class="tree-note">本省暂无户口/赋税记录。</p>`}
+        ${stats.length ? `<div class="stat-list">${stats.map((stat) => `<div class="stat-item"><strong>${fmt(stat.value)}</strong><span>${esc(METRIC_LABELS[stat.metric] || stat.metric)} · ${stat.recordedYear || "—"}</span></div>`).join("")}</div>` : `<p class="tree-note">${isQing ? "清代人口/田赋数据尚未接入。" : "本省暂无户口/赋税记录。"}</p>`}
       </div>` : ""}
       <div class="detail-section">
         <h3>下级单位 · ${children.length}</h3>
@@ -2404,9 +2426,11 @@
       </div>
       <div class="detail-section">
         <h3>史料来源</h3>
-        ${sourceTitles.length ? `<ul class="source-list">${sourceTitles.map((title) => `<li>${esc(title)}</li>`).join("")}</ul>` : `<p class="tree-note">—</p>`}
+        ${sourceList.length ? `<ul class="source-list">${sourceList.map((title) => `<li>${esc(title)}</li>`).join("")}</ul>` : `<p class="tree-note">—</p>`}
       </div>
-      <div class="note-box">本原型以万历二十八年（1600）的县级数据为基准；拖动年份会切换事件与官制，但不逐年重绘县级边界。历史示意图，非现代行政地图。</div>`;
+      <div class="note-box">${isQing
+        ? "本原型以嘉庆二十五年（1820）的政区数据为基准；拖动年份会切换事件与官制，但不逐年重绘地方边界。历史示意图，非现代行政地图。"
+        : "本原型以万历二十八年（1600）的县级数据为基准；拖动年份会切换事件与官制，但不逐年重绘县级边界。历史示意图，非现代行政地图。"}</div>`;
   }
 
   function renderEventFilters() {
@@ -2731,24 +2755,34 @@
     syncDisplayControls();
   }
 
+  // 章节卡片左侧的“印章头像”：沿用各朝代页左上角的印章字形（朙/淸 等）；
+  // 数据里 chapters[].seal 优先，未提供时按 id 兜底。
+  const CHAPTER_SEALS = { qin: "秦", han: "漢", jin: "晉", sui: "隋", tang: "唐", song: "宋", yuan: "元", ming: "朙", qing: "淸", roc: "民" };
+  const chapterSeal = (chapter) => chapter.seal || CHAPTER_SEALS[chapter.id] || chapter.name || "?";
+
   function openChapterSwitch() {
     const chapters = window.__CHAPTERS__ || [];
     const grid = $("#chapter-switch-grid");
-    grid.innerHTML = chapters.map((chapter) => `<button class="chapter-switch-card" type="button" data-switch-chapter="${esc(chapter.id)}"><b>${esc(chapter.name)}</b><span>${esc(chapter.full)}<small>${esc(chapter.years)}</small></span></button>`).join("");
+    grid.innerHTML = chapters.map((chapter) => `<button class="chapter-switch-card" type="button" data-switch-chapter="${esc(chapter.id)}"><span class="chapter-switch-seal" aria-hidden="true">${esc(chapterSeal(chapter))}</span><span class="chapter-switch-meta"><b>${esc(chapter.name)}</b><span>${esc(chapter.full)}</span><small>${esc(chapter.years)}</small></span></button>`).join("");
     $("#chapter-switch-dialog").showModal();
   }
 
   function initChapterSwitch() {
+    // 让左上角印章与章节数据一致（每个朝代的头像字形固定来自 chapters[].seal）。
+    const currentId = window.__DYNASTY__ === "qing" ? "qing" : "ming";
+    const currentChapter = (window.__CHAPTERS__ || []).find((chapter) => chapter.id === currentId);
+    const sealButton = $("#btn-chapters");
+    if (currentChapter && sealButton) sealButton.textContent = chapterSeal(currentChapter);
     $("#btn-chapter-switch-close").addEventListener("click", () => $("#chapter-switch-dialog").close());
     $("#chapter-switch-dialog").addEventListener("click", (event) => { if (event.target === $("#chapter-switch-dialog")) $("#chapter-switch-dialog").close(); });
     $("#chapter-switch-grid").addEventListener("click", (event) => {
       const card = event.target.closest("[data-switch-chapter]");
       if (!card) return;
       const id = card.dataset.switchChapter;
-      const destinations = { ming: "index.html?year=1600", qing: "qing.html?year=1820" };
+      const destinations = { ming: "index.html?year=1600", qing: "qing.html?year=1820", tang: "tang.html?year=740" };
       $("#chapter-switch-dialog").close();
       if (destinations[id]) window.location.href = destinations[id];
-      else toast(`${card.textContent.trim()}章节建设中`);
+      else toast(`${card.querySelector("b")?.textContent?.trim() || "该"}章节建设中`);
     });
   }
 
