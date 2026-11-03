@@ -14,6 +14,7 @@
   const CHGIS_PROVINCES = window.__CHGIS_PROVINCES__ || REF.provinceBaseline;
   const CHGIS_NATION = window.__CHGIS_NATION__ || REF.nationalOutline;
   const CHGIS_SPECIAL_TYPES = new Set(["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷", "wz"]);
+  const TERRITORIES = window.__TERRITORIES__ || { periods: [] };
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -214,6 +215,7 @@
       modern: true,
       chgis: true,
       special: true,
+      neighbors: true,
       provinces: true,
       admin: true,
       labels: true,
@@ -234,6 +236,8 @@
   const labelPool = new Map();
   const mountainLabelPool = new Map();
   const specialLabelPool = new Map();
+  const neighborLabelPool = new Map();
+  const neighborCapitalLabelPool = new Map();
   let labelFrame = 0;
 
   function eraFor(year) {
@@ -363,6 +367,40 @@
         },
       })),
     };
+  }
+
+  // Mountain glyphs, ridge dashes and names are map ink like rivers and terrain,
+  // not screen furniture: their geographic footprint is fixed, so on screen they
+  // must grow with the map, doubling every zoom level. Zoom 4 is the default
+  // view and the anchor where sizes match the previous screen-fixed values.
+  // Exponential base-2 interpolation across integer stops that each double
+  // evaluates exactly to anchor · 2^(zoom − 4) between stops; unit spacing
+  // between stops is required for that exactness.
+  const MOUNTAIN_INK_ANCHOR_ZOOM = 4;
+  const MOUNTAIN_INK_MIN_ZOOM = 3;
+  const MOUNTAIN_INK_MAX_ZOOM = 11;
+
+  function mountainInkScale(zoom) {
+    const clamped = Math.min(Math.max(zoom, MOUNTAIN_INK_MIN_ZOOM), MOUNTAIN_INK_MAX_ZOOM);
+    return Math.pow(2, clamped - MOUNTAIN_INK_ANCHOR_ZOOM);
+  }
+
+  function mountainInkStops(anchorSize) {
+    const stops = [];
+    for (let zoom = MOUNTAIN_INK_MIN_ZOOM; zoom <= MOUNTAIN_INK_MAX_ZOOM; zoom += 1) {
+      stops.push(zoom, anchorSize * mountainInkScale(zoom));
+    }
+    return stops;
+  }
+
+  function mountainIconSizeExpression() {
+    const stops = [];
+    for (let zoom = MOUNTAIN_INK_MIN_ZOOM; zoom <= MOUNTAIN_INK_MAX_ZOOM; zoom += 1) {
+      // 1.2 keeps the glyph size at the default zoom 4 identical to the previous
+      // linear expression, which evaluated to 1.2 × iconSize there.
+      stops.push(zoom, ["*", ["get", "iconSize"], 1.2 * mountainInkScale(zoom)]);
+    }
+    return ["interpolate", ["exponential", 2], ["zoom"], ...stops];
   }
 
   function mountainLineFeatures() {
@@ -513,6 +551,54 @@
     };
   }
 
+  function neighborPolities() {
+    const periods = ["ming_mid", "ming_late_wl", "ming_early"];
+    const seen = new Set();
+    const result = [];
+    for (const periodId of periods) {
+      const period = TERRITORIES.periods.find((item) => item.id === periodId);
+      for (const polity of period?.polities || []) {
+        if (!polity.polygon || /^明|交趾/.test(polity.name) || seen.has(polity.name)) continue;
+        seen.add(polity.name);
+        const bounds = geometryBounds({ type: "Polygon", coordinates: [polity.polygon] });
+        result.push({
+          name: polity.name,
+          color: polity.color || "#6b7b8c",
+          polygon: polity.polygon,
+          labelAt: polity.labelAt || [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
+          capital: polity.capital || null,
+        });
+      }
+    }
+    return result;
+  }
+
+  function neighborFeatureCollection() {
+    return {
+      type: "FeatureCollection",
+      features: neighborPolities().map((polity, index) => ({
+        type: "Feature",
+        id: `neighbor-${index}`,
+        geometry: { type: "Polygon", coordinates: [polity.polygon] },
+        properties: { name: polity.name, color: polity.color, labelAt: polity.labelAt },
+      })),
+    };
+  }
+
+  function neighborCapitalCollection() {
+    return {
+      type: "FeatureCollection",
+      features: neighborPolities()
+        .filter((polity) => polity.capital?.lat != null && polity.capital?.lng != null)
+        .map((polity, index) => ({
+          type: "Feature",
+          id: `neighbor-capital-${index}`,
+          geometry: { type: "Point", coordinates: [polity.capital.lng, polity.capital.lat] },
+          properties: { name: polity.capital.name || polity.name, polity: polity.name, labelAt: [polity.capital.lng, polity.capital.lat] },
+        })),
+    };
+  }
+
   function boundaryLabel(key) {
     return {
       "1368": "洪武初年（云南、贵州未建省）",
@@ -565,6 +651,8 @@
         terrain: { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 12 },
         modern: { type: "geojson", data: MODERN_CHINA },
         national: { type: "geojson", data: CHGIS_NATION },
+        neighbors: { type: "geojson", data: neighborFeatureCollection() },
+        neighborCapitals: { type: "geojson", data: neighborCapitalCollection() },
         provinces: { type: "geojson", data: activeProvinceData(1600) },
         counties: { type: "geojson", data: defaultBoundaryData(), promoteId: "id" },
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
@@ -589,11 +677,14 @@
         { id: "modern-china-line", type: "line", source: "modern", paint: { "line-color": "rgba(78, 92, 86, .46)", "line-width": 0.7, "line-dasharray": [3, 3], "line-opacity": 0.65 } },
         { id: "national-fill", type: "fill", source: "national", paint: { "fill-color": "#7a3027", "fill-opacity": 0.14 } },
         { id: "national-line", type: "line", source: "national", paint: { "line-color": "#7a3027", "line-width": 1.8, "line-opacity": 0.86 } },
+        { id: "neighbor-fill", type: "fill", source: "neighbors", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.22 } },
+        { id: "neighbor-line", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 1.1, "line-opacity": 0.55, "line-dasharray": [4, 2] } },
+        { id: "neighbor-capital", type: "circle", source: "neighborCapitals", paint: { "circle-radius": 3.2, "circle-color": "#4b3a2a", "circle-stroke-color": "#f6f1e7", "circle-stroke-width": 1 } },
         { id: "province-fill", type: "fill", source: "provinces", paint: { "fill-color": provinceColor, "fill-opacity": 0.42 } },
         { id: "province-line", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 8, 1.4], "line-opacity": 0.55 } },
         { id: "county-fill", type: "fill", source: "counties", paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "rgba(122,48,39,.72)", ["match", ["get", "prefId"], ...prefColorEntries, "#81796e"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], 1, 0.48] } },
-        { id: "mountain-ridges", type: "line", source: "mountainRidges", paint: { "line-color": "rgba(80, 92, 78, .24)", "line-width": 0.55, "line-dasharray": [1, 3] } },
-        { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
+        { id: "mountain-ridges", type: "line", source: "mountainRidges", paint: { "line-color": "rgba(80, 92, 78, .24)", "line-width": ["interpolate", ["exponential", 2], ["zoom"], ...mountainInkStops(0.55)], "line-dasharray": [1, 3] } },
+        { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": mountainIconSizeExpression(), "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
         { id: "chgis-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], false], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
         { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", "#8f8170"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.86, 0.36], 0.28] } },
@@ -1109,6 +1200,7 @@
     // mountain pass — which yields to every place name — can see them and stand aside.
     renderSpecialLabels(occupied, width, height, zoom);
     renderMountainLabels(occupied, width, height, zoom);
+    renderNeighborLabels(occupied, width, height, zoom);
   }
 
   function renderMountainLabels(occupied, width, height, zoom) {
@@ -1137,8 +1229,11 @@
       for (let index = 1; index < coords.length; index += 1) {
         length += Math.hypot(coords[index][0] - coords[index - 1][0], coords[index][1] - coords[index - 1][1]);
       }
-      const fontSize = Math.min(16, Math.max(9, 9 + length * 0.68));
-      const letterSpacing = Math.min(18, Math.max(1.5, length * 1.35));
+      // Names are map ink too: the base sizes are the zoom-4 sizes, and the ink
+      // scale keeps the geographic footprint fixed at every other zoom.
+      const inkScale = mountainInkScale(zoom);
+      const fontSize = Math.min(16, Math.max(9, 9 + length * 0.68)) * inkScale;
+      const letterSpacing = Math.min(18, Math.max(1.5, length * 1.35)) * inkScale;
       element.style.fontSize = `${fontSize.toFixed(1)}px`;
       element.style.letterSpacing = `${letterSpacing.toFixed(1)}px`;
       const [x1, y1] = coords[0];
@@ -1146,15 +1241,16 @@
       let angle = Math.atan2(-(y2 - y1), x2 - x1) * 180 / Math.PI;
       if (angle > 90) angle -= 180;
       if (angle < -90) angle += 180;
-      element.style.transform = `translate3d(${point.x}px, ${point.y + 8}px, 0) translate(-50%, -50%) rotate(${angle.toFixed(1)}deg)`;
+      const labelOffset = 8 * inkScale;
+      element.style.transform = `translate3d(${point.x}px, ${point.y + labelOffset}px, 0) translate(-50%, -50%) rotate(${angle.toFixed(1)}deg)`;
       element.style.display = "";
       const labelWidth = Math.max(20, element.offsetWidth + 6);
       const labelHeight = Math.max(11, element.offsetHeight + 3);
       const box = {
         left: point.x - labelWidth / 2,
         right: point.x + labelWidth / 2,
-        top: point.y + 8 - labelHeight / 2,
-        bottom: point.y + 8 + labelHeight / 2,
+        top: point.y + labelOffset - labelHeight / 2,
+        bottom: point.y + labelOffset + labelHeight / 2,
       };
       const collides = mountainBoxes.some((other) =>
         box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)
@@ -1218,10 +1314,62 @@
     }
   }
 
+  function renderNeighborLabels(occupied, width, height, zoom) {
+    const used = new Set();
+    if (!state.layers.neighbors) {
+      for (const element of neighborLabelPool.values()) element.style.display = "none";
+      for (const element of neighborCapitalLabelPool.values()) element.style.display = "none";
+      return;
+    }
+    for (const polity of neighborPolities()) {
+      if (zoom < 3.2) continue;
+      const point = map.project(polity.labelAt);
+      if (point.x < 10 || point.y < 10 || point.x > width - 10 || point.y > height - 10) continue;
+      let element = neighborLabelPool.get(polity.name);
+      if (!element) {
+        element = document.createElement("div");
+        element.dataset.neighbor = polity.name;
+        $("#map-labels").appendChild(element);
+        neighborLabelPool.set(polity.name, element);
+      }
+      element.className = "map-label map-label--neighbor";
+      element.textContent = polity.name;
+      element.style.color = polity.color;
+      element.style.display = "";
+      element.style.transform = `translate3d(${point.x}px, ${point.y}px, 0) translate(-50%, -50%)`;
+      used.add(polity.name);
+      occupied.push({ left: point.x - 70, right: point.x + 70, top: point.y - 20, bottom: point.y + 20 });
+    }
+    for (const [name, element] of neighborLabelPool.entries()) if (!used.has(name)) element.style.display = "none";
+
+    const capitalUsed = new Set();
+    for (const polity of neighborPolities()) {
+      if (!polity.capital?.lat || !polity.capital?.lng || zoom < 3.8) continue;
+      const point = map.project([polity.capital.lng, polity.capital.lat]);
+      if (point.x < 10 || point.y < 10 || point.x > width - 10 || point.y > height - 10) continue;
+      const key = `${polity.name}-${polity.capital.name}`;
+      let element = neighborCapitalLabelPool.get(key);
+      if (!element) {
+        element = document.createElement("div");
+        element.dataset.neighborCapital = key;
+        $("#map-labels").appendChild(element);
+        neighborCapitalLabelPool.set(key, element);
+      }
+      element.className = "map-label map-label--neighbor-capital";
+      element.textContent = polity.capital.name || polity.name;
+      element.style.display = "";
+      element.style.transform = `translate3d(${point.x}px, ${point.y - 9}px, 0) translate(-50%, -50%)`;
+      capitalUsed.add(key);
+    }
+    for (const [key, element] of neighborCapitalLabelPool.entries()) if (!capitalUsed.has(key)) element.style.display = "none";
+  }
+
   function clearLabels() {
     for (const element of labelPool.values()) element.style.display = "none";
     for (const element of mountainLabelPool.values()) element.style.display = "none";
     for (const element of specialLabelPool.values()) element.style.display = "none";
+    for (const element of neighborLabelPool.values()) element.style.display = "none";
+    for (const element of neighborCapitalLabelPool.values()) element.style.display = "none";
   }
 
   function setLayerVisibility(layerIds, visible) {
@@ -1233,6 +1381,7 @@
 
   function applyLayerState() {
     setLayerVisibility(["national-fill", "national-line"], state.layers.national);
+    setLayerVisibility(["neighbor-fill", "neighbor-line", "neighbor-capital"], state.layers.neighbors);
     setLayerVisibility(["modern-china-line"], state.layers.modern);
     setLayerVisibility(["province-fill", "province-line", "province-line-top"], state.layers.provinces);
     setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
@@ -1449,9 +1598,12 @@
     }
     const unit = unitById.get(state.selectedUnitId);
     const posts = OFF.levelPosts[unit.level] || [];
+    // The full chain reads clearer than "level · province · seat": a county under a
+    // department shows all four steps, e.g. 河南 · 彰德府 · 磁州 · 武安县.
+    const chain = unit.ancestry?.length ? unit.ancestry : [{ name: unit.name }];
     container.innerHTML = `
       <h3>${esc(unit.name)}</h3>
-      <p>${esc(unit.levelLabel)} · ${esc(unit.provinceName)}${unit.seatName ? " · 治所 " + esc(unit.seatName) : ""}</p>
+      <p>${chain.map((item) => esc(item.name)).join(" · ")}</p>
       <div class="chief-list">
         ${posts.map((post) => `<div class="chief-row"><b>${esc(post.post)}</b>${rankBadge(post.rank)}<small>${esc(post.note || "")}</small></div>`).join("")}
       </div>
@@ -2049,6 +2201,7 @@
       "layer-provinces": "provinces",
       "layer-admin": "admin",
       "layer-special": "special",
+      "layer-neighbors": "neighbors",
       "layer-labels": "labels",
       "layer-mountains": "mountains",
       "layer-military": "military",
