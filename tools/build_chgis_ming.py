@@ -6,7 +6,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from shapely.geometry import mapping, shape
+from shapely.geometry import MultiPolygon, Polygon, mapping, shape
 from shapely.ops import polygonize, unary_union
 from shapely.strtree import STRtree
 
@@ -23,6 +23,15 @@ def rnd(value, digits=5):
     if isinstance(value, dict):
         return {key: rnd(item, digits) for key, item in value.items()}
     return value
+
+
+def fill_holes(geom):
+    """Keep the outer shell only; data gaps inside prefecture shells read as holes on the map."""
+    if geom.geom_type == "Polygon":
+        return Polygon(geom.exterior)
+    if geom.geom_type == "MultiPolygon":
+        return MultiPolygon([Polygon(part.exterior) for part in geom.geoms])
+    return geom
 
 
 def planarize(features):
@@ -51,6 +60,7 @@ def planarize(features):
             merged = merged.buffer(0)
         if merged.is_empty:
             continue
+        merged = fill_holes(merged)
         source = features[index]
         result.append({
             "type": "Feature",
@@ -98,7 +108,7 @@ def main():
         geom = shape(feature["geometry"])
         if not geom.is_valid:
             geom = geom.buffer(0)
-        grouped[feature["properties"]["provinceId"]].append(geom)
+        grouped[feature["properties"]["provinceId"]].append(fill_holes(geom))
     provinces = []
     for province_id, geoms in grouped.items():
         union = unary_union(geoms)
