@@ -13,6 +13,7 @@
   const CHGIS_BOUNDARIES = CHGIS_MING.boundaries || { type: "FeatureCollection", features: [] };
   const CHGIS_PROVINCES = window.__CHGIS_PROVINCES__ || REF.provinceBaseline;
   const CHGIS_NATION = window.__CHGIS_NATION__ || REF.nationalOutline;
+  const CHGIS_SPECIAL_TYPES = new Set(["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷", "wz"]);
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -211,6 +212,7 @@
       national: true,
       modern: true,
       chgis: true,
+      special: true,
       provinces: true,
       admin: true,
       labels: true,
@@ -443,11 +445,16 @@
       features: CHGIS_MING.features.map((feature, index) => {
         const provinceId = feature.properties?.provinceId;
         const base = PROVINCE_COLORS[provinceId] || "#81796e";
+        const rawType = feature.properties?.type || "";
+        const rawName = feature.properties?.name || "";
+        const isSpecial = CHGIS_SPECIAL_TYPES.has(rawType)
+          || (rawType === "补域" && /行都司|都司|卫|所|宣慰司|宣抚司|长官司|招讨司/.test(rawName));
         return {
           ...feature,
           properties: {
             ...feature.properties,
             prefId: feature.properties?.unitId || feature.id,
+            isSpecial,
             color: prefectureColor(base, Number(feature.properties?.colorSlot ?? index)),
           },
         };
@@ -537,8 +544,10 @@
         { id: "mountain-ridges", type: "line", source: "mountainRidges", paint: { "line-color": "rgba(80, 92, 78, .24)", "line-width": 0.55, "line-dasharray": [1, 3] } },
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
-        { id: "chgis-fill", type: "fill", source: "chgisMing", paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
+        { id: "chgis-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], false], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
+        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#8f8170", "fill-opacity": 0.28 } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
+        { id: "chgis-special-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(88, 76, 62, .42)", "line-width": 0.65, "line-dasharray": [2, 2], "line-opacity": 0.7 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
@@ -856,7 +865,7 @@
       }
     });
 
-    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "chgis-fill", "event-points"].forEach((layer) => {
+    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "chgis-fill", "chgis-special-fill", "event-points"].forEach((layer) => {
       map.on("click", layer, (event) => {
         const feature = event.features?.[0];
         if (!feature) return;
@@ -867,6 +876,11 @@
           state.selectedEventId = selected.id;
           renderEvents();
           toast(`${selected.year} 年 · ${selected.title}`);
+          return;
+        }
+        if (layer === "chgis-special-fill") {
+          const properties = feature.properties || {};
+          toast(`${properties.name || "该色块"} · ${properties.type || "特殊辖区"}（军事/羁縻），暂无民政府州对应`);
           return;
         }
         if (layer === "chgis-fill") {
@@ -1094,6 +1108,7 @@
     setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
     setLayerVisibility(["county-fill", "county-boundaries", "prefecture-line"], state.layers.admin && !state.layers.chgis);
     setLayerVisibility(["chgis-fill", "chgis-line"], state.layers.admin && state.layers.chgis);
+    setLayerVisibility(["chgis-special-fill", "chgis-special-line"], state.layers.admin && state.layers.chgis && state.layers.special);
     setLayerVisibility(["military-points"], state.layers.military);
     setLayerVisibility(["jimi-points"], state.layers.jimi);
     setLayerVisibility(["event-halo", "event-points"], state.layers.events);
@@ -1755,6 +1770,7 @@
       "layer-modern": "modern",
       "layer-provinces": "provinces",
       "layer-admin": "admin",
+      "layer-special": "special",
       "layer-labels": "labels",
       "layer-mountains": "mountains",
       "layer-military": "military",
