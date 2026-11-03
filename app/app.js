@@ -959,11 +959,7 @@
             targetId = candidates[0]?.id;
           }
           if (!targetId || !unitById.has(String(targetId))) {
-            const specialTypes = ["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷"];
-            const typeLabel = specialTypes.includes(properties.type)
-              ? `${properties.type}（军事/羁縻辖区）`
-              : "特殊辖区";
-            toast(`${properties.name || "该色块"} · ${typeLabel}，暂无对应民政府州`);
+            selectFallbackChgis(properties, feature.id);
             return;
           }
           selectUnit(String(targetId));
@@ -1345,6 +1341,38 @@
     toast(`${state.selectedSpecial.name} · ${state.selectedSpecial.type}（军事/羁縻辖区）`);
   }
 
+  function selectFallbackChgis(properties, featureId) {
+    clearPolygonSelection();
+    if (state.selectedUnitId) {
+      map.removeFeatureState({ source: "markers", id: state.selectedUnitId });
+    }
+    state.selectedUnitId = null;
+    state.selectedSpecial = {
+      name: properties.name || "未命名色块",
+      type: "待考辖区",
+      sourceType: properties.type || "",
+      provinceId: properties.provinceId || "",
+      beg: properties.beg,
+      end: properties.end,
+      featureId,
+      fallback: true,
+    };
+    const ids = (CHGIS_MING.features || [])
+      .filter((feature) => feature.id === featureId
+        || (feature.properties?.name === properties.name
+          && feature.properties?.provinceId === properties.provinceId))
+      .map((feature) => feature.id);
+    if (ids.length) startChgisBlink(ids);
+    renderChief();
+    renderDetail();
+    renderOfficialdom();
+    renderFigures();
+    scheduleLabels();
+    setRightTab("detail");
+    $("#selection-count").textContent = `${state.selectedSpecial.name} · 待考辖区`;
+    toast(`${state.selectedSpecial.name} · 该色块暂无对应民政府州`);
+  }
+
   function selectUnit(unitId, options = {}) {
     const unit = unitById.get(unitId);
     if (!unit) return;
@@ -1385,7 +1413,9 @@
       container.innerHTML = `
         <h3>${esc(special.name)}</h3>
         <p>${esc(special.type)} · ${esc(provinceName)}</p>
-        <p class="tree-note">军事/羁縻辖区，不设民政府州县主官；其首领、卫所武职另属军政系统。</p>`;
+        <p class="tree-note">${special.fallback
+          ? "该色块暂无对应民政府州，暂按待考辖区处理。"
+          : "军事/羁縻辖区，不设民政府州县主官；其首领、卫所武职另属军政系统。"}</p>`;
       return;
     }
     if (!state.selectedUnitId) {
@@ -1544,7 +1574,9 @@
       </div>
       <div class="detail-section">
         <h3>说明</h3>
-        <p class="tree-note">该单位为行都司、卫所、宣慰司、长官司等军事或羁縻辖区，不属于民政府州县序列。图中灰褐色虚线面表示其大致辖域；点击色块可高亮对应辖区。</p>
+        <p class="tree-note">${special.fallback
+          ? "该色块暂未对应到民政府州，可能是地图补域或待考辖区；点击仍会高亮对应面。"
+          : "该单位为行都司、卫所、宣慰司、长官司等军事或羁縻辖区，不属于民政府州县序列。图中灰褐色虚线面表示其大致辖域；点击色块可高亮对应辖区。"}</p>
       </div>`;
   }
 
