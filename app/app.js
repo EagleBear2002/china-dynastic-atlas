@@ -232,6 +232,7 @@
   let map;
   const labelPool = new Map();
   const mountainLabelPool = new Map();
+  const specialLabelPool = new Map();
   let labelFrame = 0;
 
   function eraFor(year) {
@@ -439,22 +440,60 @@
     return boundarySnapshotFor(1600).boundaries || { type: "FeatureCollection", features: [] };
   }
 
+  function isSpecialChgis(properties = {}) {
+    const rawType = properties.type || "";
+    const rawName = properties.name || "";
+    return CHGIS_SPECIAL_TYPES.has(rawType)
+      || (rawType === "补域" && /行都司|都司|卫|所|宣慰司|宣抚司|长官司|招讨司/.test(rawName));
+  }
+
+  function geometryBounds(geometry) {
+    const points = [];
+    const walk = (value) => {
+      if (Array.isArray(value) && typeof value[0] === "number") points.push(value);
+      else if (Array.isArray(value)) value.forEach(walk);
+    };
+    walk(geometry?.coordinates || []);
+    if (!points.length) return [0, 0, 0, 0];
+    return [
+      Math.min(...points.map((point) => point[0])),
+      Math.min(...points.map((point) => point[1])),
+      Math.max(...points.map((point) => point[0])),
+      Math.max(...points.map((point) => point[1])),
+    ];
+  }
+
+  function specialLabelPoints() {
+    const groups = new Map();
+    for (const feature of CHGIS_MING.features || []) {
+      const properties = feature.properties || {};
+      if (!isSpecialChgis(properties)) continue;
+      const name = properties.name || feature.id;
+      const bounds = geometryBounds(feature.geometry);
+      const area = (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]);
+      const current = groups.get(name);
+      if (!current || area > current.area) groups.set(name, { name, type: properties.type, area, bounds });
+    }
+    return [...groups.values()].map((item) => ({
+      name: item.name,
+      type: item.type,
+      lon: (item.bounds[0] + item.bounds[2]) / 2,
+      lat: (item.bounds[1] + item.bounds[3]) / 2,
+    }));
+  }
+
   function chgisFeatureCollection() {
     return {
       type: "FeatureCollection",
       features: CHGIS_MING.features.map((feature, index) => {
         const provinceId = feature.properties?.provinceId;
         const base = PROVINCE_COLORS[provinceId] || "#81796e";
-        const rawType = feature.properties?.type || "";
-        const rawName = feature.properties?.name || "";
-        const isSpecial = CHGIS_SPECIAL_TYPES.has(rawType)
-          || (rawType === "补域" && /行都司|都司|卫|所|宣慰司|宣抚司|长官司|招讨司/.test(rawName));
         return {
           ...feature,
           properties: {
             ...feature.properties,
             prefId: feature.properties?.unitId || feature.id,
-            isSpecial,
+            isSpecial: isSpecialChgis(feature.properties),
             color: prefectureColor(base, Number(feature.properties?.colorSlot ?? index)),
           },
         };
@@ -1028,6 +1067,7 @@
       }
     }
     renderMountainLabels(occupied, width, height, zoom);
+    renderSpecialLabels(occupied, width, height, zoom);
   }
 
   function renderMountainLabels(occupied, width, height, zoom) {
@@ -1076,7 +1116,11 @@
         bottom: point.y + 8 + labelHeight / 2,
       };
       const collides = mountainBoxes.some((other) =>
-        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
+        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)
+        // Mountain names carry no halo, so one laid over a place name smears both;
+        // the place names already placed are given the space.
+        || occupied.some((other) =>
+          box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
       if (collides) {
         element.style.display = "none";
         continue;
@@ -1089,9 +1133,53 @@
     }
   }
 
+  function renderSpecialLabels(occupied, width, height, zoom) {
+    const used = new Set();
+    if (!state.layers.special) {
+      for (const element of specialLabelPool.values()) element.style.display = "none";
+      return;
+    }
+    for (const item of specialLabelPoints()) {
+      if (zoom < 3.8) continue;
+      const point = map.project([item.lon, item.lat]);
+      if (point.x < 12 || point.y < 12 || point.x > width - 12 || point.y > height - 12) continue;
+      let element = specialLabelPool.get(item.name);
+      if (!element) {
+        element = document.createElement("div");
+        element.dataset.special = item.name;
+        $("#map-labels").appendChild(element);
+        specialLabelPool.set(item.name, element);
+      }
+      element.className = "map-label map-label--special";
+      element.textContent = item.name;
+      element.style.display = "";
+      const labelWidth = Math.max(24, element.offsetWidth + 8);
+      const labelHeight = Math.max(12, element.offsetHeight + 4);
+      element.style.transform = `translate3d(${point.x}px, ${point.y - 8}px, 0) translate(-50%, -50%)`;
+      const box = {
+        left: point.x - labelWidth / 2,
+        right: point.x + labelWidth / 2,
+        top: point.y - 8 - labelHeight / 2,
+        bottom: point.y - 8 + labelHeight / 2,
+      };
+      const collides = occupied.some((other) =>
+        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
+      if (collides) {
+        element.style.display = "none";
+        continue;
+      }
+      occupied.push(box);
+      used.add(item.name);
+    }
+    for (const [name, element] of specialLabelPool.entries()) {
+      if (!used.has(name)) element.style.display = "none";
+    }
+  }
+
   function clearLabels() {
     for (const element of labelPool.values()) element.style.display = "none";
     for (const element of mountainLabelPool.values()) element.style.display = "none";
+    for (const element of specialLabelPool.values()) element.style.display = "none";
   }
 
   function setLayerVisibility(layerIds, visible) {
