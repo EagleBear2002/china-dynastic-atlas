@@ -935,9 +935,10 @@
         }
         if (layer === "chgis-fill") {
           const properties = feature.properties || {};
-          // Topology-repair slivers are not real civil units; never resolve them by
-          // inherited name. They fall through to the generic "待考辖区" highlighter.
-          if (properties.type === "补域") {
+          // Topology-repair slivers without a resolved owner fall through to the
+          // generic "待考辖区" highlighter; repaired slivers that were assigned to
+          // a real adjacent prefecture are selectable normally.
+          if (properties.type === "补域" && !properties.unitId) {
             selectFallbackChgis(properties, feature.id);
             return;
           }

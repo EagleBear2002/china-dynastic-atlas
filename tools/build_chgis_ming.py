@@ -249,6 +249,21 @@ def main():
         province_id = feature["properties"].get("provinceId")
         feature["properties"]["unitId"] = unit_by_name_province.get((name, province_id))
 
+    # Topology-repair patches should adopt the nearest real prefecture of their own
+    # province, instead of keeping a misleading inherited name from a neighbour.
+    real_features = [feature for feature in features if feature["properties"].get("type") != "补域"]
+    for feature in features:
+        if feature["properties"].get("type") != "补域":
+            continue
+        province_id = feature["properties"].get("provinceId")
+        candidates = [candidate for candidate in real_features if candidate["properties"].get("provinceId") == province_id]
+        if not candidates:
+            continue
+        point = shape(feature["geometry"]).representative_point()
+        source = min(candidates, key=lambda candidate: shape(candidate["geometry"]).distance(point))
+        feature["properties"]["name"] = source["properties"].get("name", "")
+        feature["properties"]["unitId"] = source["properties"].get("unitId")
+
     assign_color_slots(features)
 
     boundary_parts = []
