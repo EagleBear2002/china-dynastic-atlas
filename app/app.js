@@ -2779,7 +2779,7 @@
       const card = event.target.closest("[data-switch-chapter]");
       if (!card) return;
       const id = card.dataset.switchChapter;
-      const destinations = { ming: "index.html?year=1600", qing: "qing.html?year=1820", tang: "tang.html?year=740", song: "song.html?year=1100", yuan: "yuan.html?year=1300", sui: "sui.html?year=600" };
+      const destinations = { ming: "index.html?year=1600", qing: "qing.html?year=1820", tang: "tang.html?year=740", song: "song.html?year=1100", yuan: "yuan.html?year=1300", sui: "sui.html?year=600", han: "han.html?year=-110" };
       $("#chapter-switch-dialog").close();
       if (destinations[id]) window.location.href = destinations[id];
       else toast(`${card.querySelector("b")?.textContent?.trim() || "该"}章节建设中`);

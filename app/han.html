@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>中国历代行政区划和政治制度变迁 · 汉代卷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="vendor/maplibre-gl.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <div id="map" aria-label="明代历史地图"></div>
+    <div id="map-labels" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <button id="btn-chapters" class="seal" type="button" title="切换朝代章节">漢</button>
+        <div class="brand-text">
+          <h1>中国历代行政区划和政治制度变迁 <span>汉代卷</span></h1>
+          <p>汉高祖元年—建安二十五年 · 前202—220</p>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <input id="search" class="search-input" type="search" autocomplete="off" placeholder="搜索府、州、县、都司、卫所或羁縻机构…" aria-label="搜索历史地名" />
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="display-wrap">
+          <button id="btn-display" class="icon-text-btn" type="button" aria-expanded="false">显示 <span>▾</span></button>
+          <div id="display-menu" class="display-menu" hidden>
+            <div class="display-group__title">地图图层</div>
+            <label title="1600 年重建轮廓"><input type="checkbox" data-display="national" checked /> 全国疆域示意</label>
+            <label title="布政使司 / 留都"><input type="checkbox" data-display="provinces" checked /> 省级区划</label>
+            <label title="府州界用 CHGIS；县名与治所保留"><input type="checkbox" data-display="admin" checked /> 府州县治所</label>
+            <label title="行都司、卫所、宣慰司等特殊辖区"><input type="checkbox" data-display="special" checked /> 军事/羁縻辖区</label>
+            <label title="蒙古、后金、乌思藏等"><input type="checkbox" data-display="neighbors" checked /> 周边少数民族政权</label>
+            <label title="769 个军事单元"><input type="checkbox" data-display="military" /> 都司卫所</label>
+            <label title="701 个特殊治理单元"><input type="checkbox" data-display="jimi" /> 土司/羁縻</label>
+            <span class="display-sep"></span>
+            <label title="虚线叠加，便于定位"><input type="checkbox" data-display="modern" checked /> 今省界</label>
+            <label title="小山峰排列与历史山名"><input type="checkbox" data-display="mountains" checked /> 山脉</label>
+            <label title="有坐标的重大事件"><input type="checkbox" data-display="events" checked /> 事件标记</label>
+            <div class="display-group__title">地名标签</div>
+            <label title="随缩放逐级显示（总开关）"><input type="checkbox" data-display="labels" checked /> 地名标签</label>
+            <label><input type="checkbox" data-display="province" checked /> 省名</label>
+            <label><input type="checkbox" data-display="prefecture" checked /> 府名</label>
+            <label><input type="checkbox" data-display="department" checked /> 州名</label>
+            <label><input type="checkbox" data-display="county" checked /> 县名</label>
+          </div>
+        </div>
+        <div id="year-chip" class="year-chip"><span id="year-chip-era">万历二十八年</span><strong id="year-chip-year">1600</strong></div>
+        <button id="btn-reset" class="icon-text-btn" type="button" title="复位视图">复位</button>
+        <button id="btn-about" class="icon-text-btn" type="button">关于</button>
+      </div>
+    </header>
+
+    <aside class="panel left-panel" aria-label="事件与图层">
+      <div class="panel-head">
+        <div class="tabs" role="tablist">
+          <button id="tab-events" class="tab is-active" type="button" data-tab="events" role="tab">大事</button>
+        </div>
+        <span id="event-count" class="panel-count">—</span>
+      </div>
+
+      <section id="events-view" class="panel-view">
+        <div class="year-summary">
+          <div class="year-summary__era" id="year-era">万历二十八年</div>
+          <div class="year-summary__meta"><span id="year-emperor">明神宗 · 朱翊钧</span><span id="year-events-count">本年 0 条</span></div>
+          <div class="year-summary__admin" id="year-admin-note" hidden></div>
+        </div>
+        <div class="filter-row" id="event-filters" role="group" aria-label="事件筛选">
+          <button class="filter-chip is-active" type="button" data-filter="all">全部</button>
+          <button class="filter-chip" type="button" data-filter="区划">区划</button>
+          <button class="filter-chip" type="button" data-filter="政治">政治</button>
+          <button class="filter-chip" type="button" data-filter="军事">军事</button>
+          <button class="filter-chip" type="button" data-filter="官制">官制</button>
+        </div>
+        <div id="event-list" class="event-list"></div>
+      </section>
+
+    </aside>
+    <div class="panel-resizer panel-resizer--left" data-panel="left" title="拖动调整左栏宽度"></div>
+
+    <aside class="panel right-panel" aria-label="官制与详情">
+      <div class="panel-head">
+        <div class="tabs" role="tablist">
+          <button id="tab-officialdom" class="tab is-active" type="button" data-tab="officialdom" role="tab">同期官制</button>
+          <button id="tab-detail" class="tab" type="button" data-tab="detail" role="tab">详情</button>
+        </div>
+        <span class="panel-count" id="selection-count">未选中</span>
+      </div>
+
+      <section id="officialdom-view" class="panel-view">
+        <div id="local-chief" class="local-chief-card"></div>
+        <div id="figures-panel" class="figures-panel"></div>
+        <div id="officialdom-tree" class="officialdom-tree"></div>
+      </section>
+
+      <section id="detail-view" class="panel-view" hidden>
+        <div id="detail-content" class="detail-content empty-state">
+          <div class="empty-mark">舆</div>
+          <p>点击地图上的府、州、县，或搜索地名，查看它的层级、户口服赋与上下级关系。</p>
+        </div>
+      </section>
+    </aside>
+    <div class="panel-resizer panel-resizer--right" data-panel="right" title="拖动调整右栏宽度"></div>
+
+    <div class="map-controls" aria-label="地图控制">
+      <button id="btn-zoom-in" type="button" title="放大">＋</button>
+      <button id="btn-zoom-out" type="button" title="缩小">－</button>
+    </div>
+
+    <footer class="timeline">
+      <div class="timeline-left">
+        <button id="btn-play" class="play-btn" type="button" aria-label="播放时间轴"><span>▶</span></button>
+      </div>
+      <div class="timeline-main">
+        <div id="timeline-eras" class="timeline-eras" aria-label="年号分段"></div>
+        <div class="timeline-track-wrap">
+          <div id="timeline-pointer" class="timeline-pointer"></div>
+          <div id="timeline-markers" class="timeline-markers"></div>
+          <input id="year-range" type="range" min="-202" max="220" value="-110" step="1" aria-label="年份" />
+        </div>
+        <div id="timeline-ticks" class="timeline-ticks"></div>
+      </div>
+      <div class="timeline-right">
+        <button id="btn-prev" type="button" title="上一年">‹</button>
+        <button id="btn-next" type="button" title="下一年">›</button>
+        <button id="btn-year-1600" type="button" title="回到公元前 110 年">-110</button>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <dialog id="figure-dialog" class="figure-dialog">
+      <button id="btn-figure-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <div id="figure-dialog-body"></div>
+    </dialog>
+
+    <dialog id="about-dialog" class="about-dialog">
+      <button id="btn-about-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <h2>关于这个项目</h2>
+      <p><b>中国历代行政区划和政治制度变迁 · 汉代卷</b> 是一个“可拖动年份 + 府州縣层级 + 同期官制”的交互地图，界面和数据组织参考了开源项目 <b>历史地图计划 / 大明舆图</b>。</p>
+      <p>县级面采用“1600 年县治点位 + 现代县界轮廓”进行视觉重建；时间轴按历史节点切换，并在云南建省、贵州建省、郧阳设府等关键节点切换快照。它不是逐县逐年的历史考证边界，页面会在年份卡片中标注当前快照。</p>
+      <p>数据来源：历史地图计划（非商业学术研究与教育使用许可）；官制与事件据《明史》及相关年表整理，原型阶段仍待逐条校订。</p>
+      <h3>友情链接</h3>
+      <p class="friendly-links"><a href="https://chronotabula.inkore.ink/" target="_blank" rel="noopener">历史地图计划 / 大明舆图</a><a href="https://deanchen.me/jiangshan-map/" target="_blank" rel="noopener">江山时序 · 中国历史地图时间轴</a></p>
+      <p class="muted">历史示意图，非现代行政地图；不作为导航、测绘或主权表达依据。</p>
+    </dialog>
+
+    <dialog id="chapter-switch-dialog" class="chapter-switch-dialog">
+      <button id="btn-chapter-switch-close" class="dialog-close" type="button" aria-label="关闭">×</button>
+      <h2>选择朝代章节</h2>
+      <div id="chapter-switch-grid" class="chapter-switch-grid"></div>
+    </dialog>
+  </main>
+
+  <script>
+    window.__ERRORS__ = [];
+    window.addEventListener("error", (event) => window.__ERRORS__.push(`${event.message} @ ${event.filename}:${event.lineno}`));
+    window.addEventListener("unhandledrejection", (event) => window.__ERRORS__.push(`Promise: ${event.reason}`));
+  </script>
+  <script src="data/reference-data.js"></script>
+  <script src="data/heyyybingo-territories.js"></script>
+  <script src="data/world-1600-east-asia.js"></script>
+  <script src="data/han-data.js"></script>
+  <script src="data/han-events.js"></script>
+  <script src="data/officialdom.js"></script>
+  <script src="data/han-boundaries.js"></script>
+  <script src="data/han-chgis.js"></script>
+  <script src="data/mountains.js"></script>
+  <script src="data/han-figures.js"></script>
+  <script src="data/modern-china.js"></script>
+  <script src="data/world-base-1600.js"></script>
+  <script src="data/icons.js"></script>
+  <script src="data/chapters.js"></script>
+  <script src="vendor/maplibre-gl.js"></script>
+  <script src="data/han-config.js"></script>
+  <script>
+window.__DYNASTY__ = "han";
+window.__DEFAULT_YEAR__ = -110;
+window.__YEAR_MIN__ = -202;
+window.__YEAR_MAX__ = 220;
+window.__ERAS__ = [
+  { from: -202, to: -195, era: "汉高祖", emperor: "汉高祖 · 刘邦" },
+  { from: -194, to: -188, era: "惠帝", emperor: "汉惠帝 · 刘盈" },
+  { from: -187, to: -180, era: "高后", emperor: "吕后" },
+  { from: -179, to: -157, era: "文帝", emperor: "汉文帝 · 刘恒" },
+  { from: -156, to: -141, era: "景帝", emperor: "汉景帝 · 刘启" },
+  { from: -140, to: -87, era: "武帝", emperor: "汉武帝 · 刘彻" },
+  { from: -86, to: -74, era: "昭帝", emperor: "汉昭帝 · 刘弗陵" },
+  { from: -73, to: -49, era: "宣帝", emperor: "汉宣帝 · 刘询" },
+  { from: -48, to: -33, era: "元帝", emperor: "汉元帝 · 刘奭" },
+  { from: -32, to: -7, era: "成帝", emperor: "汉成帝 · 刘骜" },
+  { from: -6, to: 8, era: "哀帝/平帝", emperor: "汉哀帝/平帝" },
+  { from: 9, to: 23, era: "新莽", emperor: "王莽" },
+  { from: 25, to: 220, era: "东汉", emperor: "汉光武帝至汉献帝" }
+];
+window.__MAJOR_EVENT_IDS__ = ["-202-founding", "-141-wudi", "-138-zhangqian", "-119-xiongnu", "9-wangmang", "25-guangwu", "184-yellow-turban", "220-fall"];
+
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
