@@ -133,6 +133,41 @@ def main():
         province_id = feature["properties"].get("provinceId")
         if province_id in province_merge:
             feature["properties"]["provinceId"] = province_merge[province_id]
+
+    # Audit every province shell for interior holes. Each hole is assigned as a
+    # face to the nearest existing prefecture in that province, so the hole is
+    # filled by a normal prefecture face rather than by editing province geometry.
+    province_groups = defaultdict(list)
+    for feature in features:
+        province_groups[feature["properties"].get("provinceId")].append(feature)
+    hole_count = 0
+    for province_id, group in province_groups.items():
+        union = unary_union([shape(feature["geometry"]) for feature in group])
+        parts = list(union.geoms) if union.geom_type == "MultiPolygon" else [union]
+        for part in parts:
+            for ring in part.interiors:
+                hole = Polygon(ring)
+                if hole.area < 0.000001:
+                    continue
+                hole = hole.buffer(0)
+                if hole.is_empty:
+                    continue
+                point = hole.representative_point()
+                source = min(group, key=lambda feature: shape(feature["geometry"]).distance(point))
+                features.append({
+                    "type": "Feature",
+                    "id": f"hole-{hole_count}",
+                    "geometry": rnd(mapping(hole)),
+                    "properties": {
+                        **source["properties"],
+                        "id": f"hole-{hole_count}",
+                        "name": source["properties"].get("name", ""),
+                        "type": "补域",
+                    },
+                })
+                hole_count += 1
+    print("province holes assigned", hole_count)
+
     boundary_parts = []
     for feature in features:
         geom = shape(feature["geometry"])
