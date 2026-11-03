@@ -17,6 +17,7 @@
   const TERRITORIES = window.__TERRITORIES__ || { periods: [] };
   const WORLD1600 = window.__WORLD1600__ || { type: "FeatureCollection", features: [] };
   const WORLD_BASE = window.__WORLD_BASE__ || { type: "FeatureCollection", features: [] };
+  const QING_POLITIES = window.__QING_POLITIES__ || [];
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -410,6 +411,7 @@
   const specialLabelPool = new Map();
   const neighborLabelPool = new Map();
   const neighborCapitalLabelPool = new Map();
+  const polityLabelPool = new Map();
   let labelFrame = 0;
 
   function eraFor(year) {
@@ -430,15 +432,40 @@
     return `${info.era}${offset === 1 ? "元" : cnNumber(offset)}年`;
   }
 
-  function rankClass(rank) {
-    const match = String(rank || "").match(/([正从])([一二三四五六七八九])品/);
-    if (!match) return "rank-0";
-    const numbers = { 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
-    return `rank-${numbers[match[2]] || 0}`;
+  // 品级 → 官服颜色（作为品级标签底色）。按朝代分方案，并可再按年份窗口细分，
+  // 以对应不同时期的服色规定；不在品级内的（未入流等）用中性色。
+  // 明：洪武二十六年定制——一至四品绯（红）、五至七品青、八至九品绿。
+  // 清：一至四品蓝、五至七品青、八至九品绿（待核，见 HANDOFF 说明）。
+  const RANK_ROBE_SCHEMES = {
+    ming: [
+      { from: 1368, to: 1644, bands: [[1, 4, "#a8382c", "#fdf1e4"], [5, 7, "#2f5d8c", "#eef4fb"], [8, 9, "#3d7a4c", "#eff8f0"]] },
+    ],
+    qing: [
+      { from: 1644, to: 1912, bands: [[1, 4, "#2f4f7f", "#eef3fb"], [5, 7, "#3f7f86", "#eefaf9"], [8, 9, "#4f8a5f", "#eff8f0"]] },
+    ],
+    default: [
+      { bands: [[1, 4, "#7a3027", "#f7ead7"], [5, 7, "#9d6a3e", "#fff5e5"], [8, 9, "#8d9a84", "#f2f6ef"]] },
+    ],
+  };
+  const RANK_NEUTRAL = { bg: "#e3ded4", ink: "#6c6457" };
+  function rankNumber(rank) {
+    const match = String(rank || "").match(/[正从]([一二三四五六七八九])品/);
+    if (!match) return 0;
+    return { 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 }[match[1]] || 0;
+  }
+  function rankRobeStyle(rank, year = state.year) {
+    const dynasty = window.__DYNASTY__ === "qing" ? "qing" : "ming";
+    const windows = RANK_ROBE_SCHEMES[dynasty] || RANK_ROBE_SCHEMES.default;
+    const window = windows.find((item) => (item.from == null || year >= item.from) && (item.to == null || year <= item.to)) || windows[0];
+    const number = rankNumber(rank);
+    for (const [min, max, bg, ink] of window.bands) {
+      if (number >= min && number <= max) return `background:${bg};color:${ink}`;
+    }
+    return `background:${RANK_NEUTRAL.bg};color:${RANK_NEUTRAL.ink}`;
   }
 
   function rankBadge(rank) {
-    return `<span class="rank ${rankClass(rank)}">${esc(rank || "—")}</span>`;
+    return `<span class="rank" style="${rankRobeStyle(rank)}">${esc(rank || "—")}</span>`;
   }
 
   function toast(message) {
@@ -785,6 +812,18 @@
     return (begin == null || year >= begin) && (end == null || year <= end);
   }
 
+  function qingPolityCollection(year = state.year) {
+    if (window.__DYNASTY__ !== "qing") return { type: "FeatureCollection", features: [] };
+    return {
+      type: "FeatureCollection",
+      features: QING_POLITIES.filter((feature) => {
+        const properties = feature.properties || {};
+        return (properties.beg == null || year >= properties.beg)
+          && (properties.end == null || year <= properties.end);
+      }),
+    };
+  }
+
   function neighborPolities(year = state.year) {
     const validity = {
       "后金": [1616, 1644],
@@ -921,6 +960,7 @@
     if (map && map.getSource("chgisMing")) map.getSource("chgisMing").setData(chgisFeatureCollection(year));
     if (map && map.getSource("neighbors")) map.getSource("neighbors").setData(neighborFeatureCollection(year));
     if (map && map.getSource("neighborCapitals")) map.getSource("neighborCapitals").setData(neighborCapitalCollection(year));
+    if (map && map.getSource("qingPolities")) map.getSource("qingPolities").setData(qingPolityCollection(year));
     if (map && map.getSource("markers")) map.getSource("markers").setData(markerFeatureCollection(year));
     if (map && map.getSource("military")) map.getSource("military").setData(otherFeatureCollection(MING.military, "military", year));
     if (map && map.getSource("jimi")) map.getSource("jimi").setData(otherFeatureCollection(MING.jimi, "jimi", year));
@@ -963,6 +1003,7 @@
         territory: { type: "geojson", data: activeProvinceData(state.year) },
         neighbors: { type: "geojson", data: neighborFeatureCollection() },
         neighborCapitals: { type: "geojson", data: neighborCapitalCollection() },
+        qingPolities: { type: "geojson", data: qingPolityCollection(state.year) },
         provinces: { type: "geojson", data: activeProvinceData(state.year) },
         counties: { type: "geojson", data: defaultBoundaryData(), promoteId: "id" },
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
@@ -1005,6 +1046,8 @@
         // Non-selectable military/jimi areas: light/dark diagonal hatch shadow.
         { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#5f5040", "fill-opacity": 0.78, "fill-pattern": "military-hatch-16" } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
+        { id: "qing-polity-fill", type: "fill", source: "qingPolities", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.26 } },
+        { id: "qing-polity-line", type: "line", source: "qingPolities", paint: { "line-color": ["get", "color"], "line-width": 1.6, "line-opacity": 0.82 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
@@ -1619,6 +1662,7 @@
     // mountain names are unconditional bottom-layer ink and take no part in
     // collision tracking.
     renderSpecialLabels(occupied, width, height, zoom);
+    renderPolityLabels(occupied, width, height, zoom);
     renderMountainLabels(width, height, zoom);
     renderNeighborLabels(occupied, width, height, zoom);
     syncMarkerVisibility(used);
@@ -1694,6 +1738,34 @@
     for (const [name, element] of mountainLabelPool.entries()) {
       if (!used.has(name)) element.style.display = "none";
     }
+  }
+
+  function renderPolityLabels(occupied, width, height, zoom) {
+    const used = new Set();
+    if (window.__DYNASTY__ !== "qing") {
+      for (const element of polityLabelPool.values()) element.style.display = "none";
+      return;
+    }
+    for (const feature of qingPolityCollection(state.year).features) {
+      const properties = feature.properties || {};
+      if (!Array.isArray(properties.labelAt)) continue;
+      const point = map.project(properties.labelAt);
+      if (point.x < 10 || point.y < 10 || point.x > width - 10 || point.y > height - 10) continue;
+      let element = polityLabelPool.get(feature.id);
+      if (!element) {
+        element = document.createElement("div");
+        element.dataset.polity = feature.id;
+        $("#map-labels").appendChild(element);
+        polityLabelPool.set(feature.id, element);
+      }
+      element.className = "map-label map-label--rebellion";
+      element.textContent = properties.name || "";
+      element.style.color = properties.color || "#9c3b32";
+      element.style.display = "";
+      element.style.transform = `translate3d(${point.x}px, ${point.y}px, 0) translate(-50%, -50%)`;
+      used.add(feature.id);
+    }
+    for (const [id, element] of polityLabelPool.entries()) if (!used.has(id)) element.style.display = "none";
   }
 
   function renderSpecialLabels(occupied, width, height, zoom) {
@@ -1816,6 +1888,7 @@
     for (const element of specialLabelPool.values()) element.style.display = "none";
     for (const element of neighborLabelPool.values()) element.style.display = "none";
     for (const element of neighborCapitalLabelPool.values()) element.style.display = "none";
+    for (const element of polityLabelPool.values()) element.style.display = "none";
   }
 
   function setLayerVisibility(layerIds, visible) {
@@ -2152,6 +2225,9 @@
     return tokens.some((token) => haystack.includes(token));
   }
 
+  // 同期人物区块可折叠；状态在重绘（切年/选中）间保留。
+  let figuresOpen = true;
+
   function renderFigures() {
     const visible = FIGURES.filter((figure) => figure.from <= state.year && figure.to >= state.year);
     const selectedUnit = state.selectedUnitId ? unitById.get(state.selectedUnitId) : null;
@@ -2170,9 +2246,17 @@
     </button>`;
     const section = (title, rows) => rows.length ? `<div class="figures-title"><span>${title}</span><span>${rows.length} 人</span></div><div class="figures-grid">${rows.map(card).join("")}</div>` : "";
     const title = selectedUnit ? `同期本地人物 · ${state.year} · ${selectedUnit.name}` : `同期人物 · ${state.year}`;
-    $("#figures-panel").innerHTML = shown.length
-      ? `<div class="figures-title"><span>${esc(title)}</span><span>${shown.length} 人</span></div>${selectedUnit ? section("本地相关人物", shown) : `${section("中央", central)}${section("地方", local)}${section("艺文", culture)}${section("宗室", royal)}`}`
-      : `<div class="figures-title"><span>${esc(title)}</span><span>暂无</span></div><p class="tree-note">当前年份暂无本地相关人物。</p>`;
+    const body = shown.length
+      ? (selectedUnit ? section("本地相关人物", shown) : `${section("中央", central)}${section("地方", local)}${section("艺文", culture)}${section("宗室", royal)}`)
+      : `<p class="tree-note">当前年份暂无本地相关人物。</p>`;
+    $("#figures-panel").innerHTML = `
+      <details class="figures-details"${figuresOpen ? " open" : ""}>
+        <summary class="figures-summary">
+          <span class="figures-summary-label"><i class="figures-caret" aria-hidden="true"></i>${esc(title)}</span>
+          <span class="figures-summary-count">${shown.length ? `${shown.length} 人` : "暂无"}</span>
+        </summary>
+        <div class="figures-body">${body}</div>
+      </details>`;
   }
 
   function openFigure(figureId) {
@@ -2713,6 +2797,13 @@
       if (event.target.closest("#open-detail")) setRightTab("detail");
     });
     $("#figures-panel").addEventListener("click", (event) => {
+      const summary = event.target.closest("summary.figures-summary");
+      if (summary) {
+        // Record the state the details element is about to switch to, so the next
+        // re-render keeps the section collapsed/expanded as the user left it.
+        figuresOpen = !summary.parentElement.open;
+        return;
+      }
       const card = event.target.closest("[data-figure-id]");
       if (card) openFigure(card.dataset.figureId);
     });

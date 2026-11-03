@@ -414,6 +414,13 @@ body.resizing { user-select: none; cursor: col-resize; }
 .chief-row .rank { flex: 0 0 auto; }
 .chief-row small { color: var(--muted); font-size: 9.5px; }
 .figures-panel { margin-top: 12px; }
+.figures-details > .figures-summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; list-style: none; color: var(--cinnabar); font-size: 10px; font-weight: 700; letter-spacing: .14em; padding: 2px 0; }
+.figures-details > .figures-summary::-webkit-details-marker { display: none; }
+.figures-summary-label { display: inline-flex; align-items: center; gap: 6px; }
+.figures-caret { display: inline-block; width: 9px; font-style: normal; transition: transform .15s ease; }
+.figures-caret::before { content: "\25B8"; }
+.figures-details[open] .figures-caret { transform: rotate(90deg); }
+.figures-body { margin-top: 7px; }
 .figures-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; color: var(--cinnabar); font-size: 10px; font-weight: 700; letter-spacing: .14em; }
 .figures-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 .figure-card { display: flex; align-items: center; gap: 8px; padding: 7px; border: 1px solid var(--border); border-radius: 4px; background: rgba(255,255,255,.22); cursor: pointer; text-align: left; }
@@ -768,3 +775,6 @@ body.theme-ming .seal, body.theme-qing .seal {
   font-family: "STKaiti", "KaiTi", "Kaiti SC", "Noto Serif SC", serif;
   font-weight: 700;
 }
+
+
+.map-label--rebellion { z-index: 3; font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif; font-size: 22px; font-weight: 700; letter-spacing: .12em; color: #9c3b32; -webkit-text-stroke: 1.5px rgba(246,241,231,.94); paint-order: stroke fill; opacity: .95; }
