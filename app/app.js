@@ -146,6 +146,33 @@
     },
   );
   const units = MING.units;
+  // The source snapshot only records a 1600 point in time; replace those
+  // degenerate 1600—1600 ranges with usable Ming-era ranges. Prefectures are
+  // aligned to the CHGIS feature ranges by name+province; unmatched units get
+  // the Ming-wide fallback.
+  const chgisRangeByNameProvince = new Map();
+  for (const feature of CHGIS_MING.features || []) {
+    const properties = feature.properties || {};
+    if (properties.beg == null && properties.end == null) continue;
+    const key = `${properties.name}|${properties.provinceId}`;
+    const current = chgisRangeByNameProvince.get(key) || [9999, -9999];
+    if (properties.beg != null) current[0] = Math.min(current[0], properties.beg);
+    if (properties.end != null) current[1] = Math.max(current[1], properties.end);
+    chgisRangeByNameProvince.set(key, current);
+  }
+  for (const unit of units) {
+    const validity = unit.validity || {};
+    if (validity.from !== 1600 || validity.to !== 1600) continue;
+    if (unit.level === "province" || unit.level === "capital-region") {
+      const from = unit.id === "yunnan" ? 1382 : unit.id === "guizhou" ? 1413 : 1368;
+      unit.validity = { from, to: 1644, precision: "reconstructed" };
+      continue;
+    }
+    const range = chgisRangeByNameProvince.get(`${unit.name}|${unit.provinceId}`);
+    unit.validity = range
+      ? { from: Math.max(1368, range[0]), to: Math.min(1644, range[1]), precision: "reconstructed" }
+      : { from: 1368, to: 1644, precision: "reconstructed" };
+  }
   const unitById = new Map(units.map((unit) => [unit.id, unit]));
   const provinceById = new Map(MING.provinces.map((province) => [province.id, province]));
   const sourceById = new Map(MING.sources.map((source) => [source.id, source]));
@@ -1404,6 +1431,11 @@
       for (const element of specialLabelPool.values()) element.style.display = "none";
       return;
     }
+    const placedBoxes = [];
+    const clearance = 8;
+    const near = (box, other) =>
+      box.left < other.right + clearance && box.right > other.left - clearance
+      && box.top < other.bottom + clearance && box.bottom > other.top - clearance;
     for (const item of specialLabelPoints()) {
       // Match the prefecture-label lifecycle: hidden at the same low zoom levels.
       if (zoom < 4.2 || !state.labelLevels.prefecture) continue;
@@ -1421,20 +1453,31 @@
       element.style.display = "";
       const labelWidth = Math.max(24, element.offsetWidth + 8);
       const labelHeight = Math.max(12, element.offsetHeight + 4);
-      element.style.transform = `translate3d(${point.x}px, ${point.y - 8}px, 0) translate(-50%, -50%)`;
-      const box = {
-        left: point.x - labelWidth / 2,
-        right: point.x + labelWidth / 2,
-        top: point.y - 8 - labelHeight / 2,
-        bottom: point.y - 8 + labelHeight / 2,
-      };
-      const collides = occupied.some((other) =>
-        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
-      if (collides) {
+      // A military/羁縻 name sits just above its seat, but when a place name is
+      // already there (灵州 above 宁夏卫) it steps downward until it has clear
+      // air, so the two labels never crowd into one another.
+      const offsets = [-8];
+      for (let step = 1; step <= 5; step += 1) offsets.push(-8 + step * (labelHeight + 3));
+      let chosen = null;
+      for (const dy of offsets) {
+        const centerY = point.y + dy;
+        const box = {
+          left: point.x - labelWidth / 2,
+          right: point.x + labelWidth / 2,
+          top: centerY - labelHeight / 2,
+          bottom: centerY + labelHeight / 2,
+        };
+        if (occupied.some((other) => near(box, other)) || placedBoxes.some((other) => near(box, other))) continue;
+        chosen = { centerY, box };
+        break;
+      }
+      if (!chosen) {
         element.style.display = "none";
         continue;
       }
-      occupied.push(box);
+      element.style.transform = `translate3d(${point.x}px, ${chosen.centerY}px, 0) translate(-50%, -50%)`;
+      occupied.push(chosen.box);
+      placedBoxes.push(chosen.box);
       used.add(item.name);
     }
     for (const [name, element] of specialLabelPool.entries()) {
