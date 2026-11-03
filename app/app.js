@@ -237,7 +237,7 @@
   const LEVEL_RANK = { "capital-region": 0, province: 1, prefecture: 2, department: 3, county: 4 };
   const labelUnits = units.slice().sort((a, b) => (LEVEL_RANK[a.level] ?? 9) - (LEVEL_RANK[b.level] ?? 9));
 
-  const ERAS = [
+  const ERAS = window.__ERAS__ || [
     { from: 1368, to: 1398, era: "洪武", emperor: "明太祖 · 朱元璋" },
     { from: 1399, to: 1402, era: "建文", emperor: "明惠帝 · 朱允炆" },
     { from: 1403, to: 1424, era: "永乐", emperor: "明成祖 · 朱棣" },
@@ -267,7 +267,7 @@
   };
 
   const state = {
-    year: 1600,
+    year: Number(window.__DEFAULT_YEAR__ ?? 1600),
     boundaryKey: null,
     selectedUnitId: null,
     selectedPolygonIds: [],
@@ -379,7 +379,7 @@
     };
   }
 
-  function unitFeatureCollection(year = 1600) {
+  function unitFeatureCollection(year = state.year) {
     return {
       type: "FeatureCollection",
       features: units.filter((unit) => isUnitActive(unit, year)).map((unit) => ({
@@ -398,7 +398,7 @@
     };
   }
 
-  function markerFeatureCollection(year = 1600) {
+  function markerFeatureCollection(year = state.year) {
     const bestByPoint = new Map();
     for (const unit of units) {
       if (!isUnitActive(unit, year)) continue;
@@ -571,15 +571,15 @@
   }
 
   function defaultBoundaryData() {
-    return boundarySnapshotFor(1600).counties || { type: "FeatureCollection", features: [] };
+    return boundarySnapshotFor(state.year).counties || { type: "FeatureCollection", features: [] };
   }
 
   function defaultPrefectureData() {
-    return boundarySnapshotFor(1600).prefectures || { type: "FeatureCollection", features: [] };
+    return boundarySnapshotFor(state.year).prefectures || { type: "FeatureCollection", features: [] };
   }
 
   function defaultBoundaryNetwork() {
-    return boundarySnapshotFor(1600).boundaries || { type: "FeatureCollection", features: [] };
+    return boundarySnapshotFor(state.year).boundaries || { type: "FeatureCollection", features: [] };
   }
 
   function normalizeUnitName(value) {
@@ -816,7 +816,7 @@
         national: { type: "geojson", data: CHGIS_NATION },
         neighbors: { type: "geojson", data: neighborFeatureCollection() },
         neighborCapitals: { type: "geojson", data: neighborCapitalCollection() },
-        provinces: { type: "geojson", data: activeProvinceData(1600) },
+        provinces: { type: "geojson", data: activeProvinceData(state.year) },
         counties: { type: "geojson", data: defaultBoundaryData(), promoteId: "id" },
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
         countyBoundaries: { type: "geojson", data: defaultBoundaryNetwork() },
@@ -824,10 +824,10 @@
         chgisBoundaries: { type: "geojson", data: CHGIS_BOUNDARIES },
         mountainRidges: { type: "geojson", data: mountainLineFeatures() },
         mountainPeaks: { type: "geojson", data: mountainPointFeatures() },
-        markers: { type: "geojson", data: markerFeatureCollection(1600), promoteId: "id" },
+        markers: { type: "geojson", data: markerFeatureCollection(state.year), promoteId: "id" },
         military: { type: "geojson", data: otherFeatureCollection(MING.military, "military") },
         jimi: { type: "geojson", data: otherFeatureCollection(MING.jimi, "jimi") },
-        events: { type: "geojson", data: eventsFeatureCollection(1600), promoteId: "id" },
+        events: { type: "geojson", data: eventsFeatureCollection(state.year), promoteId: "id" },
       },
       layers: [
         { id: "background", type: "background", paint: { "background-color": "#e8e1d3" } },
@@ -1888,16 +1888,21 @@
     const selectedUnit = state.selectedUnitId ? unitById.get(state.selectedUnitId) : null;
     const localFigures = selectedUnit ? visible.filter((figure) => figureMatchesUnit(figure, selectedUnit)) : [];
     const shown = selectedUnit ? localFigures : visible;
-    const central = shown.filter((figure) => figure.category === "central");
-    const local = shown.filter((figure) => figure.category === "local");
+    // 明史列传人物的类别标签；旧数据只有 central/local，新增 royal/ culture。
+    const CATEGORY_LABELS = { central: "中央", local: "地方", culture: "艺文", royal: "宗室" };
+    const byCategory = (key) => shown.filter((figure) => (figure.category || "local") === key);
+    const central = byCategory("central");
+    const local = byCategory("local");
+    const culture = byCategory("culture");
+    const royal = byCategory("royal");
     const card = (figure) => `<button class="figure-card" type="button" data-figure-id="${esc(figure.id)}">
       <span class="figure-avatar">${figure.portrait ? `<img src="${esc(figure.portrait)}" alt="${esc(figure.name)}" loading="lazy" />` : esc(figure.name.slice(0, 1))}</span>
-      <span><b>${esc(figure.name)}</b><small><span class="figure-tag">${figure.category === "central" ? "中央" : "地方"}</span>${esc(figure.office || "")}</small></span>
+      <span><b>${esc(figure.name)}</b><small><span class="figure-tag">${CATEGORY_LABELS[figure.category] || "其他"}</span>${esc(figure.office || "")}</small></span>
     </button>`;
     const section = (title, rows) => rows.length ? `<div class="figures-title"><span>${title}</span><span>${rows.length} 人</span></div><div class="figures-grid">${rows.map(card).join("")}</div>` : "";
     const title = selectedUnit ? `同期本地人物 · ${state.year} · ${selectedUnit.name}` : `同期人物 · ${state.year}`;
     $("#figures-panel").innerHTML = shown.length
-      ? `<div class="figures-title"><span>${esc(title)}</span><span>${shown.length} 人</span></div>${selectedUnit ? section("本地相关人物", shown) : `${section("中央", central)}${section("地方", local)}`}`
+      ? `<div class="figures-title"><span>${esc(title)}</span><span>${shown.length} 人</span></div>${selectedUnit ? section("本地相关人物", shown) : `${section("中央", central)}${section("地方", local)}${section("艺文", culture)}${section("宗室", royal)}`}`
       : `<div class="figures-title"><span>${esc(title)}</span><span>暂无</span></div><p class="tree-note">当前年份暂无本地相关人物。</p>`;
   }
 
@@ -2059,7 +2064,7 @@
   function updateTimelinePointer() {
     const pointer = $("#timeline-pointer");
     if (!pointer) return;
-    const percent = ((state.year - 1368) / (1644 - 1368)) * 100;
+    const percent = ((state.year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * 100;
     pointer.style.left = `${percent}%`;
   }
 
@@ -2083,7 +2088,7 @@
   }
 
   function setYear(year, options = {}) {
-    const next = Math.max(1368, Math.min(1644, Number(year)));
+    const next = Math.max(YEAR_MIN, Math.min(YEAR_MAX, Number(year)));
     const previousBoundary = state.boundaryKey;
     state.year = next;
     state.selectedEventId = options.keepEvent ? state.selectedEventId : null;
@@ -2105,7 +2110,7 @@
 
   function renderStatsCard() {
     const counts = MING.counts;
-    $("#stats-card").innerHTML = `<h3>1600 年建置统计</h3><div class="stats-grid">
+    $("#stats-card").innerHTML = `<h3>${state.year} 年建置统计</h3><div class="stats-grid">
       <div><strong>${counts.prefecture}</strong><span>府</span></div>
       <div><strong>${counts.department}</strong><span>州</span></div>
       <div><strong>${counts.county}</strong><span>县</span></div>
@@ -2175,7 +2180,7 @@
   }
 
   function renderTimelineEras() {
-    const total = 1644 - 1368 + 1;
+    const total = YEAR_MAX - YEAR_MIN + 1;
     const container = $("#timeline-eras");
     container.innerHTML = ERAS.map((era) => {
       const width = ((era.to - era.from + 1) / total) * 100;
@@ -2207,7 +2212,7 @@
 
     const markers = $("#timeline-markers");
     markers.innerHTML = EVENTS.filter((event) => MAJOR_EVENT_IDS.has(event.id)).map((event) => {
-      const left = ((event.year - 1368) / (1644 - 1368)) * 100;
+      const left = ((event.year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * 100;
       return `<button class="timeline-marker type-${esc(event.type)}" type="button" style="left:${left}%" data-year="${event.year}" data-event-id="${esc(event.id)}" title="${event.year} · ${esc(event.title)}"><span class="timeline-event-icon">${eventIconSvg(event.type)}</span></button>`;
     }).join("");
     markers.addEventListener("click", (event) => {
@@ -2220,7 +2225,7 @@
     });
 
     const ticks = $("#timeline-ticks");
-    const tickYears = [1368, 1400, 1425, 1450, 1475, 1500, 1525, 1550, 1575, 1600, 1625, 1644];
+    const tickYears = Array.from({ length: 8 }, (_, i) => Math.round(YEAR_MIN + (YEAR_MAX - YEAR_MIN) * i / 7));
     ticks.innerHTML = tickYears.map((year) => {
       const left = ((year - 1368) / (1644 - 1368)) * 100;
       return `<span class="timeline-tick" style="left:${left}%">${year}</span>`;
@@ -2238,9 +2243,9 @@
     state.playing = true;
     $("#btn-play").classList.add("is-playing");
     setPlayIcon(true);
-    if (state.year >= 1644) setYear(1368);
+    if (state.year >= YEAR_MAX) setYear(YEAR_MIN);
     state.playTimer = setInterval(() => {
-      if (state.year >= 1644) { stopPlay(); return; }
+      if (state.year >= YEAR_MAX) { stopPlay(); return; }
       setYear(state.year + 1);
     }, 260);
   }
