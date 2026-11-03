@@ -39,8 +39,9 @@ python -m http.server 8765
 
 ## 数据与来源
 
-- 行政区划主数据：开源项目「历史地图计划 / 大明舆图」（非商业学术研究与教育使用许可）
-- 现代县界：geoBoundaries CHN ADM2（ODC PDDL 1.0）
+- 明代府界/省界：CHGIS V6 1600 年府级多边形（学术非商用；已做平面分区去重叠），来源 Harvard Dataverse
+- 明代府州县点位与统计：开源项目「历史地图计划 / 大明舆图」（非商业学术研究与教育使用许可）
+- 早期章节底图：heyyybingo/china-historical-atlas 的历代政权疆域数据（仅作章节总览）
 - 历史地图集底本：谭其骧主编《中国历史地图集》
 - 人物画像：Wikimedia Commons / 相关公开资料；缺画像者用首字占位
 - 图标：部分来自 Lucide（ISC），部分由用户提供

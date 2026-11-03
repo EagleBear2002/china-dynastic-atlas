@@ -10,6 +10,7 @@
   const FIGURES = window.__FIGURES__ || [];
   const MODERN_CHINA = window.__MODERN_CHINA__ || { type: "FeatureCollection", features: [] };
   const CHGIS_MING = window.__CHGIS_MING__ || { type: "FeatureCollection", features: [] };
+  const CHGIS_BOUNDARIES = CHGIS_MING.boundaries || { type: "FeatureCollection", features: [] };
   const CHGIS_PROVINCES = window.__CHGIS_PROVINCES__ || REF.provinceBaseline;
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
@@ -507,6 +508,7 @@
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
         countyBoundaries: { type: "geojson", data: defaultBoundaryNetwork() },
         chgisMing: { type: "geojson", data: chgisFeatureCollection(), promoteId: "id" },
+        chgisBoundaries: { type: "geojson", data: CHGIS_BOUNDARIES },
         mountainRidges: { type: "geojson", data: mountainLineFeatures() },
         mountainPeaks: { type: "geojson", data: mountainPointFeatures() },
         markers: { type: "geojson", data: markerFeatureCollection(1600), promoteId: "id" },
@@ -532,7 +534,7 @@
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
         { id: "chgis-fill", type: "fill", source: "chgisMing", paint: { "fill-color": ["get", "color"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], 0.82, 0.50] } },
-        { id: "chgis-line", type: "line", source: "chgisMing", paint: { "line-color": "rgba(56, 52, 44, .42)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.35, 8, 0.7], "line-opacity": 0.72 } },
+        { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(56, 52, 44, .45)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.35, 8, 0.75], "line-opacity": 0.76 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.9, 8, 2.8], "line-opacity": 0.98 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
