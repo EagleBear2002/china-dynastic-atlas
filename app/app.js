@@ -283,7 +283,7 @@
     if (level === "province") return `prov-${provinceId}-province`;
     if (level === "prefecture") return `prov-${provinceId}-prefecture`;
     if (level === "department") return `prov-${provinceId}-secondary`;
-    return `prov-${provinceId}-dot`;
+    return `prov-${provinceId}-circle`;
   }
 
   function isProvinceActive(provinceId, year) {
@@ -421,14 +421,20 @@
     MOUNTAINS.forEach((range, rangeIndex) => {
       const rangeLength = range.coords.slice(1).reduce((sum, point, index) =>
         sum + Math.hypot(point[0] - range.coords[index][0], point[1] - range.coords[index][1]), 0);
-      const iconSize = Math.max(0.22, Math.min(0.50, 0.20 + rangeLength * 0.035));
+      // Grand ranges (Qinling, Yinshan, Qilianshan…) render at 60% of their former
+      // size; the 0.30 cap keeps every glyph box within the ~0.45° glyph spacing,
+      // so neighbouring glyphs never overlap at any zoom.
+      const iconSize = Math.min(0.30, Math.max(0.22, 0.6 * (0.20 + rangeLength * 0.035)));
       for (let segment = 0; segment < range.coords.length - 1; segment += 1) {
         const [x1, y1] = range.coords[segment];
         const [x2, y2] = range.coords[segment + 1];
         const length = Math.hypot(x2 - x1, y2 - y1);
-        const steps = Math.max(2, Math.round(length / 0.45));
+        const steps = Math.max(1, Math.round(length / 0.45));
         for (let step = 0; step < steps; step += 1) {
-          const t = steps === 1 ? 0.5 : step / steps;
+          // Glyphs sit at the midpoints of equal divisions: a short segment keeps
+          // one centred glyph instead of two overlapping ones, and spacing stays
+          // ~0.45° across segment joints.
+          const t = (step + 0.5) / steps;
           features.push({
             type: "Feature",
             id: `mountain-${rangeIndex}-${segment}-${step}`,
@@ -788,6 +794,14 @@
       ctx.fill();
       return ctx.getImageData(0, 0, size, size);
     }
+    if (shape === "circle") {
+      ctx.beginPath();
+      ctx.arc(center, center, 13, 0, Math.PI * 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3.2;
+      ctx.stroke();
+      return ctx.getImageData(0, 0, size, size);
+    }
     ctx.beginPath();
     if (shape === "dot") {
       ctx.lineWidth = 2;
@@ -999,7 +1013,7 @@
         map.addImage(id, eventIconImage(eventEntry[0]), { pixelRatio: 2 });
         return;
       }
-      const match = id.match(/^prov-(.+)-(province|prefecture|secondary|dot|diamond|square|triangle)$/);
+      const match = id.match(/^prov-(.+)-(province|prefecture|secondary|dot|circle|diamond|square|triangle)$/);
       if (match && PROVINCE_COLORS[match[1]]) {
         map.addImage(id, markerImage(match[2], PROVINCE_COLORS[match[1]]), { pixelRatio: 2 });
       }
