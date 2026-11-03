@@ -1243,7 +1243,9 @@
     setLayerVisibility(["event-halo", "event-points"], state.layers.events);
     setLayerVisibility(["mountain-ridges", "mountain-peaks"], state.layers.mountains);
     if (typeof syncDisplayControls === "function") syncDisplayControls();
-    if (state.layers.labels) scheduleLabels(); else clearLabels();
+    // Mountain names follow the mountain layer, so keep the label pass alive while
+    // either of the two toggles is on.
+    if (state.layers.labels || state.layers.mountains) scheduleLabels(); else clearLabels();
   }
 
   function stopChgisBlink() {
@@ -1362,8 +1364,12 @@
       map.removeFeatureState({ source: "markers", id: state.selectedUnitId });
     }
     state.selectedUnitId = null;
+    const isTopologySliver = properties.type === "补域";
     state.selectedSpecial = {
-      name: properties.name || "未命名色块",
+      // A topology-repair sliver inherits a nearby source name (e.g. 登州府),
+      // which is misleading because it is not that prefecture. Show it as a
+      // neutral unowned patch instead.
+      name: isTopologySliver ? "待考辖区" : (properties.name || "未命名色块"),
       type: "待考辖区",
       sourceType: properties.type || "",
       provinceId: properties.provinceId || "",
