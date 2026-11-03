@@ -153,7 +153,7 @@
       const card = event.target.closest("[data-chapter-id]");
       if (!card) return;
       const chapterId = card.dataset.chapterId;
-      const detailPages = { ming: "index.html", qing: "qing.html?year=1820", tang: "tang.html?year=740" };
+      const detailPages = { ming: "index.html", qing: "qing.html?year=1820", tang: "tang.html?year=740", song: "song.html?year=1100" };
       const destination = detailPages[chapterId];
       $("#chapter-dialog").close();
       if (destination) { window.location.href = destination; return; }
