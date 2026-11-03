@@ -1,1 +1,10 @@
-window.__FIGURES__ = [];
+window.__FIGURES__ = [
+  { id: "dorgon", name: "多尔衮", courtesy: "爱新觉罗氏", from: 1643, to: 1650, category: "central", office: "摄政王 · 和硕睿亲王", region: "盛京", portrait: "", bio: "清初摄政王，主导清军入关与定都北京，是顺治初年实际最高执政者。", career: ["和硕睿亲王", "奉命大将军", "摄政王", "定都北京"] },
+  { id: "kangxi", name: "玄烨", courtesy: "清圣祖 · 康熙帝", from: 1661, to: 1722, category: "central", office: "皇帝", region: "北京", portrait: "", bio: "康熙帝，平三藩、收台湾、抗沙俄、征噶尔丹，稳定清朝全国统治。", career: ["即皇帝位", "平定三藩", "统一台湾", "尼布楚条约", "征噶尔丹"] },
+  { id: "yongzheng", name: "胤禛", courtesy: "清世宗 · 雍正帝", from: 1722, to: 1735, category: "central", office: "皇帝", region: "北京", portrait: "", bio: "雍正帝，设军机处、推行摊丁入亩与改土归流，强化中央集权。", career: ["即皇帝位", "设军机处", "摊丁入亩", "改土归流"] },
+  { id: "qianlong", name: "弘历", courtesy: "清高宗 · 乾隆帝", from: 1735, to: 1799, category: "central", office: "皇帝", region: "北京", portrait: "", bio: "乾隆帝，完成对准噶尔与新疆的经营，清朝疆域达到极盛。", career: ["即皇帝位", "平定准噶尔", "统一新疆", "编纂四库全书"] },
+  { id: "lin-zexu", name: "林则徐", courtesy: "字元抚，号少穆", from: 1838, to: 1850, category: "local", office: "钦差大臣 · 两广总督", region: "福建侯官", portrait: "", bio: "道光年间主持虎门销烟，是鸦片战争前后最重要的地方督抚之一。", career: ["翰林院编修", "江苏巡抚", "湖广总督", "钦差大臣", "两广总督"] },
+  { id: "zeng-guofan", name: "曾国藩", courtesy: "字伯涵，号涤生", from: 1852, to: 1872, category: "local", office: "两江总督 · 直隶总督", region: "湖南湘乡", portrait: "", bio: "晚清重臣，组建湘军平定太平天国，推动洋务运动。", career: ["翰林院检讨", "礼部侍郎", "湘军统帅", "两江总督", "直隶总督"] },
+  { id: "li-hongzhang", name: "李鸿章", courtesy: "字渐甫，号少荃", from: 1862, to: 1901, category: "local", office: "直隶总督 · 北洋大臣", region: "安徽合肥", portrait: "", bio: "晚清洋务派核心人物，创办北洋水师与多项近代工业，长期主持外交。", career: ["翰林院编修", "江苏巡抚", "直隶总督", "北洋大臣", "马关条约谈判"] },
+  { id: "zuo-zongtang", name: "左宗棠", courtesy: "字季高，号湘上农人", from: 1860, to: 1885, category: "local", office: "陕甘总督 · 钦差大臣", region: "湖南湘阴", portrait: "", bio: "晚清重臣，平定陕甘回变并率军收复新疆，推动新疆建省。", career: ["浙江巡抚", "闽浙总督", "陕甘总督", "钦差大臣督办新疆军务", "两江总督"] }
+];
