@@ -135,7 +135,7 @@ def main():
             feature["properties"]["provinceId"] = province_merge[province_id]
 
     # Audit every province shell for interior holes. Each hole is assigned as a
-    # face to the nearest existing prefecture in that province, so the hole is
+    # face to an adjacent prefecture in that province, so the hole is
     # filled by a normal prefecture face rather than by editing province geometry.
     province_groups = defaultdict(list)
     for feature in features:
@@ -153,7 +153,13 @@ def main():
                 if hole.is_empty:
                     continue
                 point = hole.representative_point()
-                source = min(group, key=lambda feature: shape(feature["geometry"]).distance(point))
+                hole_neighborhood = hole.buffer(0.01)
+                adjacent = [
+                    feature for feature in group
+                    if shape(feature["geometry"]).intersects(hole_neighborhood)
+                ]
+                candidates = adjacent or group
+                source = min(candidates, key=lambda feature: shape(feature["geometry"]).distance(point))
                 features.append({
                     "type": "Feature",
                     "id": f"hole-{hole_count}",
