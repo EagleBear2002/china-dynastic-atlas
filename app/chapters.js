@@ -152,8 +152,12 @@
     $("#chapter-grid").addEventListener("click", (event) => {
       const card = event.target.closest("[data-chapter-id]");
       if (!card) return;
+      const chapterId = card.dataset.chapterId;
+      const detailPages = { ming: "index.html", qing: "qing.html?year=1820" };
+      const destination = detailPages[chapterId];
       $("#chapter-dialog").close();
-      renderChapter(card.dataset.chapterId);
+      if (destination) { window.location.href = destination; return; }
+      renderChapter(chapterId);
     });
     $("#polity-switcher").addEventListener("click", (event) => {
       const button = event.target.closest("[data-polity-id]");

@@ -163,18 +163,90 @@
     if (properties.end != null) current[1] = Math.max(current[1], properties.end);
     chgisRangeByNameProvince.set(key, current);
   }
-  for (const unit of units) {
-    const validity = unit.validity || {};
-    if (validity.from !== 1600 || validity.to !== 1600) continue;
-    if (unit.level === "province" || unit.level === "capital-region") {
-      const from = unit.id === "yunnan" ? 1382 : unit.id === "guizhou" ? 1413 : 1368;
-      unit.validity = { from, to: 1644, precision: "reconstructed" };
-      continue;
+  // --- Year model: CHGIS is the only source with real periods (beg/end) ------
+  // Each point takes the validity of the CHGIS feature it belongs to — matched by
+  // name first, then by location; departments and counties inherit their parent
+  // prefecture. That keeps the point label, the colour block beneath it and the
+  // territory switching year together.
+  const chgisRangesByName = new Map();
+  const chgisBoxes = [];
+  for (const feature of CHGIS_MING.features || []) {
+    const properties = feature.properties || {};
+    if (properties.beg == null && properties.end == null) continue;
+    const range = [properties.beg ?? 1368, properties.end ?? 1644];
+    if (properties.name) {
+      const list = chgisRangesByName.get(properties.name) || [];
+      list.push(range);
+      chgisRangesByName.set(properties.name, list);
     }
-    const range = chgisRangeByNameProvince.get(`${unit.name}|${unit.provinceId}`);
-    unit.validity = range
-      ? { from: Math.max(1368, range[0]), to: Math.min(1644, range[1]), precision: "reconstructed" }
-      : { from: 1368, to: 1644, precision: "reconstructed" };
+    chgisBoxes.push({ box: geometryBounds(feature.geometry), range, geometry: feature.geometry });
+  }
+  const mergeRange = (ranges) => ranges.reduce(
+    (acc, range) => [Math.min(acc[0], range[0]), Math.max(acc[1], range[1])], [9999, -9999]);
+  const clampRange = (range) => ({
+    from: Math.max(1368, range[0]), to: Math.min(1644, range[1]), precision: "reconstructed",
+  });
+  function pointInRing(ring, x, y) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function pointInGeometry(geometry, x, y) {
+    const polygons = geometry?.type === "Polygon" ? [geometry.coordinates]
+      : geometry?.type === "MultiPolygon" ? geometry.coordinates : [];
+    for (const polygon of polygons) {
+      if (!polygon.length || !pointInRing(polygon[0], x, y)) continue;
+      let inHole = false;
+      for (let i = 1; i < polygon.length; i += 1) if (pointInRing(polygon[i], x, y)) { inHole = true; break; }
+      if (!inHole) return true;
+    }
+    return false;
+  }
+  function chgisRangeByLocation(lon, lat) {
+    for (const entry of chgisBoxes) {
+      const [minLon, minLat, maxLon, maxLat] = entry.box;
+      if (lon < minLon || lon > maxLon || lat < minLat || lat > maxLat) continue;
+      if (pointInGeometry(entry.geometry, lon, lat)) return entry.range;
+    }
+    return null;
+  }
+  function resolveChgisRange(lon, lat, name, provinceId) {
+    const exact = provinceId != null ? chgisRangeByNameProvince.get(`${name}|${provinceId}`) : null;
+    if (exact) return exact;
+    const byName = chgisRangesByName.get(name);
+    if (byName && byName.length) return mergeRange(byName);
+    return chgisRangeByLocation(lon, lat);
+  }
+  const unitByIdForValidity = new Map(units.map((unit) => [unit.id, unit]));
+  const resolvedRange = new Map();
+  for (const unit of units) {
+    if (unit.level === "province" || unit.level === "capital-region") {
+      resolvedRange.set(unit.id, [unit.id === "yunnan" ? 1382 : unit.id === "guizhou" ? 1413 : 1368, 1644]);
+    }
+  }
+  for (const unit of units) {
+    if (unit.level !== "prefecture") continue;
+    resolvedRange.set(unit.id, resolveChgisRange(unit.lon, unit.lat, unit.name, unit.provinceId) || [1368, 1644]);
+  }
+  for (const unit of units) {
+    if (resolvedRange.has(unit.id)) continue;
+    let range = null;
+    let current = unitByIdForValidity.get(unit.parentId);
+    for (let guard = 0; current && guard < 12; guard += 1) {
+      if (resolvedRange.has(current.id)) { range = resolvedRange.get(current.id); break; }
+      current = unitByIdForValidity.get(current.parentId);
+    }
+    resolvedRange.set(unit.id, range || [1368, 1644]);
+  }
+  for (const unit of units) unit.validity = clampRange(resolvedRange.get(unit.id) || [1368, 1644]);
+  // Military and jimi points take the same derivation, stored on the record so
+  // their point layers can filter by year exactly like the civil markers.
+  for (const unit of [...MING.military, ...MING.jimi]) {
+    unit.validity = clampRange(resolveChgisRange(unit.lon, unit.lat, unit.name, null) || [1368, 1644]);
   }
   const unitById = new Map(units.map((unit) => [unit.id, unit]));
   // Canonical crosswalk: one unit record owns its seat, validity and all CHGIS
@@ -431,10 +503,10 @@
     };
   }
 
-  function otherFeatureCollection(rows, domain) {
+  function otherFeatureCollection(rows, domain, year = state.year) {
     return {
       type: "FeatureCollection",
-      features: rows.map((unit) => ({
+      features: rows.filter((unit) => isUnitActive(unit, year)).map((unit) => ({
         type: "Feature",
         id: unit.id,
         geometry: { type: "Point", coordinates: [unit.lon, unit.lat] },
@@ -773,19 +845,41 @@
     }[String(key)] || "1600 年断面";
   }
 
+  // County/prefecture polygon faces obey the same year model as the points: a
+  // face shows only while its province and parent prefecture are active, so the
+  // 4-snapshot fallback view no longer shows blocks that lack a point (or lacks
+  // points that should have a block).
+  function activeBoundaryFeatures(collection, year, prefKey) {
+    if (!collection?.features) return collection;
+    return {
+      ...collection,
+      features: collection.features.filter((feature) => {
+        const properties = feature.properties || {};
+        if (properties.provinceId && !isProvinceActive(properties.provinceId, year)) return false;
+        const prefId = prefKey ? properties[prefKey] : null;
+        if (prefId) {
+          const unit = unitById.get(prefId);
+          if (unit) return isUnitActive(unit, year);
+        }
+        return true;
+      }),
+    };
+  }
+
   function updateBoundarySnapshot(year) {
     const snapshot = boundarySnapshotFor(year);
-    if (state.boundaryKey !== snapshot.key) {
-      state.boundaryKey = snapshot.key;
-      if (map && map.getSource("counties")) map.getSource("counties").setData(snapshot.counties);
-      if (map && map.getSource("prefectures")) map.getSource("prefectures").setData(snapshot.prefectures);
-      if (map && map.getSource("countyBoundaries")) map.getSource("countyBoundaries").setData(snapshot.boundaries);
-    }
+    state.boundaryKey = snapshot.key;
+    if (map && map.getSource("counties")) map.getSource("counties").setData(activeBoundaryFeatures(snapshot.counties, year, "prefId"));
+    if (map && map.getSource("prefectures")) map.getSource("prefectures").setData(activeBoundaryFeatures(snapshot.prefectures, year, "id"));
+    if (map && map.getSource("countyBoundaries")) map.getSource("countyBoundaries").setData(activeBoundaryFeatures(snapshot.boundaries, year, null));
     if (map && map.getSource("provinces")) map.getSource("provinces").setData(activeProvinceData(year));
+    if (map && map.getSource("territory")) map.getSource("territory").setData(activeProvinceData(year));
     if (map && map.getSource("chgisMing")) map.getSource("chgisMing").setData(chgisFeatureCollection(year));
     if (map && map.getSource("neighbors")) map.getSource("neighbors").setData(neighborFeatureCollection(year));
     if (map && map.getSource("neighborCapitals")) map.getSource("neighborCapitals").setData(neighborCapitalCollection(year));
     if (map && map.getSource("markers")) map.getSource("markers").setData(markerFeatureCollection(year));
+    if (map && map.getSource("military")) map.getSource("military").setData(otherFeatureCollection(MING.military, "military", year));
+    if (map && map.getSource("jimi")) map.getSource("jimi").setData(otherFeatureCollection(MING.jimi, "jimi", year));
     if (state.selectedUnitId && !isUnitActive(unitById.get(state.selectedUnitId), year)) {
       state.selectedUnitId = null;
       state.selectedPolygonIds = [];
@@ -821,6 +915,7 @@
         terrain: { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 12 },
         modern: { type: "geojson", data: MODERN_CHINA },
         national: { type: "geojson", data: CHGIS_NATION },
+        territory: { type: "geojson", data: activeProvinceData(state.year) },
         neighbors: { type: "geojson", data: neighborFeatureCollection() },
         neighborCapitals: { type: "geojson", data: neighborCapitalCollection() },
         provinces: { type: "geojson", data: activeProvinceData(state.year) },
@@ -845,8 +940,8 @@
         { id: "natural-coastline", type: "line", source: "natural", filter: ["==", ["get", "kind"], "coastline"], paint: { "line-color": "#84999d", "line-opacity": 0.7, "line-width": 0.9 } },
         { id: "terrain-hillshade", type: "hillshade", source: "terrain", paint: { "hillshade-exaggeration": 0.42, "hillshade-shadow-color": "rgba(84, 74, 56, .42)", "hillshade-highlight-color": "rgba(250, 246, 236, .48)", "hillshade-accent-color": "rgba(91, 82, 62, .26)" } },
         { id: "modern-china-line", type: "line", source: "modern", paint: { "line-color": "rgba(78, 92, 86, .46)", "line-width": 0.7, "line-dasharray": [3, 3], "line-opacity": 0.65 } },
-        { id: "national-fill", type: "fill", source: "national", paint: { "fill-color": "#7a3027", "fill-opacity": 0.14 } },
-        { id: "national-line", type: "line", source: "national", paint: { "line-color": "#7a3027", "line-width": 1.8, "line-opacity": 0.86 } },
+        { id: "national-fill", type: "fill", source: "territory", paint: { "fill-color": "#7a3027", "fill-opacity": 0.14 } },
+        { id: "national-line", type: "line", source: "territory", paint: { "line-color": "#7a3027", "line-width": 1.3, "line-opacity": 0.7 } },
         { id: "neighbor-fill", type: "fill", source: "neighbors", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.20 } },
         { id: "neighbor-glow-outer", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 24, "line-opacity": 0.08, "line-blur": 7 } },
         { id: "neighbor-glow-mid", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 15, "line-opacity": 0.14, "line-blur": 4.5 } },
@@ -1934,19 +2029,31 @@
     $("#rank-legend").innerHTML = ranks.map((rank) => rankBadge(rank)).join("");
   }
 
+  /// 图例与地图共用同一个符号生成器，图例画出的形状因此与地图上完全一致。
+  function markerImageUrl(shape, color) {
+    const data = markerImage(shape, color);
+    const canvas = document.createElement("canvas");
+    canvas.width = data.width;
+    canvas.height = data.height;
+    canvas.getContext("2d").putImageData(data, 0, 0);
+    return canvas.toDataURL("image/png");
+  }
+
   function renderMapLegend() {
-    const legend = [
-      ["capital", "首都（五角星）"],
-      ["province", "省级行政中心"],
-      ["prefecture", "府（大小圆圈）"],
-      ["department", "州（圆内一点）"],
-      ["county", "县级行政中心"],
-      ["military", "都司卫所"],
-      ["jimi", "羁縻/土司"],
-      ["river", "河流/海岸"],
+    const seatColor = "#7a4a3a";
+    const marks = [
+      ["star", "#7a3027", "首都（五角星）"],
+      ["province", seatColor, "省级行政中心（外环＋阴影线）"],
+      ["prefecture", seatColor, "府（大小双圈）"],
+      ["secondary", seatColor, "州（圆内一点）"],
+      ["dot", seatColor, "县级行政中心"],
+      ["cross", "#3e5e54", "都司卫所"],
+      ["ring", "#7b5a3c", "羁縻/土司"],
     ];
+    const mark = ([shape, color, label]) =>
+      `<div class="legend-item"><span class="legend-symbol legend-symbol--img"><img src="${markerImageUrl(shape, color)}" alt="" /></span><span>${label}</span></div>`;
     const eventTypes = ["区划", "政治", "军事", "官制", "经济", "文化", "外交"];
-    $("#map-legend").innerHTML = `<h3>图例 · 治所层级</h3><div class="legend-grid">${legend.map(([kind, label]) => `<div class="legend-item"><span class="legend-symbol legend-symbol--${kind}"></span><span>${label}</span></div>`).join("")}<div class="legend-item"><span class="legend-symbol legend-symbol--mountain-icon">${ICONS.mountain || ""}</span><span>山脉</span></div></div><p class="tree-note" style="margin:8px 0 0">同址多级治所，图上只显示最高一级；文字逐级显示。符号形状固定，实际颜色随省域变化。</p>
+    $("#map-legend").innerHTML = `<h3>图例 · 治所层级</h3><div class="legend-grid">${marks.map(mark).join("")}<div class="legend-item"><span class="legend-symbol legend-symbol--river"></span><span>河流/海岸</span></div><div class="legend-item"><span class="legend-symbol legend-symbol--mountain-icon">${ICONS.mountain || ""}</span><span>山脉</span></div></div><p class="tree-note" style="margin:8px 0 0">同址多级治所，图上只显示最高一级；文字逐级显示。符号形状固定，实际颜色随省域变化。</p>
       <h3 style="margin-top:14px">图例 · 事件类型</h3><div class="event-legend-grid">${eventTypes.map((type) => `<div class="event-legend-item"><span class="event-icon event-legend-badge" style="--badge:${eventTypeColor(type)}">${eventIconSvg(type)}</span><span>${type}</span></div>`).join("")}</div>`;
   }
 
@@ -2131,7 +2238,7 @@
     state.leftTab = tab;
     $$(".left-panel .tab").forEach((button) => button.classList.toggle("is-active", button.dataset.tab === tab));
     $("#events-view").hidden = tab !== "events";
-    $("#layers-view").hidden = tab !== "layers";
+    $("#legend-view").hidden = tab !== "legend";
   }
 
   function setRightTab(tab) {
@@ -2268,7 +2375,7 @@
   function renderTabIcons() {
     const tabs = [
       ["tab-events", "events"],
-      ["tab-layers", "layers"],
+      ["tab-legend", "layers"],
       ["tab-officialdom", "officialdom"],
       ["tab-detail", "details"],
     ];
@@ -2317,17 +2424,18 @@
     });
   }
 
+  /// 「显示」下拉是图层与地名标签的唯一入口；两个命名空间共用一个 data-display 键：
+  /// 前一组是 state.layers 的图层开关，后一组是 state.labelLevels 的逐级标签。
+  const DISPLAY_LAYER_KEYS = new Set(["national", "provinces", "admin", "special",
+    "neighbors", "military", "jimi", "modern", "mountains", "events", "labels"]);
+
   function syncDisplayControls() {
-    const values = {
-      mountains: state.layers.mountains,
-      modern: state.layers.modern,
-      events: state.layers.events,
-      province: state.labelLevels.province,
-      prefecture: state.labelLevels.prefecture,
-      department: state.labelLevels.department,
-      county: state.labelLevels.county,
-    };
-    $$("[data-display]").forEach((input) => { input.checked = Boolean(values[input.dataset.display]); });
+    $$("[data-display]").forEach((input) => {
+      const key = input.dataset.display;
+      input.checked = DISPLAY_LAYER_KEYS.has(key)
+        ? Boolean(state.layers[key])
+        : Boolean(state.labelLevels[key]);
+    });
   }
 
   function initDisplayMenu() {
@@ -2343,10 +2451,8 @@
     $$("[data-display]").forEach((input) => {
       input.addEventListener("change", () => {
         const key = input.dataset.display;
-        if (key === "mountains" || key === "modern" || key === "events") {
+        if (DISPLAY_LAYER_KEYS.has(key)) {
           state.layers[key] = input.checked;
-          const checkbox = { mountains: "layer-mountains", modern: "layer-modern", events: "layer-events" }[key];
-          if (checkbox && $(`#${checkbox}`)) $(`#${checkbox}`).checked = input.checked;
           applyLayerState();
         } else {
           state.labelLevels[key] = input.checked;
@@ -2368,7 +2474,7 @@
         duration: 650,
       });
     });
-    $("#btn-chapters").addEventListener("click", () => { window.location.href = "chapters.html?chapter=ming"; });
+    $("#btn-chapters").addEventListener("click", () => { window.location.href = `chapters.html?chapter=${window.__DYNASTY__ || "ming"}`; });
     $("#btn-about").addEventListener("click", () => $("#about-dialog").showModal());
     $("#btn-about-close").addEventListener("click", () => $("#about-dialog").close());
     $("#about-dialog").addEventListener("click", (event) => {
@@ -2376,7 +2482,7 @@
     });
 
     $("#tab-events").addEventListener("click", () => switchLeftTab("events"));
-    $("#tab-layers").addEventListener("click", () => switchLeftTab("layers"));
+    $("#tab-legend").addEventListener("click", () => switchLeftTab("legend"));
     $("#tab-officialdom").addEventListener("click", () => setRightTab("officialdom"));
     $("#tab-detail").addEventListener("click", () => setRightTab("detail"));
 
@@ -2421,28 +2527,6 @@
       if (!label) return;
       selectUnit(label.dataset.unitId, { fly: false });
     });
-
-    const layerMap = {
-      "layer-national": "national",
-      "layer-modern": "modern",
-      "layer-provinces": "provinces",
-      "layer-admin": "admin",
-      "layer-special": "special",
-      "layer-neighbors": "neighbors",
-      "layer-labels": "labels",
-      "layer-mountains": "mountains",
-      "layer-military": "military",
-      "layer-jimi": "jimi",
-      "layer-events": "events",
-    };
-    Object.entries(layerMap).forEach(([id, key]) => {
-      const checkbox = $(`#${id}`);
-      checkbox.checked = state.layers[key];
-      checkbox.addEventListener("change", () => {
-        state.layers[key] = checkbox.checked;
-        applyLayerState();
-      });
-    });
   }
 
   function init() {
@@ -2466,7 +2550,7 @@
     const params = new URLSearchParams(window.location.search);
     const initialYear = Number(params.get("year")) || 1600;
     setYear(initialYear);
-    if (params.get("tab") === "layers") switchLeftTab("layers");
+    if (params.get("tab") === "legend") switchLeftTab("legend");
     if (params.get("tab") === "detail") setRightTab("detail");
   }
 
