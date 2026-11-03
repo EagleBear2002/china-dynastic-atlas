@@ -17,3 +17,5 @@ vendor/historical-map-project/.git/
 vendor/historical-map-project/.git.disabled/
 vendor/historical-map-project/data/external/chgis_v6/
 vendor/historical-map-project/data/external/chgis_v6_time_pref_pgn_utf_wgs84.zip
+
+deploy/
