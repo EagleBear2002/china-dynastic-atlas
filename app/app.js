@@ -200,6 +200,7 @@
     selectedUnitId: null,
     selectedPolygonIds: [],
     selectedChgisIds: [],
+    selectedSpecial: null,
     blinkTimer: null,
     blinkOn: false,
     selectedEventId: null,
@@ -592,7 +593,7 @@
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
         { id: "chgis-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], false], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
-        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#8f8170", "fill-opacity": 0.28 } },
+        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", "#8f8170"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.86, 0.36], 0.28] } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
         { id: "chgis-special-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(88, 76, 62, .42)", "line-width": 0.65, "line-dasharray": [2, 2], "line-opacity": 0.7 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
@@ -926,8 +927,7 @@
           return;
         }
         if (layer === "chgis-special-fill") {
-          const properties = feature.properties || {};
-          toast(`${properties.name || "该色块"} · ${properties.type || "特殊辖区"}（军事/羁縻），暂无民政府州对应`);
+          selectSpecialUnit(feature.properties || {}, feature.id);
           return;
         }
         if (layer === "chgis-fill") {
@@ -1303,9 +1303,38 @@
     if (chgisSelected.length) startChgisBlink(chgisSelected);
   }
 
+  function selectSpecialUnit(properties, featureId) {
+    clearPolygonSelection();
+    if (state.selectedUnitId) {
+      map.removeFeatureState({ source: "markers", id: state.selectedUnitId });
+    }
+    state.selectedUnitId = null;
+    state.selectedSpecial = {
+      name: properties.name || "特殊辖区",
+      type: properties.type || "军事/羁縻辖区",
+      provinceId: properties.provinceId || "",
+      beg: properties.beg,
+      end: properties.end,
+      featureId,
+    };
+    const ids = (CHGIS_MING.features || [])
+      .filter((feature) => isSpecialChgis(feature.properties)
+        && feature.properties?.name === properties.name
+        && feature.properties?.provinceId === properties.provinceId)
+      .map((feature) => feature.id);
+    if (ids.length) startChgisBlink(ids);
+    renderChief();
+    renderDetail();
+    scheduleLabels();
+    setRightTab("detail");
+    $("#selection-count").textContent = `${state.selectedSpecial.name} · 军事/羁縻`;
+    toast(`${state.selectedSpecial.name} · ${state.selectedSpecial.type}（军事/羁縻辖区）`);
+  }
+
   function selectUnit(unitId, options = {}) {
     const unit = unitById.get(unitId);
     if (!unit) return;
+    state.selectedSpecial = null;
     if (state.selectedUnitId) {
       map.removeFeatureState({ source: "markers", id: state.selectedUnitId });
     }
@@ -1334,6 +1363,15 @@
 
   function renderChief() {
     const container = $("#local-chief");
+    if (state.selectedSpecial) {
+      const special = state.selectedSpecial;
+      const provinceName = unitById.get(special.provinceId)?.name || special.provinceId || "—";
+      container.innerHTML = `
+        <h3>${esc(special.name)}</h3>
+        <p>${esc(special.type)} · ${esc(provinceName)}</p>
+        <p class="tree-note">军事/羁縻辖区，不设民政府州县主官；其首领、卫所武职另属军政系统。</p>`;
+      return;
+    }
     if (!state.selectedUnitId) {
       container.innerHTML = `
         <h3>本区主官</h3>
@@ -1433,8 +1471,41 @@
       <h3 style="margin-top:14px">图例 · 事件类型</h3><div class="event-legend-grid">${eventTypes.map((type) => `<div class="event-legend-item"><span class="event-icon event-legend-badge" style="--badge:${eventTypeColor(type)}">${eventIconSvg(type)}</span><span>${type}</span></div>`).join("")}</div>`;
   }
 
+  function renderSpecialDetail(container) {
+    const special = state.selectedSpecial;
+    const provinceName = unitById.get(special.provinceId)?.name || special.provinceId || "—";
+    const years = special.beg != null || special.end != null
+      ? `${special.beg ?? "—"}—${special.end ?? "—"} 年`
+      : "—";
+    container.className = "detail-content";
+    container.innerHTML = `
+      <div class="detail-head">
+        <div class="detail-level">军事/羁縻辖区 · ${esc(provinceName)}</div>
+        <h2>${esc(special.name)}</h2>
+        <div class="formal">${esc(special.type)}</div>
+      </div>
+      <div class="detail-section">
+        <h3>建置信息</h3>
+        <dl class="detail-kv">
+          <dt>类型</dt><dd>${esc(special.type)}</dd>
+          <dt>上级</dt><dd>${esc(provinceName)}</dd>
+          <dt>治所</dt><dd>待考（当前以辖区面中心近似）</dd>
+          <dt>有效年份</dt><dd>${esc(years)}</dd>
+          <dt>资料来源</dt><dd>CHGIS V6 · 1600 年府级多边形</dd>
+        </dl>
+      </div>
+      <div class="detail-section">
+        <h3>说明</h3>
+        <p class="tree-note">该单位为行都司、卫所、宣慰司、长官司等军事或羁縻辖区，不属于民政府州县序列。图中灰褐色虚线面表示其大致辖域；点击色块可高亮对应辖区。</p>
+      </div>`;
+  }
+
   function renderDetail() {
     const container = $("#detail-content");
+    if (state.selectedSpecial) {
+      renderSpecialDetail(container);
+      return;
+    }
     if (!state.selectedUnitId) {
       container.className = "detail-content empty-state";
       container.innerHTML = `<div class="empty-mark">舆</div><p>点击地图上的府、州、县，或搜索地名，查看它的层级、户口服赋与上下级关系。</p>`;
