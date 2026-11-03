@@ -15,6 +15,7 @@
   const CHGIS_NATION = window.__CHGIS_NATION__ || REF.nationalOutline;
   const CHGIS_SPECIAL_TYPES = new Set(["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷", "wz"]);
   const TERRITORIES = window.__TERRITORIES__ || { periods: [] };
+  const WORLD1600 = window.__WORLD1600__ || { type: "FeatureCollection", features: [] };
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -552,19 +553,34 @@
   }
 
   function neighborPolities() {
-    const periods = ["ming_mid", "ming_late_wl", "ming_early"];
     const seen = new Set();
     const result = [];
-    for (const periodId of periods) {
+    // Prefer the more detailed global historical basemap polygons for the
+    // surrounding states; fall back to the rougher East-Asia set only for
+    // polities it lacks, notably 后金.
+    for (const feature of WORLD1600.features) {
+      const properties = feature.properties || {};
+      if (seen.has(properties.name)) continue;
+      seen.add(properties.name);
+      result.push({
+        name: properties.name,
+        color: properties.color || "#6b7b8c",
+        geometry: feature.geometry,
+        labelAt: properties.labelAt,
+        capital: properties.capital || null,
+      });
+    }
+    const skipRough = new Set(["鞑靼瓦剌", "乌思藏"]);
+    for (const periodId of ["ming_mid", "ming_late_wl", "ming_early"]) {
       const period = TERRITORIES.periods.find((item) => item.id === periodId);
       for (const polity of period?.polities || []) {
-        if (!polity.polygon || /^明|交趾/.test(polity.name) || seen.has(polity.name)) continue;
+        if (!polity.polygon || /^明|交趾/.test(polity.name) || seen.has(polity.name) || skipRough.has(polity.name)) continue;
         seen.add(polity.name);
         const bounds = geometryBounds({ type: "Polygon", coordinates: [polity.polygon] });
         result.push({
           name: polity.name,
           color: polity.color || "#6b7b8c",
-          polygon: polity.polygon,
+          geometry: { type: "Polygon", coordinates: [polity.polygon] },
           labelAt: polity.labelAt || [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
           capital: polity.capital || null,
         });
@@ -579,7 +595,7 @@
       features: neighborPolities().map((polity, index) => ({
         type: "Feature",
         id: `neighbor-${index}`,
-        geometry: { type: "Polygon", coordinates: [polity.polygon] },
+        geometry: polity.geometry,
         properties: { name: polity.name, color: polity.color, labelAt: polity.labelAt },
       })),
     };
