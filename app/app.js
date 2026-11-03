@@ -879,7 +879,11 @@
             )?.id;
           }
           if (!targetId || !unitById.has(String(targetId))) {
-            toast(`${properties.name || "该色块"}暂无对应府级单位`);
+            const specialTypes = ["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷"];
+            const typeLabel = specialTypes.includes(properties.type)
+              ? `${properties.type}（军事/羁縻辖区）`
+              : "特殊辖区";
+            toast(`${properties.name || "该色块"} · ${typeLabel}，暂无对应民政府州`);
             return;
           }
           selectUnit(String(targetId));
