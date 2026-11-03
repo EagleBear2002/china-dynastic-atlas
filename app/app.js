@@ -870,7 +870,19 @@
           return;
         }
         if (layer === "chgis-fill") {
-          selectUnit(String(feature.properties.unitId || feature.properties.provinceId));
+          const properties = feature.properties || {};
+          let targetId = properties.unitId;
+          if (!targetId || !unitById.has(String(targetId))) {
+            targetId = [...unitById.values()].find((unit) =>
+              (unit.level === "prefecture" || unit.level === "department")
+              && unit.name === properties.name
+            )?.id;
+          }
+          if (!targetId || !unitById.has(String(targetId))) {
+            toast(`${properties.name || "该色块"}暂无对应府级单位`);
+            return;
+          }
+          selectUnit(String(targetId));
           return;
         }
         selectUnit(String(feature.properties.targetUnitId || feature.properties.id));
