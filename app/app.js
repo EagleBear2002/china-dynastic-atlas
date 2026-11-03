@@ -16,6 +16,7 @@
   const CHGIS_SPECIAL_TYPES = new Set(["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷", "wz"]);
   const TERRITORIES = window.__TERRITORIES__ || { periods: [] };
   const WORLD1600 = window.__WORLD1600__ || { type: "FeatureCollection", features: [] };
+  const WORLD_BASE = window.__WORLD_BASE__ || { type: "FeatureCollection", features: [] };
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -954,6 +955,7 @@
     return {
       version: 8,
       sources: {
+        worldBase: { type: "geojson", data: WORLD_BASE },
         natural: { type: "geojson", data: REF.natural },
         terrain: { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 12 },
         modern: { type: "geojson", data: MODERN_CHINA },
@@ -976,6 +978,8 @@
       },
       layers: [
         { id: "background", type: "background", paint: { "background-color": "#e8e1d3" } },
+        { id: "world-ocean", type: "fill", source: "worldBase", filter: ["==", ["get", "kind"], "ocean"], paint: { "fill-color": "#9aaeb0", "fill-opacity": 0.9 } },
+        { id: "world-land", type: "fill", source: "worldBase", filter: ["==", ["get", "kind"], "land"], paint: { "fill-color": "#e8e1d3" } },
         { id: "natural-ocean", type: "fill", source: "natural", filter: ["==", ["get", "kind"], "ocean"], paint: { "fill-color": "#9aaeb0", "fill-opacity": 0.9 } },
         { id: "natural-land", type: "fill", source: "natural", filter: ["==", ["get", "kind"], "land"], paint: { "fill-color": "#e8e1d3" } },
         { id: "natural-lakes", type: "fill", source: "natural", filter: ["==", ["get", "kind"], "lake"], paint: { "fill-color": "#9aaeb0", "fill-opacity": 0.9 } },
@@ -998,7 +1002,8 @@
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": mountainIconSizeExpression(), "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
         { id: "chgis-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], false], paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
-        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#5f5040", "fill-opacity": 0.22 } },
+        // Non-selectable military/jimi areas: light/dark diagonal hatch shadow.
+        { id: "chgis-special-fill", type: "fill", source: "chgisMing", filter: ["==", ["get", "isSpecial"], true], paint: { "fill-color": "#5f5040", "fill-opacity": 0.78, "fill-pattern": "military-hatch-16" } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
@@ -1253,8 +1258,54 @@
     }
   }
 
+  // Light/dark 45° hatch used for the non-selectable military/jimi areas. The
+  // tile is generated per zoom band so the stripes keep a fixed geographic size
+  // ("printed on the map", like the mountain ink) instead of staying screen-fixed.
+  // Band/tile ratio is chosen so a square tile repeats seamlessly.
+  function hatchPatternImage(tile) {
+    const scale = 2; // pixelRatio
+    const size = tile * scale;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    const band = (tile / (Math.SQRT2 * 4)) * scale;
+    ctx.save();
+    ctx.translate(size / 2, size / 2);
+    ctx.rotate(-Math.PI / 4);
+    ctx.translate(-size, -size);
+    for (let offset = 0; offset < size * 3; offset += band * 2) {
+      ctx.fillStyle = "rgba(72, 60, 44, 0.55)";
+      ctx.fillRect(offset, 0, band, size * 3);
+      ctx.fillStyle = "rgba(250, 246, 236, 0.62)";
+      ctx.fillRect(offset + band, 0, band, size * 3);
+    }
+    ctx.restore();
+    return ctx.getImageData(0, 0, size, size);
+  }
+
+  // One pattern per zoom band; the tile doubles each zoom level (capped at 256),
+  // so the on-screen stripes double too and the hatch stays pinned to the map.
+  const HATCH_TILES = [8, 16, 32, 64, 128, 256];
+  const hatchPatternId = (tile) => `military-hatch-${tile}`;
+  function hatchTileForZoom(zoom) {
+    const index = Math.min(HATCH_TILES.length - 1, Math.max(0, Math.round(zoom) - 4));
+    return HATCH_TILES[index];
+  }
+  let currentHatchId = null;
+  function updateHatchPattern() {
+    if (!map || !map.getLayer("chgis-special-fill")) return;
+    const id = hatchPatternId(hatchTileForZoom(map.getZoom()));
+    if (id === currentHatchId) return;
+    currentHatchId = id;
+    map.setPaintProperty("chgis-special-fill", "fill-pattern", id);
+  }
+
   function registerMarkerIcons() {
     const SEAT_BLACK = "#1a1a1a";
+    for (const tile of HATCH_TILES) {
+      if (!map.hasImage(hatchPatternId(tile))) map.addImage(hatchPatternId(tile), hatchPatternImage(tile), { pixelRatio: 2 });
+    }
     for (const [id, shape] of Object.entries({ "seat-province": "province", "seat-prefecture": "prefecture", "seat-department": "secondary", "seat-county": "county-ring" })) {
       if (!map.hasImage(id)) map.addImage(id, markerImage(shape, SEAT_BLACK), { pixelRatio: 2 });
     }
@@ -1299,6 +1350,11 @@
       }
       if (id === "mountain-peak") {
         map.addImage(id, markerImage("triangle", "#6f6b5c"), { pixelRatio: 2 });
+        return;
+      }
+      const hatchMatch = id.match(/^military-hatch-(\d+)$/);
+      if (hatchMatch) {
+        map.addImage(id, hatchPatternImage(Number(hatchMatch[1])), { pixelRatio: 2 });
         return;
       }
       const eventEntry = Object.entries(EVENT_TYPE_KEYS).find(([, key]) => key === id);
