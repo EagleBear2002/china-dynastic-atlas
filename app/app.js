@@ -440,6 +440,12 @@
     return boundarySnapshotFor(1600).boundaries || { type: "FeatureCollection", features: [] };
   }
 
+  function normalizeUnitName(value) {
+    return String(value || "")
+      .replace(/(军民府|军民宣慰司|宣慰司|长官司|府|州|县|卫|所)$/g, "")
+      .trim();
+  }
+
   function isSpecialChgis(properties = {}) {
     const rawType = properties.type || "";
     const rawName = properties.name || "";
@@ -488,12 +494,14 @@
       features: CHGIS_MING.features.map((feature, index) => {
         const provinceId = feature.properties?.provinceId;
         const base = PROVINCE_COLORS[provinceId] || "#81796e";
+        const bounds = geometryBounds(feature.geometry);
         return {
           ...feature,
           properties: {
             ...feature.properties,
             prefId: feature.properties?.unitId || feature.id,
             isSpecial: isSpecialChgis(feature.properties),
+            labelAt: [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
             color: prefectureColor(base, Number(feature.properties?.colorSlot ?? index)),
           },
         };
@@ -926,10 +934,20 @@
           const properties = feature.properties || {};
           let targetId = properties.unitId;
           if (!targetId || !unitById.has(String(targetId))) {
-            targetId = [...unitById.values()].find((unit) =>
+            const wantedName = normalizeUnitName(properties.name);
+            let candidates = [...unitById.values()].filter((unit) =>
               (unit.level === "prefecture" || unit.level === "department")
-              && unit.name === properties.name
-            )?.id;
+              && normalizeUnitName(unit.name) === wantedName
+            );
+            // Same-name units exist (e.g. 山西永宁州 / 贵州永宁州). Prefer the
+            // candidate in the same province, then the nearest seat coordinate.
+            const sameProvince = candidates.filter((unit) => unit.provinceId === properties.provinceId);
+            if (sameProvince.length) candidates = sameProvince;
+            if (candidates.length > 1 && Number.isFinite(properties.labelAt?.[0])) {
+              const [cx, cy] = properties.labelAt;
+              candidates.sort((a, b) => Math.hypot(a.lon - cx, a.lat - cy) - Math.hypot(b.lon - cx, b.lat - cy));
+            }
+            targetId = candidates[0]?.id;
           }
           if (!targetId || !unitById.has(String(targetId))) {
             const specialTypes = ["行都司", "都司", "卫", "所", "宣慰司", "宣抚司", "长官司", "招讨司", "夷"];
@@ -1261,17 +1279,16 @@
 
     // CHGIS is the visible prefecture layer. Names in the Ming point data often
     // carry suffixes such as 军民府/宣慰司, while the CHGIS face may use only the
-    // stem; normalize both before matching.
-    const normalizeUnitName = (value) => String(value || "")
-      .replace(/(军民府|军民宣慰司|宣慰司|长官司|府|州|县|卫|所)$/g, "")
-      .trim();
+    // stem; normalize both before matching. Province must also match, otherwise
+    // same-name units such as 山西永宁州 and 贵州永宁州 would cross-highlight.
     const chgisSelected = [];
     const wantedName = normalizeUnitName(unit.name);
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
+      const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
       const matchesUnit = properties.unitId === unitId
         || (unit.level === "county" && properties.unitId === unit.parentId)
-        || (unit.level !== "county" && normalizeUnitName(properties.name) === wantedName)
+        || (unit.level !== "county" && sameProvince && normalizeUnitName(properties.name) === wantedName)
         || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
       if (matchesUnit) chgisSelected.push(feature.id);
     }
