@@ -60,6 +60,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--cinnabar-li
 
 .map-label {
   position: absolute;
+  z-index: 2;
   transform: translate(-50%, -50%);
   white-space: nowrap;
   pointer-events: auto;
@@ -76,8 +77,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--cinnabar-li
 .map-label--department { font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 9.5px; font-weight: 500; color: #625a4d; -webkit-text-stroke-width: 1.2px; }
 .map-label--county { font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif; font-size: 8.5px; font-weight: 400; color: #5f594d; opacity: .9; -webkit-text-stroke: 0.8px rgba(246, 241, 231, .92); paint-order: stroke fill; text-shadow: none; }
 .map-label--capital { font-size: 14px; font-weight: 700; color: var(--cinnabar); letter-spacing: .12em; -webkit-text-stroke-width: 2px; }
-.map-label--mountain { font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 11px; font-weight: 700; font-style: italic; color: #465042; opacity: .9; letter-spacing: .06em; -webkit-text-stroke: 0; text-shadow: none; }
-.map-label.is-selected { color: var(--cinnabar); font-weight: 700; background: rgba(246, 241, 231, .82); padding: 1px 5px; border: 1px solid var(--cinnabar-line); border-radius: 2px; }
+.map-label--mountain { z-index: 0; font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 11px; font-weight: 700; font-style: italic; color: #465042; opacity: .9; letter-spacing: .06em; -webkit-text-stroke: 0; text-shadow: none; }
+.map-label.is-selected { z-index: 3; color: var(--cinnabar); font-weight: 700; background: rgba(246, 241, 231, .82); padding: 1px 5px; border: 1px solid var(--cinnabar-line); border-radius: 2px; }
 
 .topbar {
   position: absolute;
