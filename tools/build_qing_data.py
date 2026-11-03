@@ -7,7 +7,8 @@ import re
 import shapefile
 from pathlib import Path
 from shapely.geometry import shape, mapping
-from shapely.ops import unary_union
+from shapely.ops import transform, unary_union
+from pyproj import CRS, Transformer
 
 ROOT = Path(r"D:\Seafile\中国历代行政区划和政治制度变迁")
 SRC = ROOT / "vendor" / "historical-map-project" / "data" / "external" / "chgis_1820"
@@ -19,6 +20,15 @@ COLORS = [
     "#A36B7A", "#668A6B", "#8A7655", "#5C7B92", "#826A72", "#9B8765",
     "#60766E", "#7F6C8B", "#A27B5C", "#5C6C86",
 ]
+def read_projected_geom(shp, transformer):
+    from shapely.geometry import shape
+    return transform(transformer.transform, shape(shp.__geo_interface__))
+
+
+def make_transformer(prj_path):
+    return Transformer.from_crs(CRS.from_wkt(Path(prj_path).read_text()), 'EPSG:4326', always_xy=True)
+
+
 PREF_PALETTE = ["#B5655D", "#A87935", "#3E5E54", "#58577F", "#356671", "#705A70", "#8C6E5D", "#71805E"]
 
 
@@ -44,6 +54,8 @@ def main():
     prov_reader = shapefile.Reader(str(next((SRC / "prov").glob("*.shp"))), encoding="gbk", encodingErrors="replace")
     pref_reader = shapefile.Reader(str(next((SRC / "pref").glob("*.shp"))), encoding="gbk", encodingErrors="replace")
     cnty_reader = shapefile.Reader(str(next((SRC / "cnty").glob("*.shp"))), encoding="gbk", encodingErrors="replace")
+    pref_transformer = make_transformer(next((SRC / "pref").glob("*.prj")))
+    prov_transformer = make_transformer(next((SRC / "prov").glob("*.prj")))
 
     provinces = []
     province_by_name = {}
@@ -96,7 +108,7 @@ def main():
         pref_units.append(unit)
         pref_by_name.setdefault((name, province_id), []).append(unit)
         province["children"].append(uid)
-        geom = shape(shp.__geo_interface__)
+        geom = read_projected_geom(shp, pref_transformer)
         if not geom.is_valid:
             geom = geom.buffer(0)
         if geom.is_empty:
@@ -145,7 +157,7 @@ def main():
         province = province_by_name.get(name)
         if not province:
             continue
-        geom = shape(shp.__geo_interface__)
+        geom = read_projected_geom(shp, prov_transformer)
         if not geom.is_valid:
             geom = geom.buffer(0)
         if geom.is_empty:
