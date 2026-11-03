@@ -12,6 +12,7 @@
   const CHGIS_MING = window.__CHGIS_MING__ || { type: "FeatureCollection", features: [] };
   const CHGIS_BOUNDARIES = CHGIS_MING.boundaries || { type: "FeatureCollection", features: [] };
   const CHGIS_PROVINCES = window.__CHGIS_PROVINCES__ || REF.provinceBaseline;
+  const CHGIS_NATION = window.__CHGIS_NATION__ || REF.nationalOutline;
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -502,7 +503,7 @@
         natural: { type: "geojson", data: REF.natural },
         terrain: { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 12 },
         modern: { type: "geojson", data: MODERN_CHINA },
-        national: { type: "geojson", data: REF.nationalOutline },
+        national: { type: "geojson", data: CHGIS_NATION },
         provinces: { type: "geojson", data: activeProvinceData(1600) },
         counties: { type: "geojson", data: defaultBoundaryData(), promoteId: "id" },
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
