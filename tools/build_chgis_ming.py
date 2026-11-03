@@ -79,6 +79,49 @@ def main():
     text = INPUT.read_text(encoding="utf-8")
     data = json.loads(text[text.index("{"): text.rindex("}") + 1])
     features = planarize(data["features"])
+
+    # Coverage audit: compare the complete provincial mask with the union of all
+    # prefecture faces. Any uncovered gap is assigned to the nearest prefecture so
+    # the whole map is filled (rather than leaving a visible hole).
+    mask_doc = json.load(open(ROOT / "vendor/historical-map-project/public/reference/province-baseline.geojson", encoding="utf-8"))
+    mask_features = [(feature["properties"].get("unitId"), shape(feature["geometry"])) for feature in mask_doc["features"]]
+    mask = unary_union([geom for _, geom in mask_features])
+    covered = unary_union([shape(feature["geometry"]) for feature in features])
+    gaps = mask.difference(covered)
+    gap_parts = list(gaps.geoms) if hasattr(gaps, "geoms") else [gaps]
+    gap_index = 0
+    for gap in sorted([part for part in gap_parts if part.area > 0.0005], key=lambda part: part.area, reverse=True):
+        point = gap.representative_point()
+        source = min(features, key=lambda feature: shape(feature["geometry"]).distance(point))
+        province_id = source["properties"].get("provinceId")
+        for mask_id, mask_geom in mask_features:
+            if mask_geom.covers(point):
+                province_id = mask_id
+                break
+        geom = gap
+        if not geom.is_valid:
+            geom = geom.buffer(0)
+        if geom.is_empty:
+            continue
+        features.append({
+            "type": "Feature",
+            "id": f"gap-{gap_index}",
+            "geometry": rnd(mapping(geom)),
+            "properties": {
+                **source["properties"],
+                "id": f"gap-{gap_index}",
+                "name": source["properties"].get("name", ""),
+                "type": "补域",
+                "provinceId": province_id,
+                "unitId": source["properties"].get("unitId"),
+            },
+        })
+        gap_index += 1
+    print("coverage gaps", gap_index, "total gap area", round(sum(part.area for part in gap_parts if part.area > 0.0005), 4))
+
+    # Re-planarize after gap filling so the added cover polygons cannot overlap
+    # neighbouring prefectures.
+    features = planarize(features)
     boundary_parts = []
     for feature in features:
         geom = shape(feature["geometry"])
