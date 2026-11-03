@@ -935,9 +935,9 @@
       const labelOffset = {
         "capital-region": 0,
         province: 0,
-        prefecture: -10,
-        department: 6,
-        county: 22,
+        prefecture: -16,
+        department: -6,
+        county: 10,
       }[unit.level] || 0;
       const pointKey = `${Math.round(point.x)},${Math.round(point.y)}`;
       element.className = `map-label map-label--${kind}${state.selectedUnitId === unit.id ? " is-selected" : ""}`;
