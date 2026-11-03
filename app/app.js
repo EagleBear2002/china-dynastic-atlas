@@ -9,6 +9,8 @@
   const MOUNTAINS = window.__MOUNTAINS__ || [];
   const FIGURES = window.__FIGURES__ || [];
   const MODERN_CHINA = window.__MODERN_CHINA__ || { type: "FeatureCollection", features: [] };
+  const CHGIS_MING = window.__CHGIS_MING__ || { type: "FeatureCollection", features: [] };
+  const CHGIS_PROVINCES = window.__CHGIS_PROVINCES__ || REF.provinceBaseline;
 
   // Deliberately more saturated/distinct than the source palette, so neighbouring
   // provinces never read as the same colour at county level.
@@ -126,7 +128,7 @@
   const sourceById = new Map(MING.sources.map((source) => [source.id, source]));
   const eventById = new Map(EVENTS.map((event) => [event.id, event]));
   const provinceLabelPoint = new Map();
-  for (const feature of REF.provinceBaseline?.features || []) {
+  for (const feature of CHGIS_PROVINCES?.features || []) {
     const anchor = feature.properties?.labelAnchor;
     if (Array.isArray(anchor) && anchor.length === 2) provinceLabelPoint.set(feature.properties.unitId, anchor);
   }
@@ -203,6 +205,7 @@
     layers: {
       national: true,
       modern: true,
+      chgis: true,
       provinces: true,
       admin: true,
       labels: true,
@@ -284,7 +287,7 @@
   function activeProvinceData(year) {
     return {
       type: "FeatureCollection",
-      features: REF.provinceBaseline.features.filter((feature) => isProvinceActive(feature.properties?.unitId, year)),
+      features: CHGIS_PROVINCES.features.filter((feature) => isProvinceActive(feature.properties?.unitId, year)),
     };
   }
 
@@ -429,6 +432,24 @@
     return boundarySnapshotFor(1600).boundaries || { type: "FeatureCollection", features: [] };
   }
 
+  function chgisFeatureCollection() {
+    return {
+      type: "FeatureCollection",
+      features: CHGIS_MING.features.map((feature, index) => {
+        const provinceId = feature.properties?.provinceId;
+        const base = PROVINCE_COLORS[provinceId] || "#81796e";
+        return {
+          ...feature,
+          properties: {
+            ...feature.properties,
+            prefId: feature.properties?.unitId || feature.id,
+            color: prefectureColor(base, index),
+          },
+        };
+      }),
+    };
+  }
+
   function boundaryLabel(key) {
     return {
       "1368": "洪武初年（云南、贵州未建省）",
@@ -485,6 +506,7 @@
         counties: { type: "geojson", data: defaultBoundaryData(), promoteId: "id" },
         prefectures: { type: "geojson", data: defaultPrefectureData(), promoteId: "id" },
         countyBoundaries: { type: "geojson", data: defaultBoundaryNetwork() },
+        chgisMing: { type: "geojson", data: chgisFeatureCollection(), promoteId: "id" },
         mountainRidges: { type: "geojson", data: mountainLineFeatures() },
         mountainPeaks: { type: "geojson", data: mountainPointFeatures() },
         markers: { type: "geojson", data: markerFeatureCollection(1600), promoteId: "id" },
@@ -509,6 +531,8 @@
         { id: "mountain-ridges", type: "line", source: "mountainRidges", paint: { "line-color": "rgba(80, 92, 78, .24)", "line-width": 0.55, "line-dasharray": [1, 3] } },
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
+        { id: "chgis-fill", type: "fill", source: "chgisMing", paint: { "fill-color": ["get", "color"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], 0.82, 0.50] } },
+        { id: "chgis-line", type: "line", source: "chgisMing", paint: { "line-color": "rgba(56, 52, 44, .42)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.35, 8, 0.7], "line-opacity": 0.72 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.9, 8, 2.8], "line-opacity": 0.98 } },
         { id: "military-points", type: "symbol", source: "military", minzoom: 4.4, layout: { "icon-image": ["get", "icon"], "icon-size": 0.22, "icon-allow-overlap": true, "icon-ignore-placement": true } },
@@ -826,7 +850,7 @@
       }
     });
 
-    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "event-points"].forEach((layer) => {
+    ["admin-province", "admin-prefecture", "admin-department", "admin-county", "county-fill", "chgis-fill", "event-points"].forEach((layer) => {
       map.on("click", layer, (event) => {
         const feature = event.features?.[0];
         if (!feature) return;
@@ -837,6 +861,10 @@
           state.selectedEventId = selected.id;
           renderEvents();
           toast(`${selected.year} 年 · ${selected.title}`);
+          return;
+        }
+        if (layer === "chgis-fill") {
+          selectUnit(String(feature.properties.unitId || feature.properties.provinceId));
           return;
         }
         selectUnit(String(feature.properties.targetUnitId || feature.properties.id));
@@ -1017,7 +1045,9 @@
     setLayerVisibility(["national-fill", "national-line"], state.layers.national);
     setLayerVisibility(["modern-china-line"], state.layers.modern);
     setLayerVisibility(["province-fill", "province-line", "province-line-top"], state.layers.provinces);
-    setLayerVisibility(["county-fill", "county-boundaries", "prefecture-line", "admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
+    setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
+    setLayerVisibility(["county-fill", "county-boundaries", "prefecture-line"], state.layers.admin && !state.layers.chgis);
+    setLayerVisibility(["chgis-fill", "chgis-line"], state.layers.admin && state.layers.chgis);
     setLayerVisibility(["military-points"], state.layers.military);
     setLayerVisibility(["jimi-points"], state.layers.jimi);
     setLayerVisibility(["event-halo", "event-points"], state.layers.events);
@@ -1213,7 +1243,7 @@
         <h3>建置信息</h3>
         <dl class="detail-kv">
           <dt>层级</dt><dd>${esc(unit.levelLabel)}</dd>
-          <dt>上级</dt><dd>${unit.parentId ? `<button class="unit-chip" data-unit-id="${esc(unit.parentId)}">${esc(unitById.get(unit.parentId)?.name || unit.parentId)}</button>` : "—"}</dd>
+          <dt>上级</dt><dd>${crumbs.length ? crumbs.map((item) => `<button class="unit-chip" type="button" data-unit-id="${esc(item.id)}">${esc(item.name)}</button>`).join(" / ") : "—"}</dd>
           <dt>治所</dt><dd>${esc(unit.seatName || "—")}</dd>
           <dt>有效年份</dt><dd>${unit.validity ? `${unit.validity.from ?? "—"}—${unit.validity.to ?? "—"} 年（${esc(unit.validity.precision)}）` : "—"}</dd>
           <dt>置信度</dt><dd>${esc(unit.confidence || "—")}</dd>

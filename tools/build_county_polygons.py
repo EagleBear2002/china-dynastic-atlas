@@ -117,7 +117,7 @@ def planarize_county_features(features):
         assigned[chosen].append(face)
     output = []
     for index, face_group in assigned.items():
-        merged = unary_union(face_group).simplify(0.01, preserve_topology=True)
+        merged = unary_union(face_group)
         if merged.is_empty:
             continue
         source = features[index]
@@ -125,7 +125,7 @@ def planarize_county_features(features):
         output.append({
             "type": "Feature",
             "id": source["id"],
-            "geometry": round_coords(mapping(merged), 4),
+            "geometry": round_coords(mapping(merged), 5),
             "properties": properties,
         })
     return output
@@ -306,7 +306,7 @@ def build_snapshot(data, baseline, modern_geoms, modern_props, modern_preps, mod
             geom = geom.buffer(0)
         if not geom.is_empty:
             boundary_parts.append(geom.boundary)
-    boundary_geom = unary_union(boundary_parts).simplify(0.01, preserve_topology=True)
+    boundary_geom = unary_union(boundary_parts).simplify(0.004, preserve_topology=True)
     boundary_features = [{
         "type": "Feature",
         "id": f"boundary-{snapshot['key']}",
