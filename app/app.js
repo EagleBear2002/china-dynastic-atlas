@@ -1325,6 +1325,8 @@
     if (ids.length) startChgisBlink(ids);
     renderChief();
     renderDetail();
+    renderOfficialdom();
+    renderFigures();
     scheduleLabels();
     setRightTab("detail");
     $("#selection-count").textContent = `${state.selectedSpecial.name} · 军事/羁縻`;
@@ -1343,6 +1345,8 @@
     selectPolygonsForUnit(unitId, unit);
     renderChief();
     renderDetail();
+    renderOfficialdom();
+    renderFigures();
     scheduleLabels();
     $("#selection-count").textContent = `${unit.name} · ${unit.levelLabel}`;
     if (options.fly !== false) {
@@ -1407,31 +1411,63 @@
       return `<div class="tree-leaf">${head}</div>${node.note ? `<div class="tree-note">${esc(node.note)}</div>` : ""}`;
     };
 
-    $("#officialdom-tree").innerHTML = `
-      <details open>
-        <summary>中央官制 <span class="panel-count">${eraLabel(year)}</span></summary>
-        <p class="officialdom-note">${esc(OFF.central.note)}</p>
-        ${OFF.central.tree.map((node) => nodeHtml(node)).join("")}
-      </details>
+    const selectedUnit = state.selectedUnitId ? unitById.get(state.selectedUnitId) : null;
+    const localOnly = Boolean(selectedUnit || state.selectedSpecial);
+    const localBlock = `
       <details open>
         <summary>地方官制 <span class="panel-count">都 · 布 · 按</span></summary>
         <p class="officialdom-note">${esc(OFF.local.note)}</p>
         ${OFF.local.tree.map((node) => nodeHtml(node)).join("")}
       </details>`;
+    $("#officialdom-tree").innerHTML = localOnly
+      ? `<p class="officialdom-note">当前查看：${esc(selectedUnit?.name || state.selectedSpecial?.name || "")} · 仅显示地方官制</p>${localBlock}`
+      : `
+      <details open>
+        <summary>中央官制 <span class="panel-count">${eraLabel(year)}</span></summary>
+        <p class="officialdom-note">${esc(OFF.central.note)}</p>
+        ${OFF.central.tree.map((node) => nodeHtml(node)).join("")}
+      </details>
+      ${localBlock}`;
+  }
+
+  function figureMatchesUnit(figure, unit) {
+    const aliases = {
+      jingshi: ["京师", "北直隶", "北京"],
+      nanjing: ["南京", "南直隶"],
+      "shaanxi-xing-dusi": ["陕西行都司", "陕西"],
+      "sichuan-xing-dusi": ["四川行都司", "四川"],
+    };
+    const tokens = [
+      unit.name,
+      unit.provinceName,
+      unit.seatName,
+      ...(aliases[unit.provinceId] || []),
+    ].filter((token) => token && token.length >= 2);
+    const haystack = [
+      figure.region,
+      figure.office,
+      figure.bio,
+      ...(figure.career || []),
+    ].join(" ");
+    return tokens.some((token) => haystack.includes(token));
   }
 
   function renderFigures() {
     const visible = FIGURES.filter((figure) => figure.from <= state.year && figure.to >= state.year);
-    const central = visible.filter((figure) => figure.category === "central");
-    const local = visible.filter((figure) => figure.category === "local");
+    const selectedUnit = state.selectedUnitId ? unitById.get(state.selectedUnitId) : null;
+    const localFigures = selectedUnit ? visible.filter((figure) => figureMatchesUnit(figure, selectedUnit)) : [];
+    const shown = selectedUnit ? localFigures : visible;
+    const central = shown.filter((figure) => figure.category === "central");
+    const local = shown.filter((figure) => figure.category === "local");
     const card = (figure) => `<button class="figure-card" type="button" data-figure-id="${esc(figure.id)}">
       <span class="figure-avatar">${figure.portrait ? `<img src="${esc(figure.portrait)}" alt="${esc(figure.name)}" loading="lazy" />` : esc(figure.name.slice(0, 1))}</span>
       <span><b>${esc(figure.name)}</b><small><span class="figure-tag">${figure.category === "central" ? "中央" : "地方"}</span>${esc(figure.office || "")}</small></span>
     </button>`;
     const section = (title, rows) => rows.length ? `<div class="figures-title"><span>${title}</span><span>${rows.length} 人</span></div><div class="figures-grid">${rows.map(card).join("")}</div>` : "";
-    $("#figures-panel").innerHTML = visible.length
-      ? `<div class="figures-title"><span>同期人物 · ${state.year}</span><span>${visible.length} 人</span></div>${section("中央", central)}${section("地方", local)}`
-      : `<div class="figures-title"><span>同期人物 · ${state.year}</span><span>暂无</span></div><p class="tree-note">当前年份暂无录入人物。</p>`;
+    const title = selectedUnit ? `同期本地人物 · ${state.year} · ${selectedUnit.name}` : `同期人物 · ${state.year}`;
+    $("#figures-panel").innerHTML = shown.length
+      ? `<div class="figures-title"><span>${esc(title)}</span><span>${shown.length} 人</span></div>${selectedUnit ? section("本地相关人物", shown) : `${section("中央", central)}${section("地方", local)}`}`
+      : `<div class="figures-title"><span>${esc(title)}</span><span>暂无</span></div><p class="tree-note">当前年份暂无本地相关人物。</p>`;
   }
 
   function openFigure(figureId) {
