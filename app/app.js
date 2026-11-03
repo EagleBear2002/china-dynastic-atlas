@@ -519,7 +519,7 @@
     const groups = new Map();
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
-      if (!isSpecialChgis(properties)) continue;
+      if (!isSpecialChgis(properties) || !featureActiveInYear(properties, state.year)) continue;
       const name = properties.name || feature.id;
       const bounds = geometryBounds(feature.geometry);
       const area = (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]);
@@ -537,10 +537,10 @@
       }));
   }
 
-  function chgisFeatureCollection() {
+  function chgisFeatureCollection(year = state.year) {
     return {
       type: "FeatureCollection",
-      features: CHGIS_MING.features.map((feature, index) => {
+      features: CHGIS_MING.features.filter((feature) => featureActiveInYear(feature.properties, year)).map((feature, index) => {
         const provinceId = feature.properties?.provinceId;
         const base = PROVINCE_COLORS[provinceId] || "#81796e";
         const bounds = geometryBounds(feature.geometry);
@@ -558,7 +558,24 @@
     };
   }
 
-  function neighborPolities() {
+  function featureActiveInYear(properties, year) {
+    // Known 1600 改土归流: 播州宣慰司/平越卫 were replaced by 遵义府、平越府
+    // after the 1600 播州之役. Keep the old feature out of later snapshots.
+    if ((properties?.name === "播州宣慰司" || properties?.name === "平越卫") && year >= 1600) return false;
+    const begin = properties?.beg ?? properties?.validFrom ?? null;
+    const end = properties?.end ?? properties?.validTo ?? null;
+    return (begin == null || year >= begin) && (end == null || year <= end);
+  }
+
+  function neighborPolities(year = state.year) {
+    const validity = {
+      "后金": [1616, 1644],
+      "蒙古诸部": [1368, 1635],
+      "乌思藏": [1368, 1644],
+      "朝鲜": [1392, 1910],
+      "日本": [1467, 1603],
+      "越南": [1428, 1789],
+    };
     const seen = new Set();
     const result = [];
     // Prefer the more detailed global historical basemap polygons for the
@@ -567,6 +584,8 @@
     for (const feature of WORLD1600.features) {
       const properties = feature.properties || {};
       if (seen.has(properties.name)) continue;
+      const span = validity[properties.name];
+      if (span && (year < span[0] || year > span[1])) continue;
       seen.add(properties.name);
       result.push({
         name: properties.name,
@@ -579,8 +598,10 @@
     const skipRough = new Set(["鞑靼瓦剌", "乌思藏"]);
     for (const periodId of ["ming_mid", "ming_late_wl", "ming_early"]) {
       const period = TERRITORIES.periods.find((item) => item.id === periodId);
+      if (period && (year < period.startYear || year > period.endYear)) continue;
       for (const polity of period?.polities || []) {
         if (!polity.polygon || /^明|交趾/.test(polity.name) || seen.has(polity.name) || skipRough.has(polity.name)) continue;
+        if (polity.name === "后金" && year < 1616) continue;
         seen.add(polity.name);
         const bounds = geometryBounds({ type: "Polygon", coordinates: [polity.polygon] });
         result.push({
@@ -595,10 +616,10 @@
     return result;
   }
 
-  function neighborFeatureCollection() {
+  function neighborFeatureCollection(year = state.year) {
     return {
       type: "FeatureCollection",
-      features: neighborPolities().map((polity, index) => ({
+      features: neighborPolities(year).map((polity, index) => ({
         type: "Feature",
         id: `neighbor-${index}`,
         geometry: polity.geometry,
@@ -607,10 +628,10 @@
     };
   }
 
-  function neighborCapitalCollection() {
+  function neighborCapitalCollection(year = state.year) {
     return {
       type: "FeatureCollection",
-      features: neighborPolities()
+      features: neighborPolities(year)
         .filter((polity) => polity.capital?.lat != null && polity.capital?.lng != null)
         .map((polity, index) => ({
           type: "Feature",
@@ -639,6 +660,9 @@
       if (map && map.getSource("countyBoundaries")) map.getSource("countyBoundaries").setData(snapshot.boundaries);
     }
     if (map && map.getSource("provinces")) map.getSource("provinces").setData(activeProvinceData(year));
+    if (map && map.getSource("chgisMing")) map.getSource("chgisMing").setData(chgisFeatureCollection(year));
+    if (map && map.getSource("neighbors")) map.getSource("neighbors").setData(neighborFeatureCollection(year));
+    if (map && map.getSource("neighborCapitals")) map.getSource("neighborCapitals").setData(neighborCapitalCollection(year));
     if (map && map.getSource("markers")) map.getSource("markers").setData(markerFeatureCollection(year));
     if (state.selectedUnitId && !isUnitActive(unitById.get(state.selectedUnitId), year)) {
       state.selectedUnitId = null;
@@ -1161,7 +1185,7 @@
       // and the mountain pass below still runs.
       for (const element of labelPool.values()) element.style.display = "none";
       for (const element of specialLabelPool.values()) element.style.display = "none";
-      renderMountainLabels(occupied, width, height, zoom);
+      renderMountainLabels(width, height, zoom);
       return;
     }
     const show = {
@@ -1229,22 +1253,21 @@
         element.style.display = "none";
       }
     }
-    // Special (military/jimi) names take their space before mountain names, so the
-    // mountain pass — which yields to every place name — can see them and stand aside.
+    // Special (military/jimi) and neighbour names still avoid placed place names;
+    // mountain names are unconditional bottom-layer ink and take no part in
+    // collision tracking.
     renderSpecialLabels(occupied, width, height, zoom);
-    renderMountainLabels(occupied, width, height, zoom);
+    renderMountainLabels(width, height, zoom);
     renderNeighborLabels(occupied, width, height, zoom);
   }
 
-  function renderMountainLabels(occupied, width, height, zoom) {
+  function renderMountainLabels(width, height, zoom) {
     const used = new Set();
-    const mountainBoxes = [];
     if (!state.layers.mountains) {
       for (const element of mountainLabelPool.values()) element.style.display = "none";
       return;
     }
     for (const range of MOUNTAINS) {
-      if (zoom < 3.2) continue;
       const coords = range.coords;
       const labelPoint = coords[Math.floor(coords.length / 2)];
       const point = map.project(labelPoint);
@@ -1276,26 +1299,10 @@
       if (angle < -90) angle += 180;
       const labelOffset = 8 * inkScale;
       element.style.transform = `translate3d(${point.x}px, ${point.y + labelOffset}px, 0) translate(-50%, -50%) rotate(${angle.toFixed(1)}deg)`;
+      // Mountain names never yield and never hide: they are bottom-layer ink
+      // (z-index 0 in styles.css), so every other label draws on top of them
+      // instead of displacing them. Only the manual 山脉 toggle hides them.
       element.style.display = "";
-      const labelWidth = Math.max(20, element.offsetWidth + 6);
-      const labelHeight = Math.max(11, element.offsetHeight + 3);
-      const box = {
-        left: point.x - labelWidth / 2,
-        right: point.x + labelWidth / 2,
-        top: point.y + labelOffset - labelHeight / 2,
-        bottom: point.y + labelOffset + labelHeight / 2,
-      };
-      const collides = mountainBoxes.some((other) =>
-        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)
-        // Mountain names carry no halo, so one laid over a place name smears both;
-        // the place names already placed are given the space.
-        || occupied.some((other) =>
-          box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
-      if (collides) {
-        element.style.display = "none";
-        continue;
-      }
-      mountainBoxes.push(box);
       used.add(range.name);
     }
     for (const [name, element] of mountainLabelPool.entries()) {
@@ -1493,6 +1500,7 @@
     const wantedName = normalizeUnitName(unit.name);
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
+      if (!featureActiveInYear(properties, state.year)) continue;
       const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
       const matchesUnit = (properties.unitId === unitId && sameProvince)
         || (unit.level === "county" && properties.unitId === unit.parentId && sameProvince)
