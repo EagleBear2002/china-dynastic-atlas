@@ -202,7 +202,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--cinnabar-li
   background: rgba(255,255,255,.28);
   white-space: nowrap;
 }
-.year-chip span { color: var(--ink); font-size: 12.5px; font-weight: 500; letter-spacing: .04em; }
+.year-chip span { color: var(--ink); font-family: var(--serif); font-size: 26px; font-weight: 600; letter-spacing: .02em; }
 .year-chip strong { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--cinnabar); }
 .icon-text-btn {
   height: 38px;

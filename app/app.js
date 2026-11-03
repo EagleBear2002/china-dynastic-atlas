@@ -153,14 +153,23 @@
   // degenerate 1600—1600 ranges with usable Ming-era ranges. Prefectures are
   // aligned to the CHGIS feature ranges by name+province; unmatched units get
   // the Ming-wide fallback.
+  // CHGIS records three features with end=1600 although only the two units that
+  // were actually replaced by the 1600 播州改土归流 end that year; 镇远府 (and any
+  // other feature marked so) persisted past 1600, so its end is the dataset
+  // horizon, not a real abolition. Treat end=1600 as "still present at 1600".
+  const CHGIS_ABOLISHED_1600 = new Set(["播州宣慰司", "平越卫"]);
+  const chgisEndYear = (properties) => (
+    properties.end === 1600 && !CHGIS_ABOLISHED_1600.has(properties.name) ? 1644 : properties.end
+  );
   const chgisRangeByNameProvince = new Map();
   for (const feature of CHGIS_MING.features || []) {
     const properties = feature.properties || {};
     if (properties.beg == null && properties.end == null) continue;
     const key = `${properties.name}|${properties.provinceId}`;
     const current = chgisRangeByNameProvince.get(key) || [9999, -9999];
+    const end = chgisEndYear(properties);
     if (properties.beg != null) current[0] = Math.min(current[0], properties.beg);
-    if (properties.end != null) current[1] = Math.max(current[1], properties.end);
+    if (end != null) current[1] = Math.max(current[1], end);
     chgisRangeByNameProvince.set(key, current);
   }
   // --- Year model: CHGIS is the only source with real periods (beg/end) ------
@@ -173,7 +182,7 @@
   for (const feature of CHGIS_MING.features || []) {
     const properties = feature.properties || {};
     if (properties.beg == null && properties.end == null) continue;
-    const range = [properties.beg ?? 1368, properties.end ?? 1644];
+    const range = [properties.beg ?? 1368, chgisEndYear(properties) ?? 1644];
     if (properties.name) {
       const list = chgisRangesByName.get(properties.name) || [];
       list.push(range);
@@ -222,14 +231,26 @@
     return chgisRangeByLocation(lon, lat);
   }
   const unitByIdForValidity = new Map(units.map((unit) => [unit.id, unit]));
+  // Keep any unit that already carries a real, non-degenerate range — notably the
+  // 1600 播州改土归流 replacements (遵义府/平越府, 1600–1644) — instead of letting
+  // the location join pull them back to their predecessor's span (播州宣慰司 1371).
+  const explicitRange = (unit) => {
+    const v = unit.validity;
+    if (!v || (v.from === 1600 && v.to === 1600)) return null;
+    return [v.from ?? 1368, v.to ?? 1644];
+  };
   const resolvedRange = new Map();
   for (const unit of units) {
+    const explicit = explicitRange(unit);
     if (unit.level === "province" || unit.level === "capital-region") {
-      resolvedRange.set(unit.id, [unit.id === "yunnan" ? 1382 : unit.id === "guizhou" ? 1413 : 1368, 1644]);
+      resolvedRange.set(unit.id, explicit
+        || [unit.id === "yunnan" ? 1382 : unit.id === "guizhou" ? 1413 : 1368, 1644]);
+    } else if (explicit) {
+      resolvedRange.set(unit.id, explicit);
     }
   }
   for (const unit of units) {
-    if (unit.level !== "prefecture") continue;
+    if (unit.level !== "prefecture" || resolvedRange.has(unit.id)) continue;
     resolvedRange.set(unit.id, resolveChgisRange(unit.lon, unit.lat, unit.name, unit.provinceId) || [1368, 1644]);
   }
   for (const unit of units) {
@@ -751,7 +772,11 @@
 
   function featureActiveInYear(properties, year) {
     const begin = properties?.beg ?? properties?.validFrom ?? null;
-    const end = properties?.end ?? properties?.validTo ?? null;
+    // Same end=1600 normalisation as the point validity derivation, so a CHGIS
+    // colour block and its point switch year together (镇远府 etc.).
+    const end = properties?.end === 1600 && !CHGIS_ABOLISHED_1600.has(properties?.name)
+      ? 1644
+      : (properties?.end ?? properties?.validTo ?? null);
     return (begin == null || year >= begin) && (end == null || year <= end);
   }
 
@@ -837,6 +862,7 @@
   }
 
   function boundaryLabel(key) {
+    if (window.__DYNASTY__ === "qing") return "1820 年断面";
     return {
       "1368": "洪武初年（云南、贵州未建省）",
       "1382": "洪武十五年云南建省后",
@@ -2231,7 +2257,7 @@
       <div><strong>${MING.provinces.length}</strong><span>省级/留都</span></div>
       <div><strong>${counts.military}</strong><span>都司卫所</span></div>
       <div><strong>${counts.jimi}</strong><span>羁縻/土司</span></div>
-    </div><p class="tree-note" style="margin:9px 0 0">数据来自“历史地图计划”1600 年断面；府州县点位 1,563 个。</p>`;
+    </div><p class="tree-note" style="margin:9px 0 0">${window.__DYNASTY__ === "qing" ? "数据来自 CHGIS 1820 年断面；府州县点位按 1820 年整理。" : "数据来自“历史地图计划”1600 年断面；府州县点位 1,563 个。"}</p>`;
   }
 
   function switchLeftTab(tab) {
@@ -2321,7 +2347,7 @@
     range.addEventListener("input", () => setYear(range.value));
     $("#btn-prev").addEventListener("click", () => setYear(state.year - 1));
     $("#btn-next").addEventListener("click", () => setYear(state.year + 1));
-    $("#btn-year-1600").addEventListener("click", () => { stopPlay(); setYear(1600, { toast: true }); });
+    $("#btn-year-1600").addEventListener("click", () => { stopPlay(); setYear(Number(window.__DEFAULT_YEAR__ ?? 1600), { toast: true }); });
     $("#btn-play").addEventListener("click", togglePlay);
 
     const markers = $("#timeline-markers");
@@ -2341,7 +2367,7 @@
     const ticks = $("#timeline-ticks");
     const tickYears = Array.from({ length: 8 }, (_, i) => Math.round(YEAR_MIN + (YEAR_MAX - YEAR_MIN) * i / 7));
     ticks.innerHTML = tickYears.map((year) => {
-      const left = ((year - 1368) / (1644 - 1368)) * 100;
+      const left = ((year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * 100;
       return `<span class="timeline-tick" style="left:${left}%">${year}</span>`;
     }).join("");
   }
