@@ -55,6 +55,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--cinnabar-li
   z-index: 3;
   pointer-events: none;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 .maplibregl-ctrl-attrib { display: none !important; }
 
@@ -744,3 +747,24 @@ body.resizing { user-select: none; cursor: col-resize; }
 .chapter-switch-card b { width: 42px; color: var(--cinnabar, #7a3027); font-family: var(--serif, serif); font-size: 20px; }
 .chapter-switch-card span { color: #6f675b; font-size: 10px; line-height: 1.5; }
 .chapter-switch-card small { display: block; color: #8a8174; font-size: 9px; }
+
+
+body.theme-qing {
+  --paper: #e7e4da;
+  --paper-light: #f3f1e8;
+  --paper-deep: #d8d3c6;
+  --ink: #26353a;
+  --muted: #6c7879;
+  --cinnabar: #255264;
+  --cinnabar-soft: rgba(37, 82, 100, .08);
+  --cinnabar-line: rgba(37, 82, 100, .28);
+  --water: #8da7ac;
+  --deep-water: #78949a;
+  --panel: rgba(243, 241, 232, .94);
+  --panel-solid: #f3f1e8;
+  --shadow: 0 18px 50px rgba(36, 53, 56, .16);
+}
+body.theme-ming .seal, body.theme-qing .seal {
+  font-family: "STKaiti", "KaiTi", "Kaiti SC", "Noto Serif SC", serif;
+  font-weight: 700;
+}

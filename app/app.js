@@ -2662,9 +2662,30 @@
       if (!label) return;
       selectOrToggleUnit(label.dataset.unitId, { fly: false, tab: "detail" });
     });
+    // Labels sit above the canvas with pointer events on (so they stay
+    // clickable), which would otherwise swallow wheel-zoom. Forward the wheel to
+    // the map canvas so zooming works while the pointer is over a name.
+    $("#map-labels").addEventListener("wheel", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      map.getCanvas().dispatchEvent(new WheelEvent("wheel", {
+        deltaX: event.deltaX,
+        deltaY: event.deltaY,
+        deltaMode: event.deltaMode,
+        clientX: event.clientX,
+        clientY: event.clientY,
+        ctrlKey: event.ctrlKey,
+        shiftKey: event.shiftKey,
+        altKey: event.altKey,
+        metaKey: event.metaKey,
+        bubbles: true,
+        cancelable: true,
+      }));
+    }, { passive: false });
   }
 
   function init() {
+    document.body.classList.add(`theme-${window.__DYNASTY__ || "ming"}`);
     initMap();
     initSearch();
     initTimeline();
