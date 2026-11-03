@@ -1140,16 +1140,29 @@
     }
     state.selectedPolygonIds = selected;
 
-    // CHGIS is the visible prefecture layer. Match by unit id, with exact-name
-    // fallback for the 1600 data where some old ids are unavailable.
+    // CHGIS is the visible prefecture layer. Names in the Ming point data often
+    // carry suffixes such as 军民府/宣慰司, while the CHGIS face may use only the
+    // stem; normalize both before matching.
+    const normalizeUnitName = (value) => String(value || "")
+      .replace(/(军民府|军民宣慰司|宣慰司|长官司|府|州|县|卫|所)$/g, "")
+      .trim();
     const chgisSelected = [];
+    const wantedName = normalizeUnitName(unit.name);
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
       const matchesUnit = properties.unitId === unitId
         || (unit.level === "county" && properties.unitId === unit.parentId)
-        || (unit.level !== "county" && properties.name === unit.name)
+        || (unit.level !== "county" && normalizeUnitName(properties.name) === wantedName)
         || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
       if (matchesUnit) chgisSelected.push(feature.id);
+    }
+    // Last-resort spatial fallback: if a 军民府/土司 name has no CHGIS name match,
+    // query the visible CHGIS face under the unit's seat point.
+    if (!chgisSelected.length && Number.isFinite(unit.lon) && Number.isFinite(unit.lat)) {
+      const point = map.project([unit.lon, unit.lat]);
+      for (const feature of map.queryRenderedFeatures(point, { layers: ["chgis-fill"] })) {
+        if (feature.id != null) chgisSelected.push(feature.id);
+      }
     }
     if (chgisSelected.length) startChgisBlink(chgisSelected);
   }
