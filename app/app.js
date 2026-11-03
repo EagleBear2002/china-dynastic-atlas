@@ -587,12 +587,14 @@
       const span = validity[properties.name];
       if (span && (year < span[0] || year > span[1])) continue;
       seen.add(properties.name);
+      const bounds = geometryBounds(feature.geometry);
       result.push({
         name: properties.name,
         color: properties.color || "#6b7b8c",
         geometry: feature.geometry,
         labelAt: properties.labelAt,
         capital: properties.capital || null,
+        area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
       });
     }
     const skipRough = new Set(["鞑靼瓦剌", "乌思藏"]);
@@ -610,6 +612,7 @@
           geometry: { type: "Polygon", coordinates: [polity.polygon] },
           labelAt: polity.labelAt || [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
           capital: polity.capital || null,
+          area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
         });
       }
     }
@@ -1374,10 +1377,15 @@
       element.className = "map-label map-label--neighbor";
       element.textContent = polity.name;
       element.style.color = polity.color;
+      const area = Number.isFinite(polity.area) ? polity.area : 1;
+      const fontSize = Math.max(13, Math.min(28, 13 + Math.sqrt(area) * 1.15));
+      element.style.fontSize = `${fontSize.toFixed(1)}px`;
+      element.style.letterSpacing = `${Math.max(2, fontSize * 0.12).toFixed(1)}px`;
       element.style.display = "";
       element.style.transform = `translate3d(${point.x}px, ${point.y}px, 0) translate(-50%, -50%)`;
       used.add(polity.name);
-      occupied.push({ left: point.x - 70, right: point.x + 70, top: point.y - 20, bottom: point.y + 20 });
+      const halfWidth = Math.max(30, polity.name.length * fontSize * 0.62);
+      occupied.push({ left: point.x - halfWidth, right: point.x + halfWidth, top: point.y - fontSize / 2, bottom: point.y + fontSize / 2 });
     }
     for (const [name, element] of neighborLabelPool.entries()) if (!used.has(name)) element.style.display = "none";
 
