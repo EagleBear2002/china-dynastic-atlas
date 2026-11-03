@@ -37,8 +37,11 @@
     guizhou: "#6B70B5",
     "liaodong-dusi": "#5B4B3A",
   };
+  for (const province of MING.provinces) {
+    if (!PROVINCE_COLORS[province.id]) PROVINCE_COLORS[province.id] = province.color || "#81796e";
+    province.color = PROVINCE_COLORS[province.id];
+  }
   for (const unit of MING.units) unit.color = PROVINCE_COLORS[unit.provinceId] || "#81796e";
-  for (const province of MING.provinces) province.color = PROVINCE_COLORS[province.id] || "#81796e";
 
   function darkenHex(hex, factor = 0.72) {
     const value = hex.replace("#", "");
