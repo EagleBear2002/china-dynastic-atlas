@@ -193,7 +193,9 @@
   const mergeRange = (ranges) => ranges.reduce(
     (acc, range) => [Math.min(acc[0], range[0]), Math.max(acc[1], range[1])], [9999, -9999]);
   const clampRange = (range) => ({
-    from: Math.max(1368, range[0]), to: Math.min(1644, range[1]), precision: "reconstructed",
+    from: Math.max(Number(window.__YEAR_MIN__ ?? 1368), range[0]),
+    to: Math.min(Number(window.__YEAR_MAX__ ?? 1644), range[1]),
+    precision: "reconstructed",
   });
   function pointInRing(ring, x, y) {
     let inside = false;
@@ -1482,12 +1484,13 @@
       syncMarkerVisibility(new Set());
       return;
     }
+    const isQing = window.__DYNASTY__ === "qing";
     const show = {
       "capital-region": true,
       province: true,
-      prefecture: zoom >= 4.2,
-      department: zoom >= 5.2,
-      county: zoom >= 6.2,
+      prefecture: zoom >= (isQing ? 3.4 : 4.2),
+      department: zoom >= (isQing ? 4.2 : 5.2),
+      county: zoom >= (isQing ? 5.2 : 6.2),
     };
     const used = new Set();
     const stacks = new Map();
