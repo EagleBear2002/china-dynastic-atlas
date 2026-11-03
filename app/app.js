@@ -682,6 +682,7 @@
         { id: "neighbor-glow-inner", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 6, "line-opacity": 0.18, "line-blur": 1.8 } },
         { id: "neighbor-line", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 1.0, "line-opacity": 0.5 } },
         { id: "neighbor-capital", type: "circle", source: "neighborCapitals", paint: { "circle-radius": 3.2, "circle-color": "#4b3a2a", "circle-stroke-color": "#f6f1e7", "circle-stroke-width": 1 } },
+        { id: "ming-base", type: "fill", source: "national", paint: { "fill-color": "#e8e1d3", "fill-opacity": 0.94 } },
         { id: "province-fill", type: "fill", source: "provinces", paint: { "fill-color": provinceColor, "fill-opacity": 0.42 } },
         { id: "province-line", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 8, 1.4], "line-opacity": 0.55 } },
         { id: "county-fill", type: "fill", source: "counties", paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "rgba(122,48,39,.72)", ["match", ["get", "prefId"], ...prefColorEntries, "#81796e"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], 1, 0.48] } },
