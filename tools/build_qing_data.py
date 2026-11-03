@@ -104,7 +104,7 @@ def main():
         pref_polygons.append(geom)
         pref_features.append({
             "type": "Feature", "id": str(record.SYS_ID or index),
-            "geometry": rnd(mapping(geom.simplify(0.03, preserve_topology=True)),3),
+            "geometry": rnd(mapping(geom.simplify(0.35, preserve_topology=True)),1),
             "properties": {
                 "id": str(record.SYS_ID or index), "name": name, "type": unit_type,
                 "unitId": uid, "provinceId": province_id, "beg": 1820, "end": 1820,
@@ -152,7 +152,7 @@ def main():
             continue
         prov_geoms.append(geom)
         prov_features.append({
-            "type": "Feature", "id": province["id"], "geometry": rnd(mapping(geom.simplify(0.03, preserve_topology=True)),3),
+            "type": "Feature", "id": province["id"], "geometry": rnd(mapping(geom.simplify(0.35, preserve_topology=True)),1),
             "properties": {"unitId": province["id"], "unitName": name, "labelAnchor": [province["lon"], province["lat"]]},
         })
     nation_geom = unary_union(prov_geoms)
