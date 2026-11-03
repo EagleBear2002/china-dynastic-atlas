@@ -35,7 +35,7 @@ def fill_holes(geom):
     return geom
 
 
-def planarize(features):
+def planarize(features, mask=None):
     geoms = []
     for feature in features:
         geom = shape(feature["geometry"])
@@ -45,17 +45,25 @@ def planarize(features):
         # "merge nearby vertices, then connect the shared points into faces" step.
         geom = set_precision(geom, 0.01, mode="valid_output")
         geoms.append(geom)
-    linework = unary_union([geom.boundary for geom in geoms])
+    boundary_parts = [geom.boundary for geom in geoms]
+    if mask is not None:
+        boundary_parts.append(mask.boundary)
+    linework = unary_union(boundary_parts)
     faces = [face for face in polygonize(linework) if face.area > 0.000001]
     tree = STRtree(geoms)
     assigned = defaultdict(list)
     for face in faces:
         point = face.representative_point()
+        if mask is not None and not mask.covers(point):
+            continue
         candidates = [int(index) for index in tree.query(point)]
         containing = [index for index in candidates if geoms[index].covers(point)]
-        if not containing:
-            continue
-        chosen = min(containing, key=lambda index: geoms[index].area)
+        if containing:
+            chosen = min(containing, key=lambda index: geoms[index].area)
+        else:
+            # An inter-province gap is assigned to the nearest adjacent source
+            # face; the mask keeps the final partition complete.
+            chosen = min(range(len(geoms)), key=lambda index: geoms[index].distance(point))
         assigned[chosen].append(face)
     result = []
     for index, group in assigned.items():
@@ -64,12 +72,14 @@ def planarize(features):
             merged = merged.buffer(0)
         if merged.is_empty:
             continue
-        merged = fill_holes(merged)
         source = features[index]
+        rounded = shape(rnd(mapping(merged)))
+        if not rounded.is_valid:
+            rounded = rounded.buffer(0)
         result.append({
             "type": "Feature",
             "id": source["id"],
-            "geometry": rnd(mapping(merged)),
+            "geometry": rnd(mapping(rounded)),
             "properties": dict(source["properties"]),
         })
     return result
@@ -78,7 +88,10 @@ def planarize(features):
 def main():
     text = INPUT.read_text(encoding="utf-8")
     data = json.loads(text[text.index("{"): text.rindex("}") + 1])
-    features = planarize(data["features"])
+    mask_doc = json.load(open(ROOT / "vendor/historical-map-project/public/reference/province-baseline.geojson", encoding="utf-8"))
+    mask_features = [(feature["properties"].get("unitId"), shape(feature["geometry"])) for feature in mask_doc["features"]]
+    mask = unary_union([geom for _, geom in mask_features])
+    features = planarize(data["features"], mask)
 
     # Coverage audit: compare the complete provincial mask with the union of all
     # prefecture faces. Any uncovered gap is assigned to the nearest prefecture so
@@ -121,7 +134,7 @@ def main():
 
     # Re-planarize after gap filling so the added cover polygons cannot overlap
     # neighbouring prefectures.
-    features = planarize(features)
+    features = planarize(features, mask)
     # Military jurisdictions (行都司/辽东都司) must not be drawn as separate civil
     # provinces; merge them into the civil province they belonged to for display.
     province_merge = {
@@ -142,7 +155,13 @@ def main():
         province_groups[feature["properties"].get("provinceId")].append(feature)
     hole_count = 0
     for province_id, group in province_groups.items():
-        union = unary_union([shape(feature["geometry"]) for feature in group])
+        group_geoms = []
+        for feature in group:
+            geom = shape(feature["geometry"])
+            if not geom.is_valid:
+                geom = geom.buffer(0)
+            group_geoms.append(geom)
+        union = unary_union(group_geoms)
         parts = list(union.geoms) if union.geom_type == "MultiPolygon" else [union]
         for part in parts:
             for ring in part.interiors:
@@ -173,6 +192,14 @@ def main():
                 })
                 hole_count += 1
     print("province holes assigned", hole_count)
+
+    for feature in features:
+        geom = shape(feature["geometry"])
+        if not geom.is_valid:
+            geom = geom.buffer(0)
+        if geom.is_empty:
+            continue
+        feature["geometry"] = rnd(mapping(geom))
 
     boundary_parts = []
     for feature in features:
@@ -213,6 +240,8 @@ def main():
         union = unary_union(geoms)
         if not union.is_valid:
             union = union.buffer(0)
+        if not union.is_valid:
+            union = unary_union([part.buffer(0) for part in (union.geoms if hasattr(union, "geoms") else [union])])
         if union.is_empty:
             continue
         point = union.representative_point()
