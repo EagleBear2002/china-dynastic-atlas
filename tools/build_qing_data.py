@@ -29,6 +29,7 @@ def make_transformer(prj_path):
     return Transformer.from_crs(CRS.from_wkt(Path(prj_path).read_text()), 'EPSG:4326', always_xy=True)
 
 
+PROVINCE_COLOR_OVERRIDES = {"盛京": "#7A5A86", "山东": "#3F78A8"}
 PREF_PALETTE = ["#B5655D", "#A87935", "#3E5E54", "#58577F", "#356671", "#705A70", "#8C6E5D", "#71805E"]
 
 
@@ -66,7 +67,7 @@ def main():
         province = {
             "id": pid, "name": name, "level": "province", "levelLabel": "省",
             "formalName": name, "seatName": name, "lon": x, "lat": y,
-            "color": COLORS[index % len(COLORS)], "children": [], "counts": {},
+            "color": PROVINCE_COLOR_OVERRIDES.get(name, COLORS[index % len(COLORS)]), "children": [], "counts": {},
             "validity": {"from": 1644, "to": 1912, "precision": "reconstructed"},
             "confidence": "reconstructed", "ancestry": [],
         }
@@ -87,7 +88,7 @@ def main():
             province = {
                 "id": province_id, "name": province_name or name, "level": "province", "levelLabel": "地区",
                 "formalName": province_name or name, "seatName": name, "lon": float(record.X_COORD or 0), "lat": float(record.Y_COORD or 0),
-                "color": COLORS[index % len(COLORS)], "children": [], "counts": {},
+                "color": PROVINCE_COLOR_OVERRIDES.get(name, COLORS[index % len(COLORS)]), "children": [], "counts": {},
                 "validity": {"from": 1644, "to": 1912, "precision": "reconstructed"},
                 "confidence": "reconstructed", "ancestry": [],
             }
