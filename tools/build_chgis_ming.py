@@ -6,6 +6,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
+from shapely import set_precision
 from shapely.geometry import MultiPolygon, Polygon, mapping, shape
 from shapely.ops import polygonize, unary_union
 from shapely.strtree import STRtree
@@ -40,6 +41,9 @@ def planarize(features):
         geom = shape(feature["geometry"])
         if not geom.is_valid:
             geom = geom.buffer(0)
+        # Snap all boundaries to one precision grid before polygonizing. This is the
+        # "merge nearby vertices, then connect the shared points into faces" step.
+        geom = set_precision(geom, 0.01, mode="valid_output")
         geoms.append(geom)
     linework = unary_union([geom.boundary for geom in geoms])
     faces = [face for face in polygonize(linework) if face.area > 0.000001]
@@ -131,6 +135,19 @@ def main():
     (OUT / "chgis-ming-provinces.js").write_text(
         "window.__CHGIS_PROVINCES__ = " + json.dumps(
             {"type": "FeatureCollection", "features": provinces}, ensure_ascii=False, separators=(",", ":")
+        ) + ";\n",
+        encoding="utf-8",
+    )
+    nation = unary_union([shape(feature["geometry"]) for feature in provinces])
+    if not nation.is_valid:
+        nation = nation.buffer(0)
+    nation_point = nation.representative_point()
+    (OUT / "chgis-ming-nation.js").write_text(
+        "window.__CHGIS_NATION__ = " + json.dumps(
+            {"type": "FeatureCollection", "features": [{
+                "type": "Feature", "id": "ming-chgis", "geometry": rnd(mapping(nation)),
+                "properties": {"unitId": "ming", "unitName": "大明", "labelAnchor": [nation_point.x, nation_point.y]},
+            }]}, ensure_ascii=False, separators=(",", ":")
         ) + ";\n",
         encoding="utf-8",
     )
