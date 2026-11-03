@@ -127,6 +127,24 @@
     return ICONS[EVENT_ICON_KEYS[type]] || ICONS.politics || "";
   }
 
+  // 1600 播州之役后的改置：CHGIS 没有单独的遵义府/平越府面，用原播州宣慰司、
+  // 平越卫的辖域生成接替单位，保证时间轴进入 1600 年后这一块仍可点击。
+  MING.units.push(
+    {
+      id: "zunyi-replacement", name: "遵义府", level: "prefecture", levelLabel: "府",
+      provinceId: "sichuan", provinceName: "四川", parentId: "sichuan",
+      seatName: "遵义", lon: 106.9, lat: 27.7, formalName: "遵义军民府",
+      children: [], ancestry: [], stats: [], sources: [],
+      validity: { from: 1600, to: 1644, precision: "exact" }, confidence: "reconstructed",
+    },
+    {
+      id: "pingyue-replacement", name: "平越府", level: "prefecture", levelLabel: "府",
+      provinceId: "guizhou", provinceName: "贵州", parentId: "guizhou",
+      seatName: "平越", lon: 107.5, lat: 26.7, formalName: "平越军民府",
+      children: [], ancestry: [], stats: [], sources: [],
+      validity: { from: 1600, to: 1644, precision: "exact" }, confidence: "reconstructed",
+    },
+  );
   const units = MING.units;
   const unitById = new Map(units.map((unit) => [unit.id, unit]));
   const provinceById = new Map(MING.provinces.map((province) => [province.id, province]));
@@ -294,6 +312,10 @@
 
   function isUnitActive(unit, year) {
     if (!isProvinceActive(unit.provinceId, year)) return false;
+    if (unit.validity) {
+      if (unit.validity.from != null && year < unit.validity.from) return false;
+      if (unit.validity.to != null && year > unit.validity.to) return false;
+    }
     if (year < 1476 && (unit.id === "yunyang-prefecture" || unit.ancestry?.some((item) => item.id === "yunyang-prefecture"))) return false;
     return true;
   }
@@ -392,6 +414,28 @@
       stops.push(zoom, anchorSize * mountainInkScale(zoom));
     }
     return stops;
+  }
+
+  // Point at half the arc length of a mountain polyline: the name sits at the
+  // range's visual centre, not at its middle vertex (which drifts toward one end
+  // whenever the segments have uneven lengths, as Qinling's do).
+  function mountainMidpoint(coords) {
+    let total = 0;
+    for (let i = 1; i < coords.length; i += 1) {
+      total += Math.hypot(coords[i][0] - coords[i - 1][0], coords[i][1] - coords[i - 1][1]);
+    }
+    let remaining = total / 2;
+    for (let i = 1; i < coords.length; i += 1) {
+      const [x0, y0] = coords[i - 1];
+      const [x1, y1] = coords[i];
+      const segment = Math.hypot(x1 - x0, y1 - y0);
+      if (remaining <= segment || i === coords.length - 1) {
+        const t = segment === 0 ? 0 : remaining / segment;
+        return [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t];
+      }
+      remaining -= segment;
+    }
+    return coords[coords.length - 1];
   }
 
   function mountainIconSizeExpression() {
@@ -520,6 +564,7 @@
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
       if (!isSpecialChgis(properties) || !featureActiveInYear(properties, state.year)) continue;
+      if (state.year >= 1600 && (properties.name === "播州宣慰司" || properties.name === "平越卫")) continue;
       const name = properties.name || feature.id;
       const bounds = geometryBounds(feature.geometry);
       const area = (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]);
@@ -538,30 +583,44 @@
   }
 
   function chgisFeatureCollection(year = state.year) {
-    return {
-      type: "FeatureCollection",
-      features: CHGIS_MING.features.filter((feature) => featureActiveInYear(feature.properties, year)).map((feature, index) => {
-        const provinceId = feature.properties?.provinceId;
-        const base = PROVINCE_COLORS[provinceId] || "#81796e";
-        const bounds = geometryBounds(feature.geometry);
-        return {
-          ...feature,
-          properties: {
-            ...feature.properties,
-            prefId: feature.properties?.unitId || feature.id,
-            isSpecial: isSpecialChgis(feature.properties),
-            labelAt: [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
-            color: prefectureColor(base, Number(feature.properties?.colorSlot ?? index)),
-          },
+    const features = [];
+    for (let index = 0; index < CHGIS_MING.features.length; index += 1) {
+      const feature = CHGIS_MING.features[index];
+      const properties = feature.properties || {};
+      let replacement = null;
+      if (year >= 1600 && properties.name === "播州宣慰司") {
+        replacement = {
+          name: "遵义府", type: "府", provinceId: "sichuan",
+          unitId: "zunyi-replacement", prefId: "zunyi-replacement",
+          beg: 1600, end: 1644,
         };
-      }),
-    };
+      } else if (year >= 1600 && properties.name === "平越卫") {
+        replacement = {
+          name: "平越府", type: "府", provinceId: "guizhou",
+          unitId: "pingyue-replacement", prefId: "pingyue-replacement",
+          beg: 1600, end: 1644,
+        };
+      }
+      if (!replacement && !featureActiveInYear(properties, year)) continue;
+      const merged = { ...properties, ...(replacement || {}) };
+      const provinceId = merged.provinceId;
+      const base = PROVINCE_COLORS[provinceId] || "#81796e";
+      const bounds = geometryBounds(feature.geometry);
+      features.push({
+        ...feature,
+        properties: {
+          ...merged,
+          prefId: merged.unitId || feature.id,
+          isSpecial: replacement ? false : isSpecialChgis(properties),
+          labelAt: [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2],
+          color: prefectureColor(base, Number(merged.colorSlot ?? index)),
+        },
+      });
+    }
+    return { type: "FeatureCollection", features };
   }
 
   function featureActiveInYear(properties, year) {
-    // Known 1600 改土归流: 播州宣慰司/平越卫 were replaced by 遵义府、平越府
-    // after the 1600 播州之役. Keep the old feature out of later snapshots.
-    if ((properties?.name === "播州宣慰司" || properties?.name === "平越卫") && year >= 1600) return false;
     const begin = properties?.beg ?? properties?.validFrom ?? null;
     const end = properties?.end ?? properties?.validTo ?? null;
     return (begin == null || year >= begin) && (end == null || year <= end);
@@ -1273,7 +1332,7 @@
       for (const element of mountainLabelPool.values()) element.style.display = "none";
       return;
     }
-    const midpoints = MOUNTAINS.map((range) => range.coords[Math.floor(range.coords.length / 2)]);
+    const midpoints = MOUNTAINS.map((range) => mountainMidpoint(range.coords));
     // Nearest mid-point distance (degrees; longitude scaled by latitude) bounds
     // how wide a name may be. A name capped to 85% of that distance keeps its
     // box clear of every neighbour's, at any zoom — this is what stops the
@@ -1316,7 +1375,7 @@
       const charWidths = charCount + spacingRatio * (charCount - 1);
       const pxPerDegree = Math.max(1, Math.abs(map.project([labelPoint[0] + 1, labelPoint[1]]).x - point.x));
       const inkFont = Math.min(16, Math.max(9, 9 + length * 0.68)) * inkScale;
-      const fitFont = (0.85 * nearestDeg[index] * pxPerDegree) / charWidths;
+      const fitFont = (0.8 * nearestDeg[index] * pxPerDegree) / charWidths;
       const fontSize = Math.max(6, Math.min(inkFont, fitFont));
       const letterSpacing = fontSize * spacingRatio;
       element.style.fontSize = `${fontSize.toFixed(1)}px`;
@@ -1531,11 +1590,17 @@
     // same-name units such as 山西永宁州 and 贵州永宁州 would cross-highlight.
     const chgisSelected = [];
     const wantedName = normalizeUnitName(unit.name);
+    const replacementSourceNames = {
+      "zunyi-replacement": "播州宣慰司",
+      "pingyue-replacement": "平越卫",
+    };
     for (const feature of CHGIS_MING.features || []) {
       const properties = feature.properties || {};
       if (!featureActiveInYear(properties, state.year)) continue;
       const sameProvince = !properties.provinceId || properties.provinceId === unit.provinceId;
-      const matchesUnit = (properties.unitId === unitId && sameProvince)
+      const replacementMatch = state.year >= 1600 && replacementSourceNames[unitId] === properties.name;
+      const matchesUnit = replacementMatch
+        || (properties.unitId === unitId && sameProvince)
         || (unit.level === "county" && properties.unitId === unit.parentId && sameProvince)
         || (unit.level !== "county" && sameProvince && normalizeUnitName(properties.name) === wantedName)
         || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
