@@ -1286,7 +1286,7 @@
 
   // One pattern per zoom band; the tile doubles each zoom level (capped at 256),
   // so the on-screen stripes double too and the hatch stays pinned to the map.
-  const HATCH_TILES = [8, 16, 32, 64, 128, 256];
+  const HATCH_TILES = [8, 16, 32, 64, 128, 256, 512];
   const hatchPatternId = (tile) => `military-hatch-${tile}`;
   function hatchTileForZoom(zoom) {
     const index = Math.min(HATCH_TILES.length - 1, Math.max(0, Math.round(zoom) - 4));
@@ -1376,6 +1376,7 @@
 
     map.on("load", async () => {
       registerMarkerIcons();
+      updateHatchPattern();
       await registerLucideEventIcons();
       const wide = window.innerWidth > 900;
       map.fitBounds([[98.0, 18.0], [125.0, 43.2]], {
@@ -1459,6 +1460,7 @@
 
     map.on("move", scheduleLabels);
     map.on("zoom", scheduleLabels);
+    map.on("zoom", updateHatchPattern);
     map.on("resize", scheduleLabels);
     map.on("idle", scheduleLabels);
     setTimeout(scheduleLabels, 600);
@@ -1550,6 +1552,7 @@
     };
     const used = new Set();
     const stacks = new Map();
+    const seenLabelKeys = new Set();
     let count = 0;
 
     for (const unit of labelUnits) {
@@ -1558,12 +1561,18 @@
       if (!state.labelLevels[levelToggle]) continue;
       if (!show[unit.level]) continue;
       if (count > 620) break;
+      // A same-named prefectoral region should not duplicate its parent province
+      // label (e.g. 中俄尼布楚条约待议地区 / 西藏).
+      if (unit.level === "prefecture" && unit.name === unit.provinceName) continue;
       const labelPoint = (unit.level === "province" || unit.level === "capital-region")
         && provinceLabelPoint.get(unit.id)
         ? provinceLabelPoint.get(unit.id)
         : [unit.lon, unit.lat];
       const point = map.project(labelPoint);
       if (point.x < 10 || point.y < 10 || point.x > width - 10 || point.y > height - 10) continue;
+      const labelKey = `${unit.level}|${unit.name}|${Math.round(point.x)}|${Math.round(point.y)}`;
+      if (seenLabelKeys.has(labelKey)) continue;
+      seenLabelKeys.add(labelKey);
 
       let element = labelPool.get(unit.id);
       if (!element) {
