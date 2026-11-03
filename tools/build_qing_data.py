@@ -169,6 +169,30 @@ def main():
             if f["properties"].get("provinceId") not in removed_province_ids
         ]
 
+    # Merge/drop duplicate province records created by frontier rows whose
+    # LEV1_CH name equals an existing province (e.g. 中俄尼布楚条约待议地区).
+    primary_province_by_name = {}
+    remap_province = {}
+    kept_provinces = []
+    for province in provinces:
+        primary = primary_province_by_name.get(province["name"])
+        if primary is None:
+            primary_province_by_name[province["name"]] = province
+            kept_provinces.append(province)
+        else:
+            remap_province[province["id"]] = primary["id"]
+    provinces = kept_provinces
+    province_by_name = {p["name"]: p for p in provinces}
+    for unit in pref_units + county_units:
+        if unit.get("provinceId") in remap_province:
+            unit["provinceId"] = remap_province[unit["provinceId"]]
+        if unit.get("parentId") in remap_province:
+            unit["parentId"] = remap_province[unit["parentId"]]
+    for feature in pref_features:
+        pid = feature["properties"].get("provinceId")
+        if pid in remap_province:
+            feature["properties"]["provinceId"] = remap_province[pid]
+
     # Province polygon GeoJSON and national outline.
     prov_features = []
     prov_geoms = []
