@@ -1308,7 +1308,7 @@
     // query the visible CHGIS face under the unit's seat point.
     if (!chgisSelected.length && Number.isFinite(unit.lon) && Number.isFinite(unit.lat)) {
       const point = map.project([unit.lon, unit.lat]);
-      for (const feature of map.queryRenderedFeatures(point, { layers: ["chgis-fill"] })) {
+      for (const feature of map.queryRenderedFeatures(point, { layers: ["chgis-fill", "chgis-special-fill"] })) {
         if (feature.id != null) chgisSelected.push(feature.id);
       }
     }
