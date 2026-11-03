@@ -122,6 +122,17 @@ def main():
     # Re-planarize after gap filling so the added cover polygons cannot overlap
     # neighbouring prefectures.
     features = planarize(features)
+    # Military jurisdictions (行都司/辽东都司) must not be drawn as separate civil
+    # provinces; merge them into the civil province they belonged to for display.
+    province_merge = {
+        "shaanxi-xing-dusi": "shaanxi",
+        "sichuan-xing-dusi": "sichuan",
+        "liaodong-dusi": "shandong",
+    }
+    for feature in features:
+        province_id = feature["properties"].get("provinceId")
+        if province_id in province_merge:
+            feature["properties"]["provinceId"] = province_merge[province_id]
     boundary_parts = []
     for feature in features:
         geom = shape(feature["geometry"])
