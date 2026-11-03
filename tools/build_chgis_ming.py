@@ -35,6 +35,37 @@ def fill_holes(geom):
     return geom
 
 
+def assign_color_slots(features):
+    """Greedy graph colouring on prefecture units, not on their split fragments."""
+    groups = defaultdict(list)
+    for feature in features:
+        groups[feature["properties"].get("provinceId")].append(feature)
+    for group in groups.values():
+        units = defaultdict(list)
+        for feature in group:
+            key = feature["properties"].get("unitId") or feature["properties"].get("name") or feature["id"]
+            units[key].append(feature)
+        geoms = {
+            key: unary_union([shape(feature["geometry"]) for feature in unit_features])
+            for key, unit_features in units.items()
+        }
+        for key, geom in list(geoms.items()):
+            if not geom.is_valid:
+                geoms[key] = geom.buffer(0)
+        order = sorted(geoms, key=lambda key: geoms[key].area, reverse=True)
+        assigned = {}
+        for key in order:
+            geom = geoms[key]
+            used = {
+                assigned[other] for other in assigned
+                if geom.buffer(0.008).intersects(geoms[other])
+            }
+            slot = next((candidate for candidate in range(8) if candidate not in used), 0)
+            assigned[key] = slot
+            for feature in units[key]:
+                feature["properties"]["colorSlot"] = slot
+
+
 def planarize(features, mask=None):
     geoms = []
     for feature in features:
@@ -200,6 +231,8 @@ def main():
         if geom.is_empty:
             continue
         feature["geometry"] = rnd(mapping(geom))
+
+    assign_color_slots(features)
 
     boundary_parts = []
     for feature in features:

@@ -448,7 +448,7 @@
           properties: {
             ...feature.properties,
             prefId: feature.properties?.unitId || feature.id,
-            color: prefectureColor(base, index),
+            color: prefectureColor(base, Number(feature.properties?.colorSlot ?? index)),
           },
         };
       }),
@@ -894,6 +894,35 @@
     });
   }
 
+  // Seats that share one coordinate — a prefecture with its attached counties, two
+  // counties governing the same city — carry one name per unit, and the per-level
+  // offsets alone put same-level names on the very same pixel. Names sharing a point
+  // are therefore collected into a single column: the first keeps its level's offset
+  // and every further name continues outward until it clears the names already there.
+  const LABEL_OFFSETS = {
+    "capital-region": 0,
+    province: 0,
+    prefecture: -16,
+    department: -6,
+    county: 10,
+  };
+
+  function stackedLabelOffset(pointKey, level, height, stacks) {
+    const base = LABEL_OFFSETS[level] ?? 0;
+    // A department keeps its slot just above the point until that slot is taken; it
+    // then yields downwards so the column still reads highest rank first. Every other
+    // level continues on its own side of the point.
+    const direction = level === "department" || base >= 0 ? 1 : -1;
+    const placed = stacks.get(pointKey) || [];
+    const overlaps = (offset) => placed.some((other) =>
+      offset - height / 2 < other.bottom + 2 && offset + height / 2 + 2 > other.top);
+    let offset = base;
+    for (let guard = 0; guard < 40 && overlaps(offset); guard += 1) offset += direction * 4;
+    placed.push({ top: offset - height / 2, bottom: offset + height / 2 });
+    stacks.set(pointKey, placed);
+    return offset;
+  }
+
   function renderLabels() {
     if (!map || !state.layers.labels) {
       clearLabels();
@@ -911,6 +940,7 @@
     };
     const used = new Set();
     const occupied = [];
+    const stacks = new Map();
     let count = 0;
 
     for (const unit of labelUnits) {
@@ -935,20 +965,14 @@
       }
       const isCapital = unit.level === "capital-region";
       const kind = isCapital || unit.level === "province" ? "province" : unit.level;
-      const labelOffset = {
-        "capital-region": 0,
-        province: 0,
-        prefecture: -16,
-        department: -6,
-        county: 10,
-      }[unit.level] || 0;
       const pointKey = `${Math.round(point.x)},${Math.round(point.y)}`;
       element.className = `map-label map-label--${kind}${state.selectedUnitId === unit.id ? " is-selected" : ""}`;
       element.textContent = unit.name;
-      element.style.transform = `translate3d(${point.x}px, ${point.y + labelOffset}px, 0) translate(-50%, -50%)`;
       element.style.display = "";
       const labelWidth = Math.max(24, element.offsetWidth + 8);
       const labelHeight = Math.max(12, element.offsetHeight + 4);
+      const labelOffset = stackedLabelOffset(pointKey, unit.level, labelHeight, stacks);
+      element.style.transform = `translate3d(${point.x}px, ${point.y + labelOffset}px, 0) translate(-50%, -50%)`;
       const box = {
         left: point.x - labelWidth / 2,
         right: point.x + labelWidth / 2,
