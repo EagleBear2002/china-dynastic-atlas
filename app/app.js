@@ -723,10 +723,10 @@
         { id: "modern-china-line", type: "line", source: "modern", paint: { "line-color": "rgba(78, 92, 86, .46)", "line-width": 0.7, "line-dasharray": [3, 3], "line-opacity": 0.65 } },
         { id: "national-fill", type: "fill", source: "national", paint: { "fill-color": "#7a3027", "fill-opacity": 0.14 } },
         { id: "national-line", type: "line", source: "national", paint: { "line-color": "#7a3027", "line-width": 1.8, "line-opacity": 0.86 } },
-        { id: "neighbor-fill", type: "fill", source: "neighbors", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.22 } },
-        { id: "neighbor-glow-outer", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 12, "line-opacity": 0.08, "line-blur": 4 } },
-        { id: "neighbor-glow-inner", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 6, "line-opacity": 0.18, "line-blur": 1.8 } },
-        { id: "neighbor-line", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 1.0, "line-opacity": 0.5 } },
+        { id: "neighbor-fill", type: "fill", source: "neighbors", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.20 } },
+        { id: "neighbor-glow-outer", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 24, "line-opacity": 0.08, "line-blur": 7 } },
+        { id: "neighbor-glow-mid", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 15, "line-opacity": 0.14, "line-blur": 4.5 } },
+        { id: "neighbor-glow-inner", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 8, "line-opacity": 0.24, "line-blur": 2.5 } },
         { id: "neighbor-capital", type: "circle", source: "neighborCapitals", paint: { "circle-radius": 3.2, "circle-color": "#4b3a2a", "circle-stroke-color": "#f6f1e7", "circle-stroke-width": 1 } },
         { id: "ming-base", type: "fill", source: "national", paint: { "fill-color": "#e8e1d3", "fill-opacity": 0.94 } },
         { id: "province-fill", type: "fill", source: "provinces", paint: { "fill-color": provinceColor, "fill-opacity": 0.42 } },
@@ -1421,7 +1421,7 @@
 
   function applyLayerState() {
     setLayerVisibility(["national-fill", "national-line"], state.layers.national);
-    setLayerVisibility(["neighbor-fill", "neighbor-glow-outer", "neighbor-glow-inner", "neighbor-line", "neighbor-capital"], state.layers.neighbors);
+    setLayerVisibility(["neighbor-fill", "neighbor-glow-outer", "neighbor-glow-mid", "neighbor-glow-inner", "neighbor-capital"], state.layers.neighbors);
     setLayerVisibility(["modern-china-line"], state.layers.modern);
     setLayerVisibility(["province-fill", "province-line", "province-line-top"], state.layers.provinces);
     setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
