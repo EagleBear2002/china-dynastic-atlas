@@ -150,6 +150,25 @@ def main():
         if parent:
             parent["children"].append(uid)
 
+    # CHGIS 1820 stores the South China Sea island groups as province-level
+    # polygons. They are geographic labels, not Qing provinces, and should not
+    # appear as provincial names or provincial fills on the map.
+    island_province_names = {"万里长沙", "千里石塘", "曾母暗沙", "东沙", "中沙"}
+    removed_province_ids = {
+        province["id"] for province in provinces
+        if province["name"] in island_province_names
+    }
+    if removed_province_ids:
+        provinces = [p for p in provinces if p["id"] not in removed_province_ids]
+        for name in [name for name, province in province_by_name.items() if province["id"] in removed_province_ids]:
+            province_by_name.pop(name, None)
+        pref_units = [u for u in pref_units if u.get("provinceId") not in removed_province_ids]
+        county_units = [u for u in county_units if u.get("provinceId") not in removed_province_ids]
+        pref_features = [
+            f for f in pref_features
+            if f["properties"].get("provinceId") not in removed_province_ids
+        ]
+
     # Province polygon GeoJSON and national outline.
     prov_features = []
     prov_geoms = []
