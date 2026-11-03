@@ -588,12 +588,15 @@
       if (span && (year < span[0] || year > span[1])) continue;
       seen.add(properties.name);
       const bounds = geometryBounds(feature.geometry);
+      const capitalOverrides = {
+        "掸邦": { name: "景栋", lng: 99.3, lat: 21.3 },
+      };
       result.push({
         name: properties.name,
         color: properties.color || "#6b7b8c",
         geometry: feature.geometry,
         labelAt: properties.labelAt,
-        capital: properties.capital || null,
+        capital: capitalOverrides[properties.name] || properties.capital || null,
         area: (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]),
       });
     }
@@ -1270,9 +1273,24 @@
       for (const element of mountainLabelPool.values()) element.style.display = "none";
       return;
     }
-    for (const range of MOUNTAINS) {
+    const midpoints = MOUNTAINS.map((range) => range.coords[Math.floor(range.coords.length / 2)]);
+    // Nearest mid-point distance (degrees; longitude scaled by latitude) bounds
+    // how wide a name may be. A name capped to 85% of that distance keeps its
+    // box clear of every neighbour's, at any zoom — this is what stops the
+    // dense Five Ridges cluster from piling names on top of one another.
+    const nearestDeg = midpoints.map((from, index) => {
+      let nearest = Infinity;
+      midpoints.forEach((to, other) => {
+        if (other === index) return;
+        const dx = (to[0] - from[0]) * Math.cos(from[1] * Math.PI / 180);
+        const dy = to[1] - from[1];
+        nearest = Math.min(nearest, Math.hypot(dx, dy));
+      });
+      return nearest;
+    });
+    for (const [index, range] of MOUNTAINS.entries()) {
       const coords = range.coords;
-      const labelPoint = coords[Math.floor(coords.length / 2)];
+      const labelPoint = midpoints[index];
       const point = map.project(labelPoint);
       if (point.x < 12 || point.y < 12 || point.x > width - 12 || point.y > height - 12) continue;
       let element = mountainLabelPool.get(range.name);
@@ -1285,14 +1303,22 @@
       element.className = "map-label map-label--mountain";
       element.textContent = range.name;
       let length = 0;
-      for (let index = 1; index < coords.length; index += 1) {
-        length += Math.hypot(coords[index][0] - coords[index - 1][0], coords[index][1] - coords[index - 1][1]);
+      for (let i = 1; i < coords.length; i += 1) {
+        length += Math.hypot(coords[i][0] - coords[i - 1][0], coords[i][1] - coords[i - 1][1]);
       }
-      // Names are map ink too: the base sizes are the zoom-4 sizes, and the ink
-      // scale keeps the geographic footprint fixed at every other zoom.
+      // Names are map ink: size scales with the map (inkScale), but each name is
+      // also capped to 85% of the distance to the nearest range's name so dense
+      // clusters never draw overlapping labels. In open country the ink size
+      // wins, so names stay fully proportional to the map ("printed on it").
       const inkScale = mountainInkScale(zoom);
-      const fontSize = Math.min(16, Math.max(9, 9 + length * 0.68)) * inkScale;
-      const letterSpacing = Math.min(18, Math.max(1.5, length * 1.35)) * inkScale;
+      const charCount = Math.max(1, Array.from(range.name).length);
+      const spacingRatio = 0.06;
+      const charWidths = charCount + spacingRatio * (charCount - 1);
+      const pxPerDegree = Math.max(1, Math.abs(map.project([labelPoint[0] + 1, labelPoint[1]]).x - point.x));
+      const inkFont = Math.min(16, Math.max(9, 9 + length * 0.68)) * inkScale;
+      const fitFont = (0.85 * nearestDeg[index] * pxPerDegree) / charWidths;
+      const fontSize = Math.max(6, Math.min(inkFont, fitFont));
+      const letterSpacing = fontSize * spacingRatio;
       element.style.fontSize = `${fontSize.toFixed(1)}px`;
       element.style.letterSpacing = `${letterSpacing.toFixed(1)}px`;
       const [x1, y1] = coords[0];
@@ -1300,7 +1326,7 @@
       let angle = Math.atan2(-(y2 - y1), x2 - x1) * 180 / Math.PI;
       if (angle > 90) angle -= 180;
       if (angle < -90) angle += 180;
-      const labelOffset = 8 * inkScale;
+      const labelOffset = fontSize * 0.9;
       element.style.transform = `translate3d(${point.x}px, ${point.y + labelOffset}px, 0) translate(-50%, -50%) rotate(${angle.toFixed(1)}deg)`;
       // Mountain names never yield and never hide: they are bottom-layer ink
       // (z-index 0 in styles.css), so every other label draws on top of them
