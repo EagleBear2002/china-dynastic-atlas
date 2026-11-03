@@ -198,6 +198,9 @@
     boundaryKey: null,
     selectedUnitId: null,
     selectedPolygonIds: [],
+    selectedChgisIds: [],
+    blinkTimer: null,
+    blinkOn: false,
     selectedEventId: null,
     eventFilter: "all",
     leftTab: "events",
@@ -534,7 +537,7 @@
         { id: "mountain-ridges", type: "line", source: "mountainRidges", paint: { "line-color": "rgba(80, 92, 78, .24)", "line-width": 0.55, "line-dasharray": [1, 3] } },
         { id: "mountain-peaks", type: "symbol", source: "mountainPeaks", layout: { "icon-image": "mountain-peak", "icon-size": ["interpolate", ["linear"], ["zoom"], 3, ["get", "iconSize"], 8, ["*", ["get", "iconSize"], 2]], "icon-allow-overlap": true, "icon-ignore-placement": true }, paint: { "icon-opacity": 0.66 } },
         { id: "county-boundaries", type: "line", source: "countyBoundaries", paint: { "line-color": "rgba(56, 52, 44, .36)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.28, 8, 0.55], "line-opacity": 0.68 } },
-        { id: "chgis-fill", type: "fill", source: "chgisMing", paint: { "fill-color": ["get", "color"], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], 0.88, 0.58] } },
+        { id: "chgis-fill", type: "fill", source: "chgisMing", paint: { "fill-color": ["case", ["boolean", ["feature-state", "selected"], false], "#b85c43", ["get", "color"]], "fill-opacity": ["case", ["boolean", ["feature-state", "selected"], false], ["case", ["boolean", ["feature-state", "blink"], false], 0.96, 0.52], 0.58] } },
         { id: "chgis-line", type: "line", source: "chgisBoundaries", paint: { "line-color": "rgba(70, 62, 50, .26)", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.25, 8, 0.48], "line-opacity": 0.58 } },
         { id: "prefecture-line", type: "line", source: "prefectures", paint: { "line-color": provinceColorByProvinceId, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.55, 8, 1.25], "line-opacity": 0.55 } },
         { id: "province-line-top", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 8, 1.5], "line-opacity": 0.72 } },
@@ -1059,18 +1062,43 @@
     if (state.layers.labels) scheduleLabels(); else clearLabels();
   }
 
+  function stopChgisBlink() {
+    if (state.blinkTimer) {
+      clearInterval(state.blinkTimer);
+      state.blinkTimer = null;
+    }
+    for (const featureId of state.selectedChgisIds) {
+      map.removeFeatureState({ source: "chgisMing", id: featureId });
+    }
+    state.selectedChgisIds = [];
+  }
+
+  function startChgisBlink(featureIds) {
+    state.selectedChgisIds = featureIds;
+    state.blinkOn = true;
+    for (const featureId of featureIds) {
+      map.setFeatureState({ source: "chgisMing", id: featureId }, { selected: true, blink: true });
+    }
+    state.blinkTimer = setInterval(() => {
+      state.blinkOn = !state.blinkOn;
+      for (const featureId of featureIds) {
+        map.setFeatureState({ source: "chgisMing", id: featureId }, { selected: true, blink: state.blinkOn });
+      }
+    }, 520);
+  }
+
   function clearPolygonSelection() {
     for (const featureId of state.selectedPolygonIds) {
       map.removeFeatureState({ source: "counties", id: featureId });
     }
     state.selectedPolygonIds = [];
+    stopChgisBlink();
   }
 
   function selectPolygonsForUnit(unitId, unit) {
-    if (!map || !map.getSource("counties")) return;
+    if (!map) return;
     clearPolygonSelection();
-    // Group by the current snapshot, so selecting a prefecture highlights all of its
-    // county/territory polygons rather than a single county ring.
+    // The detailed county source is used when CHGIS is off; keep it as a fallback.
     const features = boundarySnapshotFor(state.year).counties?.features || [];
     const selected = [];
     for (const feature of features) {
@@ -1087,6 +1115,19 @@
       map.setFeatureState({ source: "counties", id: featureId }, { selected: true });
     }
     state.selectedPolygonIds = selected;
+
+    // CHGIS is the visible prefecture layer. Match by unit id, with exact-name
+    // fallback for the 1600 data where some old ids are unavailable.
+    const chgisSelected = [];
+    for (const feature of CHGIS_MING.features || []) {
+      const properties = feature.properties || {};
+      const matchesUnit = properties.unitId === unitId
+        || (unit.level === "county" && properties.unitId === unit.parentId)
+        || (unit.level !== "county" && properties.name === unit.name)
+        || ((unit.level === "province" || unit.level === "capital-region") && properties.provinceId === unitId);
+      if (matchesUnit) chgisSelected.push(feature.id);
+    }
+    if (chgisSelected.length) startChgisBlink(chgisSelected);
   }
 
   function selectUnit(unitId, options = {}) {
