@@ -678,7 +678,9 @@
         { id: "national-fill", type: "fill", source: "national", paint: { "fill-color": "#7a3027", "fill-opacity": 0.14 } },
         { id: "national-line", type: "line", source: "national", paint: { "line-color": "#7a3027", "line-width": 1.8, "line-opacity": 0.86 } },
         { id: "neighbor-fill", type: "fill", source: "neighbors", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.22 } },
-        { id: "neighbor-line", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 1.1, "line-opacity": 0.55, "line-dasharray": [4, 2] } },
+        { id: "neighbor-glow-outer", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 12, "line-opacity": 0.08, "line-blur": 4 } },
+        { id: "neighbor-glow-inner", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 6, "line-opacity": 0.18, "line-blur": 1.8 } },
+        { id: "neighbor-line", type: "line", source: "neighbors", paint: { "line-color": ["get", "color"], "line-width": 1.25, "line-opacity": 0.62, "line-dasharray": [4, 2] } },
         { id: "neighbor-capital", type: "circle", source: "neighborCapitals", paint: { "circle-radius": 3.2, "circle-color": "#4b3a2a", "circle-stroke-color": "#f6f1e7", "circle-stroke-width": 1 } },
         { id: "province-fill", type: "fill", source: "provinces", paint: { "fill-color": provinceColor, "fill-opacity": 0.42 } },
         { id: "province-line", type: "line", source: "provinces", paint: { "line-color": provinceBorderColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 8, 1.4], "line-opacity": 0.55 } },
@@ -1381,7 +1383,7 @@
 
   function applyLayerState() {
     setLayerVisibility(["national-fill", "national-line"], state.layers.national);
-    setLayerVisibility(["neighbor-fill", "neighbor-line", "neighbor-capital"], state.layers.neighbors);
+    setLayerVisibility(["neighbor-fill", "neighbor-glow-outer", "neighbor-glow-inner", "neighbor-line", "neighbor-capital"], state.layers.neighbors);
     setLayerVisibility(["modern-china-line"], state.layers.modern);
     setLayerVisibility(["province-fill", "province-line", "province-line-top"], state.layers.provinces);
     setLayerVisibility(["admin-province", "admin-prefecture", "admin-department", "admin-county"], state.layers.admin);
